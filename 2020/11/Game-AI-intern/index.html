@@ -20,28 +20,34 @@
     var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="圆头的部落格">
-<meta property="og:url" content="https://shira0905.github.io/">
+  <meta name="description" content="今天有个老哥问我对 Game AI的实习岗位有没有兴趣，写一篇文章来说说对这个领域的了解吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Game AI intern">
+<meta property="og:url" content="https://shira0905.github.io/2020/11/Game-AI-intern/">
 <meta property="og:site_name" content="圆头的部落格">
+<meta property="og:description" content="今天有个老哥问我对 Game AI的实习岗位有没有兴趣，写一篇文章来说说对这个领域的了解吧。">
 <meta property="og:locale">
+<meta property="article:published_time" content="2020-11-21T18:46:36.000Z">
+<meta property="article:modified_time" content="2020-11-21T18:51:29.428Z">
 <meta property="article:author" content="圆头">
+<meta property="article:tag" content="RL">
+<meta property="article:tag" content="intern">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://shira0905.github.io/">
+<link rel="canonical" href="https://shira0905.github.io/2020/11/Game-AI-intern/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-Hans'
   };
 </script>
 
-  <title>圆头的部落格</title>
+  <title>Game AI intern | 圆头的部落格</title>
   
 
 
@@ -178,9 +184,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
@@ -196,10 +203,9 @@
       <meta itemprop="name" content="圆头的部落格">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/Game-AI-intern/" class="post-title-link" itemprop="url">Game AI intern</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Game AI intern
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -232,111 +238,87 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天有个老哥问我对 Game AI的实习岗位有没有兴趣，写一篇文章来说说对这个领域的了解吧。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/Game-AI-intern/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <p>今天有个老哥问我对 Game AI的实习岗位有没有兴趣，写一篇文章来说说对这个领域的了解吧。</p>
+<a id="more"></a>
+
+<h2 id="岗位要求"><a href="#岗位要求" class="headerlink" title="岗位要求"></a>岗位要求</h2><p>我先去看了一看这个岗位的需求，如下：</p>
+<p>Responsible for game AI making using techniques including:</p>
+<ul>
+<li><strong>Imitation learning</strong>: train different styles of human-like game AI agent based on human player data</li>
+<li>Reinforcement learning: train high-level AI agent using reinforcement learning, design new algorithms to improve the efficiency and effectiveness of reinforcement learning;</li>
+<li>Multi-agent learning: train AI agents in competitive or cooperative games; design new algorithms to improve the efficiency and effectiveness of multi-agent learning;</li>
+<li>Follow the latest research publication in academia or industry and have an efficient implementation.</li>
+</ul>
+<p>Job requirements:</p>
+<ul>
+<li>Master or PhD degree in computer science, statistics, mathematics or related fields;</li>
+<li>Excellent analytical and problem-solving skills, passionate about solving challenging problems;</li>
+<li>Proficient in at least one programming language, familiar with <strong>deep learning platforms such as TensorFlow</strong>, Caffe, PyTorch, etc.;</li>
+<li>Familiar with common reinforcement learning algorithms, such as DQN, SAC, PPO;</li>
+<li>Applicants with strong research ability and publications in top AI conferences (NIPS, IJCAI, AAAI, ICML, ICLR, etc.) are preferred;</li>
+</ul>
+<p>我一想吧，要是当时好好做实验，玩TF的时候再上心一些，那起步可以符合 “familiar with <strong>deep learning platforms such as TensorFlow</strong>, Caffe, PyTorch, etc.;”这一点了？<br>要是再把RL的course好好刷完，那又符合“Familiar with common reinforcement learning algorithms, such as DQN, SAC, PPO;”这一点了。<br>至于MARL这一块，估计人家也不期望你懂，估计是你在那实习将要学会的东西吧。不过我惊奇地发现我竟然在半年多前搜集过一些相关的paper，诶，忘了有没有看过了。<br>Imitation learning 我倒是一无所知，估计只会在游戏里面用到吧，MARL倒还是可以迁移到其他的业务场景的。</p>
+<p>总归来说，机会总是留给有准备的人的。</p>
+<h2 id="RL课程回顾"><a href="#RL课程回顾" class="headerlink" title="RL课程回顾"></a>RL课程回顾</h2><p>我先回忆一下一两年前上的Bolei的RL课，感觉挺水的，不过收获还是有一些的吧：</p>
+<ul>
+<li><p>Pre 的论文是 Reinforcement Learning for Improving Agent Design – David Ha(Google Brain)。<br>大概讲的就是算法就是基于 bipedal_walker 的。Agent怎么在RL中调整自己本身的结构去获得更好的表现，也就是evolving的思想。<br>motivation 算法徐豪pre的，论文的实验和结论我pre的。大概结果就是拿到300分，可调节自身结构的一组仅用了1400 generations，不可调整自身结构的一组用了4600 generations。场景也有hard （比如阶梯和障碍物）和easy（比如平地）的对照，而且发现在hard模式。基本算法是policy gradient method。</p>
+</li>
+<li><p>final project 做的也是 bipedal_walker。忘了和期中的pre就什么区别了。</p>
+</li>
+<li><p>第一次捣鼓TF，很折腾。</p>
+</li>
+<li><p>看Gym Open AI 的文档做东西，训练什么的还挺费时间的。</p>
+</li>
+<li><p>跟徐豪一组，还是学到了一些东西，比如说图、视频、pre技巧等，还有对待看不懂的地方的心态（不求甚解），不拖延速战速决等等等等科研工作者的品质。害！毕竟是大佬！</p>
+</li>
+</ul>
+<h2 id="可能性分析"><a href="#可能性分析" class="headerlink" title="可能性分析"></a>可能性分析</h2><h3 id="presentation-amp-project-match"><a href="#presentation-amp-project-match" class="headerlink" title="presentation &amp; project (match)"></a>presentation &amp; project (match)</h3><ul>
+<li>我的 presentation 讲的是通过进化自身的结构来去的更好的训练效果，这个还是比较新颖的。</li>
+<li>我的 RL project 是基于 gym open AI 的，这也算是一个AI game 场景。而且用tensorflow。</li>
+<li>project里面也有提出自己的改进，并且完成了新的实验，算是创新点。</li>
+<li>不知道能不能来得及找到代码，重新捣鼓坏境，跑起来</li>
+</ul>
+<h3 id="RL-amp-DL-satisfy"><a href="#RL-amp-DL-satisfy" class="headerlink" title="RL &amp; DL (satisfy)"></a>RL &amp; DL (satisfy)</h3><ul>
+<li>common reinforcement learning algorithms, such as DQN, SAC, PPO 这个点我应该是能搞定的，再刷一遍RL课程嘛。</li>
+<li>学习深度学习，大头，但是绕不开。想不通我以前为什么会不屑于学深度学习，明明找工作必备技能啊。</li>
+</ul>
+<h3 id="MARL-surprise"><a href="#MARL-surprise" class="headerlink" title="MARL (surprise)"></a>MARL (surprise)</h3><ul>
+<li>game theoretical这一块我还是比较熟悉的，cooperative game等等</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>下决心好好啃一下 Deep Learning 吧，TF走起来</li>
+<li>RL还是要学的，安排！</li>
+<li>这个岗位要不要争取一下我还没想好。。</li>
+</ul>
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/RL/" rel="tag"># RL</a>
+              <a href="/tags/intern/" rel="tag"># intern</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2020/11/GUIDANCE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/zsy.jpg">
-      <meta itemprop="name" content="圆头">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="圆头的部落格">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/GUIDANCE/" class="post-title-link" itemprop="url">GUIDANCE</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-11-21 19:37:15" itemprop="dateCreated datePublished" datetime="2020-11-21T19:37:15+08:00">2020-11-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-22 02:50:00" itemprop="dateModified" datetime="2020-11-22T02:50:00+08:00">2020-11-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tech/" itemprop="url" rel="index"><span itemprop="name">Tech</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>关于建站和更新的一些备忘和指导。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/GUIDANCE/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/GUIDANCE/" rel="prev" title="GUIDANCE">
+      <i class="fa fa-chevron-left"></i> GUIDANCE
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -389,6 +371,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B2%97%E4%BD%8D%E8%A6%81%E6%B1%82"><span class="nav-number">1.</span> <span class="nav-text">岗位要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RL%E8%AF%BE%E7%A8%8B%E5%9B%9E%E9%A1%BE"><span class="nav-number">2.</span> <span class="nav-text">RL课程回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E6%80%A7%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">可能性分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#presentation-amp-project-match"><span class="nav-number">3.1.</span> <span class="nav-text">presentation &amp; project (match)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RL-amp-DL-satisfy"><span class="nav-number">3.2.</span> <span class="nav-text">RL &amp; DL (satisfy)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MARL-surprise"><span class="nav-number">3.3.</span> <span class="nav-text">MARL (surprise)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
