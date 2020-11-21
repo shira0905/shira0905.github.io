@@ -158,13 +158,24 @@ NexT.motion.middleWares = {
     }
   },
 
+  // sidebarToggle: function (integrator) {
+  //   sidebarToggleMotion.init();
+  //   integrator.next();
+  //   // 可以不加if直接显示
+  //   // 加if的话，要在主题配置文件里面修改 sidebar: always
+  //   // if (CONFIG.sidebar === 'always') {
+  //   //    // 模拟点击一下侧边栏按钮
+  //   //    sidebarToggleMotion.clickHandler();
+  //   // }
+  // }
+
   sidebar: function(integrator) {
     var sidebarAffix = document.querySelector('.sidebar-inner');
     var sidebarAffixTransition = CONFIG.motion.transition.sidebar;
     // Only for Pisces | Gemini.
     if (sidebarAffixTransition && (CONFIG.scheme === 'Pisces' || CONFIG.scheme === 'Gemini')) {
       Velocity(sidebarAffix, 'transition.' + sidebarAffixTransition, {
-        display : null,
+        display : always,
         duration: 200,
         complete: function() {
           // After motion complete need to remove transform from sidebar to let affix work on Pisces | Gemini.
@@ -175,3 +186,4 @@ NexT.motion.middleWares = {
     integrator.next();
   }
 };
+
