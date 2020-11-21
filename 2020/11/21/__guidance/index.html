@@ -23,16 +23,16 @@
   <meta name="description" content="关于建站和更新的一些备忘和指导。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A templete for posts.">
-<meta property="og:url" content="https://shira0905.github.io/2020/11/21/temp/">
+<meta property="og:url" content="https://shira0905.github.io/2020/11/21/__guidance/">
 <meta property="og:site_name" content="圆头的部落格">
 <meta property="og:description" content="关于建站和更新的一些备忘和指导。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-11-20T16:35:15.000Z">
-<meta property="article:modified_time" content="2020-11-21T09:55:51.680Z">
+<meta property="article:modified_time" content="2020-11-21T11:24:30.580Z">
 <meta property="article:author" content="圆头">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://shira0905.github.io/2020/11/21/temp/">
+<link rel="canonical" href="https://shira0905.github.io/2020/11/21/__guidance/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>A templete for posts. | 圆头的部落格</title>
+  <title>A templete for posts. | 圆头的部落格</title><meta name="robots" content="noindex">
   
 
 
@@ -189,7 +189,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2020/11/21/temp/">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2020/11/21/__guidance/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/zsy.jpg">
@@ -213,7 +213,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-11-21 00:35:15 / Modified: 17:55:51" itemprop="dateCreated datePublished" datetime="2020-11-21T00:35:15+08:00">2020-11-21</time>
+              <time title="Created: 2020-11-21 00:35:15 / Modified: 19:24:30" itemprop="dateCreated datePublished" datetime="2020-11-21T00:35:15+08:00">2020-11-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,19 +273,29 @@
 <p><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></p>
 <p>TODO：搞个网站图标出来放在书签更方便</p>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h2 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h2><h3 id="Static-files-public"><a href="#Static-files-public" class="headerlink" title="Static files public"></a>Static files public</h3><p>生成静态文件，也就是/public文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean <span class="comment"># 把老的 public 删掉</span></span><br><span class="line">$ hexo generate <span class="comment"># 生成新的 public</span></span><br></pre></td></tr></table></figure>
+<h2 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h2><p>在本地测试好之后，开始部署！git菜鸡表示有点心累。参考了这哥们的 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017986794%EF%BC%8C%E7%85%A7%E7%9D%80%E4%B8%8B%E9%9D%A2%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%81%9A%E5%90%A7%EF%BC%9A">https://segmentfault.com/a/1190000017986794，照着下面一步一步做吧：</a></p>
+<h3 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0. 准备工作"></a>0. 准备工作</h3><p>Github和我的git秘钥已经对好啦这一步就跳过。</p>
+<p>安全起见把 theme/next 下面的 .git 删掉，public里面的 .git 我之前脑残init的也删掉。TODO: 我为了不混乱甚至把shiyuan目录下的.git也删掉了，至于代码托管下次再说吧，跟那啥CI一起改。</p>
+<h3 id="1-配置github仓库地址"><a href="#1-配置github仓库地址" class="headerlink" title="1. 配置github仓库地址"></a>1. 配置github仓库地址</h3><p>在站点根目录下的 <code>_congif.yml</code> 如下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:shira0905&#x2F;shira0905.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Git-推到博客仓库"><a href="#Git-推到博客仓库" class="headerlink" title="Git 推到博客仓库"></a>Git 推到博客仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;shira&#x2F;public</span><br></pre></td></tr></table></figure>
+<h3 id="2-安装插件"><a href="#2-安装插件" class="headerlink" title="2. 安装插件"></a>2. 安装插件</h3><p>在站点根目录下安装一个部署的插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><p>部署</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="3-一句部署"><a href="#3-一句部署" class="headerlink" title="3. 一句部署"></a>3. 一句部署</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g -d</span><br><span class="line"># 如果有洁癖，在这之前加一句 clean 把老的 public 删掉，不做问题也不大</span><br><span class="line">$ hexo clean </span><br></pre></td></tr></table></figure>
 
-<p>不太明白为啥</p>
-<h2 id="new-site"><a href="#new-site" class="headerlink" title="new site"></a>new site</h2>
+<p>思考了一下，应该做的事情就是，生成静态文件夹public，然后把public上面的所有东西都以master的分支身份推到<code>github.com:shira0905/shira0905.github.io.git</code> 这个仓库里面去。但省略了init add commit 等步骤，只需要一句<code>$ hexo g -d</code> 即可。</p>
+<p>TODO: 探索一下更方便的方式，比如CI。</p>
+<p>TODO: 代码托管，git还是多练练吧。</p>
+<h2 id="New-site"><a href="#New-site" class="headerlink" title="New site"></a>New site</h2><p>因为我现在没有做版本管理，万一真的改崩了，那基于崩的项目重新建站。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init newname</span><br><span class="line">$ <span class="built_in">cd</span> new newname</span><br><span class="line">$ npm install</span><br><span class="line"><span class="comment"># 把 oldname/_config.yml 复制过来，替换现有的</span></span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># 把 oldname/themes/next 复制过来，替换现有的</span></span><br><span class="line"><span class="comment"># 把 oldname/resource 复制过来，替换现有的。 <span class="doctag">TODO:</span> 验证不通过new也可以</span></span><br></pre></td></tr></table></figure>
+
+<p>还有一些npm的安装 busuanzi search等等要重新装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 让一键部署生效</span><br><span class="line">$ npm install hexo-deployer-git --save </span><br><span class="line"># 让hidden生效</span><br><span class="line">$ npm install hexo-hide-posts --save</span><br></pre></td></tr></table></figure>
+
+<!-- flag of hidden posts -->
     </div>
 
     
@@ -355,7 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing"><span class="nav-number">2.</span> <span class="nav-text">Writing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Head-info"><span class="nav-number">2.1.</span> <span class="nav-text">Head info</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#categories"><span class="nav-number">2.1.1.</span> <span class="nav-text">categories</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tags"><span class="nav-number">2.1.2.</span> <span class="nav-text">tags</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content"><span class="nav-number">2.2.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E6%97%A5%E8%AE%B0%E4%BD%93%E7%B3%BB%E7%BB%9F%E4%B8%80"><span class="nav-number">2.3.</span> <span class="nav-text">与日记体系统一</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preview-amp-Test"><span class="nav-number">3.</span> <span class="nav-text">Preview &amp; Test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deploy"><span class="nav-number">4.</span> <span class="nav-text">Deploy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-files-public"><span class="nav-number">4.1.</span> <span class="nav-text">Static files public</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-%E6%8E%A8%E5%88%B0%E5%8D%9A%E5%AE%A2%E4%BB%93%E5%BA%93"><span class="nav-number">4.2.</span> <span class="nav-text">Git 推到博客仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">4.3.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new-site"><span class="nav-number">5.</span> <span class="nav-text">new site</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing"><span class="nav-number">2.</span> <span class="nav-text">Writing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Head-info"><span class="nav-number">2.1.</span> <span class="nav-text">Head info</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#categories"><span class="nav-number">2.1.1.</span> <span class="nav-text">categories</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tags"><span class="nav-number">2.1.2.</span> <span class="nav-text">tags</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content"><span class="nav-number">2.2.</span> <span class="nav-text">Content</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E6%97%A5%E8%AE%B0%E4%BD%93%E7%B3%BB%E7%BB%9F%E4%B8%80"><span class="nav-number">2.3.</span> <span class="nav-text">与日记体系统一</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preview-amp-Test"><span class="nav-number">3.</span> <span class="nav-text">Preview &amp; Test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deploy"><span class="nav-number">4.</span> <span class="nav-text">Deploy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">4.1.</span> <span class="nav-text">0. 准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%85%8D%E7%BD%AEgithub%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80"><span class="nav-number">4.2.</span> <span class="nav-text">1. 配置github仓库地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">4.3.</span> <span class="nav-text">2. 安装插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%B8%80%E5%8F%A5%E9%83%A8%E7%BD%B2"><span class="nav-number">4.4.</span> <span class="nav-text">3. 一句部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#New-site"><span class="nav-number">5.</span> <span class="nav-text">New site</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -368,19 +378,6 @@
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">1</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
@@ -413,7 +410,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2020-11-21</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
