@@ -28,9 +28,10 @@
 <meta property="og:description" content="一般我都是使用Typora编辑.md 文件，经常会 command+ctrl+shift+4 快捷键截图然后复制到文档里面，这时候Typora把图片自动把图片保存子啊某个奇奇怪怪的地方。问题在于，在本地预览的时候无法找到图片文件（虽然是本机的绝对路径），更不用说public到github page了。安排解决！">
 <meta property="og:locale">
 <meta property="og:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126222316551.png">
+<meta property="og:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126223414059.png">
 <meta property="og:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126220940566.png">
 <meta property="article:published_time" content="2020-11-26T13:19:29.000Z">
-<meta property="article:modified_time" content="2020-11-26T14:29:21.272Z">
+<meta property="article:modified_time" content="2020-11-26T14:39:05.001Z">
 <meta property="article:author" content="圆头">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126222316551.png">
@@ -216,7 +217,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-11-26 21:19:29 / Modified: 22:29:21" itemprop="dateCreated datePublished" datetime="2020-11-26T21:19:29+08:00">2020-11-26</time>
+              <time title="Created: 2020-11-26 21:19:29 / Modified: 22:39:05" itemprop="dateCreated datePublished" datetime="2020-11-26T21:19:29+08:00">2020-11-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,23 +250,23 @@
 <li>本地使用<code>hexo server</code>浏览效果时，也能够看到图片</li>
 <li>图片和Markdown文件放一起都上传到GitHub pages。</li>
 </ul>
-<p>###Hexo配置asset文件夹</p>
+<h2 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h2><p>###Hexo配置asset文件夹</p>
 <p>首先修改 hexo 全局配置文件 <code>_config.yml</code> 中的配置：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <p>这样在我们每次新建Markdown文件的时候，都会创建一个与文件同名的文件夹用于存放图片。</p>
 <p>使用<code>hexo generate</code>生成静态文件后，可以观察到图片已经拷贝到了对应的目录下，也就是 <code>public</code> 目录下。</p>
-<p>但是现在浏览的时候还不能够看到图片，因为我们插入的时候用的是包含了一个与Markdown文件同名文件夹的相对路径，而生成的静态文件夹下没有那个同名文件夹所以造成了访问404。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image-20201126143448017](&#x2F;Users&#x2F;zsy&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20201126143448017.png)</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Typora插图时复制到指定路径"><a href="#Typora插图时复制到指定路径" class="headerlink" title="Typora插图时复制到指定路径"></a>Typora插图时复制到指定路径</h3><p>Typora支持将插入的图片文件拷贝到指定路径，通过<code>Typora-&gt;偏好设置-&gt;图像</code>，然后参照下图选择<code>复制到指定路径</code>将图片拷贝到与Markdown文件同名目录下。</p>
+<h3 id="Typora插图时复制到指定路径"><a href="#Typora插图时复制到指定路径" class="headerlink" title="Typora插图时复制到指定路径"></a>Typora插图时复制到指定路径</h3><p>Typora支持将插入的图片文件拷贝到指定路径，通过<code>Typora-&gt;偏好设置-&gt;图像</code>，然后参照下图选择<code>复制到指定路径</code>将图片拷贝到与Markdown文件同名目录下，也就是 <code>post_asset_folder: true</code> 这一步所指定的文件夹。</p>
 <img src="/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126222316551.png" class="" title="image-20201126222316551">
 
-<p>现在在本地预览网站时已经可以看到</p>
-<h3 id="部署到github-page-试试吧"><a href="#部署到github-page-试试吧" class="headerlink" title="部署到github page 试试吧"></a>部署到github page 试试吧</h3><p>但是现在浏览的时候还不能够看到图片，因为图片的路径是文件同名文件夹的相对路径 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image-20201126220458034](20201126-test&#x2F;image-20201126220458034.png)</span><br></pre></td></tr></table></figure>
+<p>现在在本地预览网站时已经可以看到啦！</p>
+<h3 id="部署到github-page-试试吧"><a href="#部署到github-page-试试吧" class="headerlink" title="部署到github page 试试吧"></a>部署到github page 试试吧</h3><p>在本地运行时，因为不是靠静态<code>/public</code>，而是按照 <code>/_post</code> 来动态生成的：</p>
+<img src="/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126223414059.png" class="" title="image-20201126223414059">
+
+
+
+<p>但是现在浏览的时候还不能够看到图片，因为图片的路径是文件同名文件夹的相对路径（适用于本地渲染）： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 适用于本地</span><br><span class="line">![image-20201126220458034](20201126-test&#x2F;image-20201126220458034.png)</span><br><span class="line"></span><br><span class="line"># 需要整成以下路径才能适用于github</span><br><span class="line">![image-20201126220458034](image-20201126220458034.png)</span><br></pre></td></tr></table></figure>
 
 <p>而生成的静态文件夹下没有那个同名文件夹所以造成了访问404。</p>
 <img src="/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126220940566.png" class="" title="image-20201126220940566">
@@ -345,7 +346,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-number">1.</span> <span class="nav-text">Why?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Typora%E6%8F%92%E5%9B%BE%E6%97%B6%E5%A4%8D%E5%88%B6%E5%88%B0%E6%8C%87%E5%AE%9A%E8%B7%AF%E5%BE%84"><span class="nav-number">1.1.</span> <span class="nav-text">Typora插图时复制到指定路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0github-page-%E8%AF%95%E8%AF%95%E5%90%A7"><span class="nav-number">1.2.</span> <span class="nav-text">部署到github page 试试吧</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-number">1.</span> <span class="nav-text">Why?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">2.</span> <span class="nav-text">How?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Typora%E6%8F%92%E5%9B%BE%E6%97%B6%E5%A4%8D%E5%88%B6%E5%88%B0%E6%8C%87%E5%AE%9A%E8%B7%AF%E5%BE%84"><span class="nav-number">2.1.</span> <span class="nav-text">Typora插图时复制到指定路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0github-page-%E8%AF%95%E8%AF%95%E5%90%A7"><span class="nav-number">2.2.</span> <span class="nav-text">部署到github page 试试吧</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
