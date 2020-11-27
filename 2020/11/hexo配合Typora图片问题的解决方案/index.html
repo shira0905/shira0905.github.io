@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="圆头的部落格">
 <meta property="og:description" content="一般我都是使用Typora编辑.md 文件，经常会 command+ctrl+shift+4 快捷键截图然后复制到文档里面，这时候Typora把图片自动把图片保存子啊某个奇奇怪怪的地方。问题在于，在本地预览的时候无法找到图片文件（虽然是本机的绝对路径），更不用说public到github page了。安排解决！">
 <meta property="og:locale">
-<meta property="og:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126222316551.png">
-<meta property="og:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126223414059.png">
-<meta property="og:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126220940566.png">
+<meta property="og:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/20201126-hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126222316551.png">
+<meta property="og:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/20201126-hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126223414059.png">
+<meta property="og:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/20201126-hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126220940566.png">
 <meta property="article:published_time" content="2020-11-26T13:19:29.000Z">
 <meta property="article:modified_time" content="2020-11-26T15:51:28.200Z">
 <meta property="article:author" content="圆头">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126222316551.png">
+<meta name="twitter:image" content="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/20201126-hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126222316551.png">
 
 <link rel="canonical" href="https://shira0905.github.io/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
 
@@ -258,20 +258,15 @@
 <p>这样在我们每次新建Markdown文件的时候，都会创建一个与文件同名的文件夹用于存放图片。</p>
 <p>使用<code>hexo generate</code>生成静态文件后，可以观察到图片已经拷贝到了对应的目录下，也就是 <code>public</code> 目录下。</p>
 <h3 id="Typora插图时复制到指定路径"><a href="#Typora插图时复制到指定路径" class="headerlink" title="Typora插图时复制到指定路径"></a>Typora插图时复制到指定路径</h3><p>Typora支持将插入的图片文件拷贝到指定路径，通过<code>Typora-&gt;偏好设置-&gt;图像</code>，然后参照下图选择<code>复制到指定路径</code>将图片拷贝到与Markdown文件同名目录下，也就是 <code>post_asset_folder: true</code> 这一步所指定的文件夹。</p>
-<img src="/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126222316551.png" class="" title="image-20201126222316551">
-
+<p><img src="20201126-hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126222316551.png" alt="image-20201126222316551"></p>
 <p>现在在本地预览网站时已经可以看到啦！</p>
 <h3 id="部署到github-page-试试吧"><a href="#部署到github-page-试试吧" class="headerlink" title="部署到github page 试试吧"></a>部署到github page 试试吧</h3><p>在本地运行时，因为不是靠静态<code>/public</code>，而是按照 <code>/_post</code> 来动态生成的：</p>
-<img src="/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126223414059.png" class="" title="image-20201126223414059">
-
-
-
+<p><img src="20201126-hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126223414059.png" alt="image-20201126223414059"></p>
 <p>但是现在浏览的时候还不能够看到图片，因为图片的路径是文件同名文件夹的相对路径（适用于本地渲染）： </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 适用于本地</span><br><span class="line">![image-20201126220458034](20201126-test&#x2F;image-20201126220458034.png)</span><br><span class="line"></span><br><span class="line"># 需要整成以下路径才能适用于github</span><br><span class="line">![image-20201126220458034](image-20201126220458034.png)</span><br></pre></td></tr></table></figure>
 
 <p>而生成的静态文件夹下没有那个同名文件夹所以造成了访问404。</p>
-<img src="/2020/11/hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126220940566.png" class="" title="image-20201126220940566">
-
+<p><img src="20201126-hexo%E9%85%8D%E5%90%88Typora%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20201126220940566.png" alt="image-20201126220940566"></p>
 <p>那篇文章的博主试了<code>hexo-asset-image</code>和<code>hexo-simple-image</code> 这两个插件发现还是有问题，就研究了一下源码对插件内容做了修改（感谢+膜拜），现在可以用他的这个新的插件来解决图片显示的问题。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-image-link --save</span><br></pre></td></tr></table></figure>
 
