@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="先编故事建模，怎么去优化任务完成的质量。组合最优问题所以是NP-hard，所以提出了greedy 算法。为了为workers 保证公平性，借鉴了game theory思想去找 纳什均衡。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文献阅读 Cooperation-Aware Task Assignment in Spatial Crowdsourcing">
+<meta property="og:url" content="https://shira0905.github.io/2020/12/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-Cooperation-Aware-Task-Assignment-in-Spatial-Crowdsourcing/">
+<meta property="og:site_name" content="圆头的部落格">
+<meta property="og:description" content="先编故事建模，怎么去优化任务完成的质量。组合最优问题所以是NP-hard，所以提出了greedy 算法。为了为workers 保证公平性，借鉴了game theory思想去找 纳什均衡。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-12-01T11:40:19.000Z">
+<meta property="article:modified_time" content="2020-12-09T13:11:22.139Z">
+<meta property="article:author" content="圆头">
+<meta property="article:tag" content="Chen Lei&#39;s group">
+<meta property="article:tag" content="crowdsourcing">
+<meta property="article:tag" content="文献阅读">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://shira0905.github.io/2020/12/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-Cooperation-Aware-Task-Assignment-in-Spatial-Crowdsourcing/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>文献阅读 Cooperation-Aware Task Assignment in Spatial Crowdsourcing | 圆头的部落格</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">大道至简</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2020/12/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-Cooperation-Aware-Task-Assignment-in-Spatial-Crowdsourcing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="圆头">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          文献阅读 Cooperation-Aware Task Assignment in Spatial Crowdsourcing
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-01 19:40:19" itemprop="dateCreated datePublished" datetime="2020-12-01T19:40:19+08:00">2020-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-09 21:11:22" itemprop="dateModified" datetime="2020-12-09T21:11:22+08:00">2020-12-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>先编故事建模，怎么去优化任务完成的质量。<br>组合最优问题所以是NP-hard，所以提出了greedy 算法。<br>为了为workers 保证公平性，借鉴了game theory思想去找 纳什均衡。</p>
+<a id="more"></a>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>自定义了一个任务分配系统，有时间（DDL、赶赴现场用时），空间（任务现场、工人现场），任务量（粗暴数人头）等的限制限制，去优化一个完成的quality，这个quality呢就一言难尽了. “The cooperation quality revenue $Q(W_j)$ can be treated as the expected qualified revenue received by the requester from hiring $W_j$ workers”, 行吧，搞简单粗暴一点也没毛病。</p>
+<p>还有一些worker赶来赶去的时间限制，我也晕乎乎了。</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><h3 id="Chap3-总框架："><a href="#Chap3-总框架：" class="headerlink" title="Chap3 总框架："></a>Chap3 总框架：</h3><p>很粗的一个框架</p>
+<h3 id="Chap4-TPG"><a href="#Chap4-TPG" class="headerlink" title="Chap4 TPG:"></a>Chap4 TPG:</h3><p>我没看懂第一阶段和第二阶段到底在干啥，而且好像没有理论保证的样子，虽然算法倒是解释得很清楚。</p>
+<h3 id="Chap5-GT"><a href="#Chap5-GT" class="headerlink" title="Chap5 GT:"></a>Chap5 GT:</h3><ul>
+<li><p>证明可求得那是均衡</p>
+<p>potential game 去学一下，可以用来证明用best reponse 迭代可以迭代到一个纳什均衡</p>
+</li>
+<li><p>证明收敛速度</p>
+<p>这块我还没有看</p>
+</li>
+<li><p>证明结果的质量</p>
+<p>这块应该挺有意思的，感性地一看还学到了这些：1) social optimum (OPT); 2) price of stability (PoS); 3) price of anarchy (PoA). 没有仔细看证明，等到exact potential game搞懂了之后再来弄这个吧。</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h2 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h2><h3 id="Spatial-Crowdsourcing"><a href="#Spatial-Crowdsourcing" class="headerlink" title="Spatial Crowdsourcing"></a>Spatial Crowdsourcing</h3><ul>
+<li>worker selected tasks (WST)  </li>
+<li>server assigned tasks (SAT)<ul>
+<li>online task assignment mode: the spatial crowdsourcing servers need to immediately assign valid tasks to workers upon the reaching of workers in a one-by-one style.</li>
+<li>batch-based task assignment mode: the servers periodically assign a set of tasks to a set of workers. CA-SC 属于这个。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Ridesharing"><a href="#Ridesharing" class="headerlink" title="Ridesharing"></a>Ridesharing</h3><p>是更复杂的空间动态问题。研究怎么match 司机乘客，怎么公平地pay等等。</p>
+<p>In [7], the authors focused on the utility of the ridesharing scheduling, which includes the vehicle-related utility, rider-related utility and trajectory- related utility. In [34], the authors focused on maximizing the profit of the ridesharing platform. <strong>这两篇可能可以看看是不是可以借鉴，好像跟我现在的问题风格很像。</strong></p>
+<h2 id="感触"><a href="#感触" class="headerlink" title="感触"></a>感触</h2><p>读这篇论文，感触颇多，原来也不是只有我一个人在编一些看起来没有什么用的故事，然后一拍脑门quantify一些神奇的distance啊quality啊出来。我发现crowdsourcing才是我现在做的风格，搞理论是不可能的，这辈子都不可能的，还是crowdsourcing啊人机交互啥的方向巴适，有一种相见恨晚的感觉啊！这类应用方向，有多少问题就可以发多少paper，问题不够还可以自己定义，关键是手快肯吃苦不怕恶心。另外一种就是对当下有用的应用，推荐系统什么的，挺好的，至少比我自己拍脑门定义出来的问题有motivation多了，有点羡慕做这些方向的同学了，既属于发paper容易的应用领域，又和业界接轨，幸福啊。</p>
+<p>以后我应该多关注一下 Peng Cheng，Lei Chen 他们组。让我很惊讶的是Peng Cheng的文风跟谢师兄一毛一样，主题内容也类似，毕业后的去向也类似，神奇！诶，既然入坑了就走下去吧，难的理论的又不是我等菜鸡能啃得动的，自己定义问题有啥不好呢，不需要难只要新讲起来觉得有用就可以了，估计等摸到门路之后是一个高产paper的方向，因为既不用太复杂的数学理论知识，又不用跑很多很久的实验，就靠乐高方法和写作技能了。加油吧打工人！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Chen-Lei-s-group/" rel="tag"># Chen Lei's group</a>
+              <a href="/tags/crowdsourcing/" rel="tag"># crowdsourcing</a>
+              <a href="/tags/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/" rel="tag"># 文献阅读</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-%E5%9F%BA%E4%BA%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8A%A8%E6%80%81%E5%AE%9A%E7%AD%96%E7%95%A5/" rel="prev" title="文献阅读 基于强化学习的动态定策略">
+      <i class="fa fa-chevron-left"></i> 文献阅读 基于强化学习的动态定策略
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0-11%E6%9C%88%E4%BD%9B%E7%B3%BB%E6%80%BB%E7%BB%93/" rel="next" title="刷题笔记 11月佛系总结">
+      刷题笔记 11月佛系总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Chap3-%E6%80%BB%E6%A1%86%E6%9E%B6%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">Chap3 总框架：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chap4-TPG"><span class="nav-number">2.2.</span> <span class="nav-text">Chap4 TPG:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chap5-GT"><span class="nav-number">2.3.</span> <span class="nav-text">Chap5 GT:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">相关工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spatial-Crowdsourcing"><span class="nav-number">4.1.</span> <span class="nav-text">Spatial Crowdsourcing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ridesharing"><span class="nav-number">4.2.</span> <span class="nav-text">Ridesharing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%9F%E8%A7%A6"><span class="nav-number">5.</span> <span class="nav-text">感触</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">圆头</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-12-10</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -79,7 +79,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -241,17 +245,14 @@
       
         <p>关于 python 的虚拟环境的理解和使用。 </p>
 <a id="more"></a>
-
 <h2 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h2><p>在python开发中，我们可能会遇到一种情况，就是当前的项目依赖的是某一个版本，但是另一个项目依赖的是另一个版本，这样就会造成依赖冲突，而虚拟环境就是解决这种情况的，通过创建一个虚拟化的python运行环境，将我们所需的依赖安装进去的，不同项目之间相互不干扰。 </p>
 <p>再比如说，要把项目发给别人，要把使用到的包都导出requirements, 如果不是使用的虚拟环境，你导入的包可能会远远越过你真正使用的到的包。不用虚拟环境，则是系统包和所有项目requirement的并集，用虚拟环境，就是系统包和该项目requirement的并集。</p>
 <h2 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h2><p>可以用来做虚拟环境的工具有 virtualenv, conda, pipenv 等。</p>
 <p>方便起见还是用conda吧</p>
 <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"># 创建不同的python版本，直接写出版本号就好了，还可以同时安装想要的库。 </span><br><span class="line">$ conda create -n venv python&#x3D;2.7   </span><br><span class="line">$ conda create -n venv python&#x3D;3.4  </span><br><span class="line">$ conda create -n venv python&#x3D;3.5</span><br><span class="line"></span><br><span class="line"># 激活虚拟环境</span><br><span class="line">source activate venv</span><br><span class="line"># 退出虚拟环境</span><br><span class="line">source deactivate</span><br><span class="line"></span><br><span class="line"># 删除一个已有环境</span><br><span class="line">conda remove --name venv --all</span><br><span class="line"></span><br><span class="line"># 列出系统存在虚拟环境</span><br><span class="line">conda info -e</span><br><span class="line">conda env list</span><br><span class="line"></span><br><span class="line"># 查看当前环境下已安装的包</span><br><span class="line">conda list</span><br><span class="line"></span><br><span class="line"># 查看某个指定环境的已安装包</span><br><span class="line">conda list -n venv</span><br><span class="line"></span><br><span class="line"># 查找package信息</span><br><span class="line">conda search numpy</span><br><span class="line"></span><br><span class="line"># 安装package</span><br><span class="line">conda install -n venv numpy</span><br><span class="line"># 如果不用-n指定环境名称，则被安装在当前激活环境</span><br><span class="line"># 也可以通过-c指定通过某个channel安装</span><br><span class="line"></span><br><span class="line"># 更新package</span><br><span class="line">conda update -n venv numpy</span><br><span class="line"></span><br><span class="line"># 删除package</span><br><span class="line">conda remove -n venv numpy</span><br></pre></td></tr></table></figure>
-
 <p>至于项目的迁移怎么搞呢，不明不白，下次再写。</p>
 <h3 id="配合PyCharm"><a href="#配合PyCharm" class="headerlink" title="配合PyCharm"></a>配合PyCharm</h3><p>在pycharm中就像原来一样new project，然后再偏好设置里面如下设置</p>
 <img src="/2020/11/Python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/image-20201126230506257.png" class="" title="image-20201126230506257">
-
 
     </div>
 
@@ -270,8 +271,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/11/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB20201125/" rel="prev" title="文献阅读20201125">
-      <i class="fa fa-chevron-left"></i> 文献阅读20201125
+    <a href="/2020/11/Game-AI-intern/" rel="prev" title="Game AI intern">
+      <i class="fa fa-chevron-left"></i> Game AI intern
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/11/RL%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/" rel="next" title="RL常见算法">
@@ -351,20 +352,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -399,7 +400,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020-11-27</span>
+  <span itemprop="copyrightYear">2020-12-10</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

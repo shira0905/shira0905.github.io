@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简单了解一下Shapley的motivation，概念，求解方法，以及如何能应用到我们的问题上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shapley value">
+<meta property="og:url" content="https://shira0905.github.io/2020/12/Shapley-value/">
+<meta property="og:site_name" content="圆头的部落格">
+<meta property="og:description" content="简单了解一下Shapley的motivation，概念，求解方法，以及如何能应用到我们的问题上。">
+<meta property="og:locale">
+<meta property="og:image" content="https://shira0905.github.io/2020/12/Shapley-value/image-20201207203119586.png">
+<meta property="article:published_time" content="2020-12-07T04:31:37.000Z">
+<meta property="article:modified_time" content="2020-12-07T16:10:55.288Z">
+<meta property="article:author" content="圆头">
+<meta property="article:tag" content="博弈论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shira0905.github.io/2020/12/Shapley-value/image-20201207203119586.png">
+
+<link rel="canonical" href="https://shira0905.github.io/2020/12/Shapley-value/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Shapley value | 圆头的部落格</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">大道至简</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2020/12/Shapley-value/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="圆头">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Shapley value
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-07 12:31:37" itemprop="dateCreated datePublished" datetime="2020-12-07T12:31:37+08:00">2020-12-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-08 00:10:55" itemprop="dateModified" datetime="2020-12-08T00:10:55+08:00">2020-12-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>简单了解一下Shapley的motivation，概念，求解方法，以及如何能应用到我们的问题上。</p>
+<a id="more"></a>
+<ul>
+<li>为 cooperative game theory而生。</li>
+<li>assign a unique distribution of a total surplus generated by the coalition of all the players.</li>
+<li>The Shapley value is characterized by a collection of desirable properties.</li>
+</ul>
+<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>Coalition of players cooperates, and obtains a certain overall gain from that cooperation. Since some players may contribute more to the coalition than others or may possess different bargaining power (for example threatening to destroy the whole surplus), what final distribution of generated surplus among the players should arise in any particular game?  Or phrased differently: how important is each player to the overall cooperation, and what payoff can he or she reasonably expect? The Shapley value provides one possible answer to this question.</p>
+<p>这句指的啥？For cost-sharing games with concave cost functions, the optimal cost-sharing rule that optimizes the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Price_of_anarchy">price of anarchy</a>, followed by the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Price_of_stability">price of stability</a>, is precisely the Shapley value cost-sharing rule.<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Shapley_value#cite_note-5">[5]</a></p>
+<h1 id="Fomal-definition"><a href="#Fomal-definition" class="headerlink" title="Fomal definition"></a>Fomal definition</h1><p><strong>Coalitional game:</strong> A set $N$ and a function $v$ that maps subsets of players to the real numbers: $v: 2^N \to \mathbb R$, with $v(\emptyset) = 0$. If $S$ is a coalition of players, then $v(S)$, called the worth of coalition $S$, describes the total expected sum of payoffs the members of $S$ can obtain by cooperation.</p>
+<p>Shapley value take the averageof marginal contribution over the possible different permutatuins in which the coalition can be formed. 可以被写成几种不同的形式：</p>
+<ul>
+<li><p>According to the Shapley value, the amount that player $i$ gets is:</p>
+<p>$\phi_i(v) = \sum_{S\subseteq N \setminus \{i\}} \frac{|S|!(n-1-|S|)!}{n!} [v(S\cup \{i\}) - v(S)]$</p>
+<p>$|S|!(n-1-|S|)!$  就是这个$S$ 出现在$i$ 之前的时候全排列有多少种，除以 $n!$ 就是加权平均求期望嘛！</p>
+</li>
+<li><p>个人觉得以下形式更好理解</p>
+<p>$\phi_i(v) = \frac{1}{n!} \sum_{R} [v(P_i^R \cup \{i\}) - v(P_i^R) ]$</p>
+<p>where the sum ranges over all $n!$ orders $R$ of the players, and $P_i^R$ is the set of pplayers in $N$ which precede $i$ in the order $R$. </p>
+</li>
+</ul>
+<h1 id="Example-glove-game"><a href="#Example-glove-game" class="headerlink" title="Example: glove game"></a>Example: glove game</h1><p>$N = \{1,2,3\}$  where players 1 and 2 have right-hand gloves and player 3 has a left-hand glove.</p>
+<p>The following table displays the marginal contributions of Player 1.</p>
+<img src="/2020/12/Shapley-value/image-20201207203119586.png" class="" title="image-20201207203119586">
+<p>$\phi_1(v) = \phi_2(v) = \frac{1}{6}$</p>
+<p>$\phi_3(v) = \frac{4}{6}$</p>
+<h1 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h1><h2 id="Efficiency"><a href="#Efficiency" class="headerlink" title="Efficiency"></a>Efficiency</h2><p>$\sum_{i \in N} \phi_i(v)=v(N)$</p>
+<h2 id="Stand-alone-test"><a href="#Stand-alone-test" class="headerlink" title="Stand-alone test"></a>Stand-alone test</h2><p>If $v$ is subadditive set function, i.e., $v(S\sqcup T)\leq v(S) + v(T)$,  then for each agent $i$, $\phi_i(v)\leq v(\{i\})$.</p>
+<p>If $v$ is superadditive set function,  i.e., $v(S\sqcup T)\geq v(S) + v(T)$, then for each agent $i$, $\phi_i(v)\geq v(\{i\})$.</p>
+<p>So if the cooperation has positive externalities, all agents (weakly) gain, and if ti has negative externalities, all agents (weakly) lose.</p>
+<p>这个挺有趣诶，在什么情况下subadditive会出现呢，不知道有没有这种例子。</p>
+<p>乍一看，我的work2是superadditive的，那就意味着then后面那半句，后面那个半句意味着 $i$ 一个人的价值小于等于 $i$与任何人合作时候的价值。所以每个人都倾向与和他人合作，所以要是supermodular那稳定的结果就是全体合作？可能也没有这么简单。</p>
+<p>奇怪，难道既是 submodular, 又是superadditive吗，前者是第二层，后者是第一层？</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p>Stand-alone test 这个property真的可以考虑一下。</p>
+<p>$\mathcal{R}={r_1,r_2}$</p>
+<p>$\mathcal{M} = {u_1, u_2, u_3}$</p>
+<p>the set of the new links: $\mathcal{L} = \{u_1 \to r_1, u_1 \to r_2, u_2 \to r_1 , u_2 \to r_2,  u_3 \to r_1, u_3 \to r_2\}$</p>
+<h3 id="各边的收益"><a href="#各边的收益" class="headerlink" title="各边的收益"></a>各边的收益</h3><ul>
+<li><p>$\mathcal{R}$ 的成员</p>
+<p>the visibility increase of $\mathcal{R}$</p>
+</li>
+</ul>
+<ul>
+<li>$\mathcal{M}$ 的成员</li>
+</ul>
+<ul>
+<li>$\bar{\mathcal{U}} \setminus \mathcal{M}$ 的成员</li>
+</ul>
+<ul>
+<li>$\mathcal{U}$ 的成员，不参与买和卖的user</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"># 博弈论</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/%E6%8C%87%E9%92%88%E5%92%8C%E5%BC%95%E7%94%A8%E4%BB%A5%E5%8F%8Aconst%E7%9A%84%E4%BF%AE%E9%A5%B0/" rel="prev" title="指针和引用以及const的修饰">
+      <i class="fa fa-chevron-left"></i> 指针和引用以及const的修饰
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/%E8%A7%A3%E5%86%B3hexo%E4%B8%ADlatex%E7%9A%84%E6%B8%B2%E6%9F%93%E9%97%AE%E9%A2%98/" rel="next" title="解决hexo中latex的渲染问题">
+      解决hexo中latex的渲染问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fomal-definition"><span class="nav-number">2.</span> <span class="nav-text">Fomal definition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-glove-game"><span class="nav-number">3.</span> <span class="nav-text">Example: glove game</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Properties"><span class="nav-number">4.</span> <span class="nav-text">Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Efficiency"><span class="nav-number">4.1.</span> <span class="nav-text">Efficiency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stand-alone-test"><span class="nav-number">4.2.</span> <span class="nav-text">Stand-alone test</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%9D%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">思考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E8%BE%B9%E7%9A%84%E6%94%B6%E7%9B%8A"><span class="nav-number">5.0.1.</span> <span class="nav-text">各边的收益</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">圆头</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-12-10</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

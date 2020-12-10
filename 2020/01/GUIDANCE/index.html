@@ -77,7 +77,11 @@
   </style>
 </noscript>
 
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -245,21 +249,16 @@
       
         <p>关于建站和更新的一些备忘和指导。</p>
 <a id="more"></a>
-
 <h2 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/shira</span><br><span class="line">$ hexo new <span class="string">&quot;title&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p><code>post</code> is the default <code>layout</code></p>
 <p>The corresponding file name is <code>title.md</code> indefault.</p>
 <p>I may modify it in <code>_congig.yml</code> for better magegement in file system later, say it, started with title as my Typora system.</p>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h2 id="Writing"><a href="#Writing" class="headerlink" title="Writing"></a>Writing</h2><h3 id="Head-info"><a href="#Head-info" class="headerlink" title="Head info"></a>Head info</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">title: A templete for posts.</span><br><span class="line">date: 2020-11-21 00:35:15</span><br><span class="line">categories: </span><br><span class="line">- research</span><br><span class="line">- work2</span><br><span class="line">tags:</span><br><span class="line">- reinforcement learning</span><br><span class="line">- game theory</span><br><span class="line">hidden: false</span><br></pre></td></tr></table></figure>
-
 <h4 id="categories"><a href="#categories" class="headerlink" title="categories"></a>categories</h4><p>上述例子会使分类work1成为res的子分类，而不是并列分类。若一篇文章同时属于几个分类示例如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line">- [Research, work2]</span><br><span class="line">- [Research, workx]</span><br><span class="line">- [Career]</span><br><span class="line"># 此时这篇文章同时包括三个分类： work2 和 workx 分别都是父分类 research 的子分类，同时 career 是一个没有子分类的分类。</span><br></pre></td></tr></table></figure>
-
 <p>分类系统暂定如下，因为public的关系和自己的日记系统有所差别。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- [Research]</span><br><span class="line">- [Research, work1]</span><br><span class="line">- [Research, work2]</span><br><span class="line">- [Research, workX]</span><br><span class="line">- [Research, basic]</span><br><span class="line">- [Career]</span><br><span class="line">- [T] # tool &#x2F; tech</span><br><span class="line">----------non serious below------</span><br><span class="line">- [A] </span><br><span class="line">- [B] </span><br><span class="line">- [L]</span><br><span class="line">- [H] </span><br><span class="line">- [H, Finance] # major subcategory of H</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h4 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h4><p>和categories不太一样此处是并列关系。主要限制在：</p>
 <ul>
 <li>Research 和Career，比如game theory</li>
@@ -272,38 +271,27 @@
 </li>
 <li><p>同步方案一：现在日记体系用原来的命名方式<code>[] dateM xxx</code> ，写好。觉得不错想要publish的话，用上面的<code>$ hexo new &quot;xxx&quot;</code> 创建一个post， 自改头设定分类标签，然后把正文copy进去。</p>
 </li>
-<li><p>同步方案二：？</p>
-</li>
+<li>同步方案二：？</li>
 </ul>
 <h2 id="Preview-amp-Test"><a href="#Preview-amp-Test" class="headerlink" title="Preview &amp; Test"></a>Preview &amp; Test</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a></p>
+<p><a target="_blank" rel="noopener" href="http://localhost:4000">http://localhost:4000</a></p>
 <p>TODO：搞个网站图标出来放在书签更方便</p>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h2 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h2><p>在本地测试好之后，开始部署！git菜鸡表示有点心累。参考了这哥们的 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017986794%EF%BC%8C%E7%85%A7%E7%9D%80%E4%B8%8B%E9%9D%A2%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%81%9A%E5%90%A7%EF%BC%9A">https://segmentfault.com/a/1190000017986794，照着下面一步一步做吧：</a></p>
+<h2 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h2><p>在本地测试好之后，开始部署！git菜鸡表示有点心累。参考了这哥们的 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017986794，照着下面一步一步做吧：">https://segmentfault.com/a/1190000017986794，照着下面一步一步做吧：</a></p>
 <h3 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0. 准备工作"></a>0. 准备工作</h3><p>Github和我的git秘钥已经对好啦这一步就跳过。</p>
 <p>安全起见把 theme/next 下面的 .git 删掉，public里面的 .git 我之前脑残init的也删掉。TODO: 我为了不混乱甚至把shiyuan目录下的.git也删掉了，至于代码托管下次再说吧，跟那啥CI一起改。</p>
 <h3 id="1-配置github仓库地址"><a href="#1-配置github仓库地址" class="headerlink" title="1. 配置github仓库地址"></a>1. 配置github仓库地址</h3><p>在站点根目录下的 <code>_congif.yml</code> 如下配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:shira0905&#x2F;shira0905.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
 <h3 id="2-安装插件"><a href="#2-安装插件" class="headerlink" title="2. 安装插件"></a>2. 安装插件</h3><p>在站点根目录下安装一个部署的插件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="3-一句部署"><a href="#3-一句部署" class="headerlink" title="3. 一句部署"></a>3. 一句部署</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g -d</span><br><span class="line"># 如果有洁癖，在这之前加一句 clean 把老的 public 删掉，不做问题也不大</span><br><span class="line">$ hexo clean </span><br></pre></td></tr></table></figure>
-
 <p>思考了一下，应该做的事情就是，生成静态文件夹public，然后把public上面的所有东西都以master的分支身份推到<code>github.com:shira0905/shira0905.github.io.git</code> 这个仓库里面去。但省略了init add commit 等步骤，只需要一句<code>$ hexo g -d</code> 即可。</p>
 <p>TODO: 探索一下更方便的方式，比如CI。</p>
 <p>TODO: 代码托管，git还是多练练吧。</p>
 <h2 id="New-site"><a href="#New-site" class="headerlink" title="New site"></a>New site</h2><p>因为我现在没有做版本管理，万一真的改崩了，那基于崩的项目重新建站。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init newname</span><br><span class="line">$ <span class="built_in">cd</span> new newname</span><br><span class="line">$ npm install</span><br><span class="line"><span class="comment"># 把 oldname/_config.yml 复制过来，替换现有的</span></span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># 把 oldname/themes/next 复制过来，替换现有的</span></span><br><span class="line"><span class="comment"># 把 oldname/resource 复制过来，替换现有的。 <span class="doctag">TODO:</span> 验证不通过new也可以</span></span><br></pre></td></tr></table></figure>
-
 <p>还有一些npm的安装 busuanzi search等等要重新装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 让一键部署生效</span><br><span class="line">$ npm install hexo-deployer-git --save </span><br><span class="line"># 让hidden生效</span><br><span class="line">$ npm install hexo-hide-posts --save</span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h2><p>之前网站崩原来是因为我唯一的一篇post设置成了hidden: true，导致加载index的时候列表是空的，所以出错了。有时候做不确定的改动看来还是得勤清理一下浏览器缓存，不然哪一步错了都不知道。</p>
 
     </div>
@@ -401,20 +389,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -449,7 +437,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020-11-27</span>
+  <span itemprop="copyrightYear">2020-12-10</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
