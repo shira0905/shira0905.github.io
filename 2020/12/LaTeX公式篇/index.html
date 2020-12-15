@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="常见的公示编辑方案总结。把精华放开头吧：(1)equation(*) 配合次环境 aligned 几乎能覆盖九成的公式编辑问题。(2)align(*) 用于公式组也是极为常见的。(3) \[\] 用于行间不需要引用的公式比较方便，若需要换行对其则可以配合次环境 aligned ，我怀疑这个排版可能比equation更紧凑？。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX公式篇">
+<meta property="og:url" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/">
+<meta property="og:site_name" content="圆头的部落格">
+<meta property="og:description" content="常见的公示编辑方案总结。把精华放开头吧：(1)equation(*) 配合次环境 aligned 几乎能覆盖九成的公式编辑问题。(2)align(*) 用于公式组也是极为常见的。(3) \[\] 用于行间不需要引用的公式比较方便，若需要换行对其则可以配合次环境 aligned ，我怀疑这个排版可能比equation更紧凑？。">
+<meta property="og:locale">
+<meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215210442937.png">
+<meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215210757388.png">
+<meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215204746358.png">
+<meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215204213604.png">
+<meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215203655206.png">
+<meta property="article:published_time" content="2020-12-15T11:08:58.000Z">
+<meta property="article:modified_time" content="2020-12-15T13:40:57.604Z">
+<meta property="article:author" content="圆头">
+<meta property="article:tag" content="方法论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215210442937.png">
+
+<link rel="canonical" href="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>LaTeX公式篇 | 圆头的部落格</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">大道至简</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="圆头">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LaTeX公式篇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-12-15 19:08:58 / Modified: 21:40:57" itemprop="dateCreated datePublished" datetime="2020-12-15T19:08:58+08:00">2020-12-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>常见的公示编辑方案总结。把精华放开头吧：(1)<code>equation(*)</code> 配合次环境 <code>aligned</code> 几乎能覆盖九成的公式编辑问题。(2)<code>align(*)</code> 用于公式组也是极为常见的。(3) <code>\[\]</code> 用于行间不需要引用的公式比较方便，若需要换行对其则可以配合次环境 <code>aligned</code> ，我怀疑这个排版可能比equation更紧凑？。</p>
+<a id="more"></a>
+<p>数学公式的需求可通过<code>amsmath</code>宏包提供的丰富环境达成，在导言区输入<code>usepackage&#123;amsmath&#125;</code>。</p>
+<h2 id="最通用的equation"><a href="#最通用的equation" class="headerlink" title="最通用的equation(*)"></a>最通用的<code>equation(*)</code></h2><ul>
+<li><p>编号问题：默认有编号，加*无编号</p>
+</li>
+<li><p>交叉引用问题：<code>equation</code>肯定是可以加的。至于<code>multline</code> ，<code>align</code>， <code>\[\]</code> 这三种我就不确定了，待试验。</p>
+</li>
+</ul>
+<p><strong>【结论：<code>equation(*)</code> 配合次环境 <code>aligned</code> 几乎能覆盖九成的公示编辑问题。】</strong></p>
+<h2 id="单行公式推荐"><a href="#单行公式推荐" class="headerlink" title="单行公式推荐"></a>单行公式推荐</h2><p>最为基础的行间公式的输出方式有三种，分别是用$$$…$$$、<code>[</code>和<code>]</code>以及<code>displaymath</code>环境。其中，第一种方式不推荐使用。这是plain TeX时代就存在的命令，使用的是固定行距，不利于文章的后期调整。一般而言使用较多的是第二种方法进入行间的数学模式。</p>
+<p>公式中的空格均会被忽略，可以使用命令\quad或\qquad实现。在行间公式中，命令\tag{n}可以进行手动编号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$ f(x) &#x3D; a - b$$</span><br><span class="line">$$ f(x) &#x3D; a - b \tag&#123;1.1&#125; $$		# 默认无编号，通过\tag&#123;&#125;加编号，不知道能不能引用</span><br><span class="line">\[a+b\]		# 会生成一个不编号的公式。</span><br></pre></td></tr></table></figure>
+<p>当然，除了这种最为基础的行间公式，也存在较为高级的环境。我们可以使用<code>amsmath</code>提供的<code>equation</code>环境来达到为自己的公式编号的目的。这样在交叉引用以及后期编辑的时候都有更大的优势。</p>
+<p><strong>【结论：单行无编号需求，用第二种<code>\[...\]</code>。有编号需求用后面介绍的高级环境。】</strong></p>
+<h2 id="多行可对齐之次环境-aligned"><a href="#多行可对齐之次环境-aligned" class="headerlink" title="多行可对齐之次环境 aligned"></a>多行可对齐之次环境 <code>aligned</code></h2><p>用于需要定制对齐的公式。</p>
+<p>使用次环境的时候需要先进入化学环境。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 会报错因为没有进入化学环境</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">x &#x3D;&#123;&#125;&amp; a+b+c+&#123;&#125; \</span><br><span class="line">&amp;d+e+f</span><br><span class="line">\end&#123;aligned&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>长公式换行，用于行间化学环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">\[</span><br><span class="line">  \begin&#123;aligned&#125;[t]</span><br><span class="line">		p(x) &#x3D; 3x^6 + 14x^5y + 590x^4y^2 \\ </span><br><span class="line">		+ 19x^3y^3 - 12x^2y^4 - 12xy^5 \\</span><br><span class="line">		+ 2y^6 - a^3b^3</span><br><span class="line">  \end&#123;aligned&#125;</span><br><span class="line">\]</span><br><span class="line"></span><br><span class="line">\[</span><br><span class="line">  \begin&#123;aligned&#125;[t]</span><br><span class="line">		p(x) &amp;&#x3D; 3x^6 + 14x^5y + 590x^4y^2 \\ </span><br><span class="line">				&amp;+ 19x^3y^3 - 12x^2y^4 - 12xy^5 \\</span><br><span class="line">				&amp;+ 2y^6 - a^3b^3</span><br><span class="line">  \end&#123;aligned&#125;</span><br><span class="line">\]</span><br><span class="line"></span><br><span class="line">\begin&#123;equation&#125; </span><br><span class="line">\label&#123;eq1&#125;</span><br><span class="line">  \begin&#123;aligned&#125;[t]</span><br><span class="line">		p(x) &amp;&#x3D; 3x^6 + 14x^5y + 590x^4y^2 \\ </span><br><span class="line">				&amp;+ 19x^3y^3 - 12x^2y^4 - 12xy^5 \\</span><br><span class="line">				&amp;+ 2y^6 - a^3b^3</span><br><span class="line">  \end&#123;aligned&#125;</span><br><span class="line">\end&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215210442937.png" class="" title="image-20201215210442937">
+</li>
+</ul>
+<ul>
+<li><p>也可用于行内化学环境！</p>
+<p><code>aligned</code> sets a block with a similar interface to <code>align*</code> that can be used as inline math or within a display setting. The optional parameter allows you to specify a vertical alignment parameter with respect to the surrounding content. As an example, see</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Before</span><br><span class="line">$\begin&#123;aligned&#125;[t]</span><br><span class="line">a &amp;&#x3D; b \\</span><br><span class="line">c &amp;&#x3D; d</span><br><span class="line">\end&#123;aligned&#125;$</span><br><span class="line">between</span><br><span class="line">$\begin&#123;aligned&#125;</span><br><span class="line">a &amp;&#x3D; b \\</span><br><span class="line">c &amp;&#x3D; d</span><br><span class="line">\end&#123;aligned&#125;$</span><br><span class="line">after</span><br><span class="line">$\begin&#123;aligned&#125;[b]</span><br><span class="line">a &amp;&#x3D; b \\</span><br><span class="line">c &amp;&#x3D; d</span><br><span class="line">\end&#123;aligned&#125;$</span><br><span class="line">end.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<img src="/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215210757388.png" class="" title="image-20201215210757388">
+</li>
+</ul>
+<h2 id="多行可对齐之次环境-split"><a href="#多行可对齐之次环境-split" class="headerlink" title="多行可对齐之次环境 split"></a>多行可对齐之次环境 <code>split</code></h2><p>用于需要定制对齐的单个公式。<strong>其实这个我也没用过，还是用alighned比较多一些吧，而且感觉aligned更强大覆盖了split的功能。</strong></p>
+<p>使用次环境的时候需要先进入化学环境否则会报错，同aligned。</p>
+<ul>
+<li><p>行间长公式对齐</p>
+<p>通过split环境实现公式拆分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;equation&#125; \label&#123;eq1&#125;</span><br><span class="line">\begin&#123;split&#125;</span><br><span class="line">p(x) &#x3D; 3x^6 + 14x^5y + 590x^4y^2 \\ </span><br><span class="line">+ 19x^3y^3 - 12x^2y^4 - 12xy^5 \\</span><br><span class="line">+ 2y^6 - a^3b^3</span><br><span class="line">\end&#123;split&#125;</span><br><span class="line">\end&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<img src="/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215204746358.png" class="" title="image-20201215204746358">
+<h2 id="多行不可对齐之multline"><a href="#多行不可对齐之multline" class="headerlink" title="多行不可对齐之multline(*)"></a>多行不可对齐之<code>multline(*)</code></h2><ul>
+<li><p>不需要定制对齐，使用  <code>multline*</code> or <code>multline</code> environment，前者无编号，后者是默认有编号。<br>首行左起末行右起。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;multline&#125;</span><br><span class="line">p(x) &#x3D; 3x^6 + 14x^5y + 590x^4y^2 \\ </span><br><span class="line">+ 19x^3y^3 - 12x^2y^4 - 12xy^5 \\</span><br><span class="line">+ 2y^6 - a^3b^3</span><br><span class="line">\end&#123;multline&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215204213604.png" class="" title="image-20201215204213604">
+</li>
+</ul>
+<h2 id="多个公式一组之align"><a href="#多个公式一组之align" class="headerlink" title="多个公式一组之align(*)"></a>多个公式一组之<code>align(*)</code></h2><p>或者某几个公式是一组，我们需要将他们放在一起，<strong>不同于之前的这里每一行都是一个公式有不同编号</strong>。</p>
+<p>在默认条件下带有编号。如果不需要编号可在一行的最后加入<code>notag</code>命令，也可以使用<code>tag&#123;·&#125;</code>来自定义改行的公式的编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125; </span><br><span class="line">2x - 5y &amp;&#x3D;  8 \\ </span><br><span class="line">3x + 9y &amp;&#x3D;  -12</span><br><span class="line">\end&#123;align&#125;</span><br><span class="line"></span><br><span class="line">\begin&#123;align*&#125; </span><br><span class="line">2x - 5y &amp;&#x3D;  8 \\ </span><br><span class="line">3x + 9y &amp;&#x3D;  -12</span><br><span class="line">\end&#123;align*&#125;</span><br><span class="line"></span><br><span class="line">\begin&#123;align&#125; </span><br><span class="line">2x - 5y &amp;&#x3D;  8 \notag \\ </span><br><span class="line">3x + 9y &amp;&#x3D;  -12</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215203655206.png" class="" title="image-20201215203655206">
+<h2 id="分段函数之次环境-case"><a href="#分段函数之次环境-case" class="headerlink" title="分段函数之次环境 case"></a>分段函数之次环境 <code>case</code></h2><p>用于输入分段函数给公式加上一个在左边的大括号。</p>
+<p>使用次环境的时候需要先进入化学环境。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[D(x) = </span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">	\lim\limits_&#123;x \to 0&#125; \frac&#123;a^x&#125;&#123;b+c&#125;, 	&amp; x&lt;3 \\</span><br><span class="line">	\pi, 																		&amp; x=3 \\</span><br><span class="line">	\int_a^&#123;3b&#125;x_&#123;ij&#125;+e^2 \mathrm&#123;d&#125;x,			&amp; x&gt;3 \\</span><br><span class="line">\end&#123;cases&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" rel="tag"># 方法论</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E5%AE%9E%E4%B9%A0%E5%87%86%E5%A4%87/" rel="prev" title="字节跳动实习准备">
+      <i class="fa fa-chevron-left"></i> 字节跳动实习准备
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E9%80%9A%E7%94%A8%E7%9A%84equation"><span class="nav-number">1.</span> <span class="nav-text">最通用的equation(*)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%A1%8C%E5%85%AC%E5%BC%8F%E6%8E%A8%E8%8D%90"><span class="nav-number">2.</span> <span class="nav-text">单行公式推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E5%8F%AF%E5%AF%B9%E9%BD%90%E4%B9%8B%E6%AC%A1%E7%8E%AF%E5%A2%83-aligned"><span class="nav-number">3.</span> <span class="nav-text">多行可对齐之次环境 aligned</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E5%8F%AF%E5%AF%B9%E9%BD%90%E4%B9%8B%E6%AC%A1%E7%8E%AF%E5%A2%83-split"><span class="nav-number">4.</span> <span class="nav-text">多行可对齐之次环境 split</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E4%B8%8D%E5%8F%AF%E5%AF%B9%E9%BD%90%E4%B9%8Bmultline"><span class="nav-number">5.</span> <span class="nav-text">多行不可对齐之multline(*)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%85%AC%E5%BC%8F%E4%B8%80%E7%BB%84%E4%B9%8Balign"><span class="nav-number">6.</span> <span class="nav-text">多个公式一组之align(*)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E5%87%BD%E6%95%B0%E4%B9%8B%E6%AC%A1%E7%8E%AF%E5%A2%83-case"><span class="nav-number">7.</span> <span class="nav-text">分段函数之次环境 case</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">圆头</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-12-15</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

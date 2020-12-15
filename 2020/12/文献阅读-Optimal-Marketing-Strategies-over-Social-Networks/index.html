@@ -28,7 +28,7 @@
 <meta property="og:description" content="Cao的paper的简化版，单个product，以及非negative externality">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-12-09T19:38:45.000Z">
-<meta property="article:modified_time" content="2020-12-09T19:44:17.203Z">
+<meta property="article:modified_time" content="2020-12-10T10:11:15.043Z">
 <meta property="article:author" content="圆头">
 <meta property="article:tag" content="文献阅读">
 <meta property="article:tag" content="高度相关">
@@ -219,7 +219,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-12-10 03:38:45 / Modified: 03:44:17" itemprop="dateCreated datePublished" datetime="2020-12-10T03:38:45+08:00">2020-12-10</time>
+              <time title="Created: 2020-12-10 03:38:45 / Modified: 18:11:15" itemprop="dateCreated datePublished" datetime="2020-12-10T03:38:45+08:00">2020-12-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -284,28 +284,101 @@
 <p>打折而不是免费，能够提升后续卖家心目中的value</p>
 <h3 id="General-settings"><a href="#General-settings" class="headerlink" title="General settings"></a>General settings</h3><p>NP-hard</p>
 <p>计算复杂度问答题没看懂</p>
-<h2 id="1-2-Related-work"><a href="#1-2-Related-work" class="headerlink" title="1.2 Related work"></a>1.2 Related work</h2><p>Typically, these works propose models for the process by which people in a social network adopt a new technology or idea. Kempe, Kleinberg, and Tardos [9] study the algorithmic question (posed by Domingos and Richardson [6]) of identifying a set of influential nodes in a social network: Assuming</p>
+<h2 id="1-2-Related-work"><a href="#1-2-Related-work" class="headerlink" title="1.2 Related work"></a>1.2 Related work</h2><h3 id="介绍IM"><a href="#介绍IM" class="headerlink" title="介绍IM"></a>介绍IM</h3><blockquote>
 <p>[10] J. Kleinberg. Cascading behavior in networks: algorithmic and economic issues. Cambridge University</p>
-<p>[6] Pedro Domingos and Matt Richardson. Mining the network value of customers. In KDD ’01:</p>
-<p>[9] David Kempe, Jon Kleinberg, and ´Eva Tardos. Maximizing the spread of influence through a social network. In</p>
+<p>[6] Pedro Domingos and Matt Richardson. Mining the network value of customers. In KDD ’01</p>
+<p>[9] David Kempe, Jon Kleinberg, and ´Eva Tardos. Maximizing the spread of influence through a social network. </p>
+</blockquote>
+<p>Typically, these works propose models for the process by which people in a social network adopt a new technology or idea. Kempe, Kleinberg, and Tardos [9] study the algorithmic question (posed by Domingos and Richardson [6]) of identifying a set of influential nodes in a social network: …</p>
+<p>IM所牵涉到的核心技术：</p>
+<ul>
+<li><p>[9] , the authors use the analysis of greedy algorithm for maximizing monotone sub- modular functions [13]. </p>
+</li>
+<li><p>[13] G. Nemhauser, L. Wolsey, and M. Fisher. An analysis of the approximations for maximizing submodular set functions. Mathematical Programming, 14:265–294, 1978.</p>
+</li>
+</ul>
+<h3 id="总结本文贡献"><a href="#总结本文贡献" class="headerlink" title="总结本文贡献"></a>总结本文贡献</h3><ul>
+<li><p>在文体的定义和业务场景上，最大化revenue而不是影响力，并且研究price</p>
 <p>IM 没有考虑价格问题，而利润最大化才是最终目的。所以本文结合influence和price。how many to give是啥意思</p>
-<p>[9] , the authors use the analysis of greedy algorithm for maximizing monotone sub- modular functions [13]. </p>
-<p>[13] G. Nemhauser, L. Wolsey, and M. Fisher. An analysis of the approximations for maximizing submodular set functions. Mathematical Programming, 14:265–294, 1978.</p>
+</li>
+<li><p>在算近似算法层面，non-monotone submodular function，以及现有的解决算法local search algorithms。</p>
 <p>核心理论：in our settings, the problem of optimal influence-and-exploit strategy is a <strong>non-monotone submodular function</strong> maximization; therefore, we make use the recently developed <strong>local search algorithms</strong> for approximately maximizing non-monotone submodular functions.</p>
-<p>总结一下：</p>
-<p>在文体的定义和业务场景上，最大化revenue而不是影响力，并且研究price</p>
-<p>在算近似算法层面，non-monotone submodular function，以及现有的解决算法local search algorithms</p>
+</li>
+</ul>
 <p>【可不可model出一个non-monotone submodular function问题，然后再加上匿名noise，再水一篇出来？不过用sketch的前提是我们需要使用集合运算，诶，可惜sketch我也没有好好学啊】</p>
-<h1 id="2-preliminaries"><a href="#2-preliminaries" class="headerlink" title="2 preliminaries"></a>2 preliminaries</h1><p>the seller does not know the buyer’s exact value (maximum willingness to pay), it does know the distribution F from which its values are drawn. 然后definition1也是很好理解了</p>
+<h1 id="2-preliminaries"><a href="#2-preliminaries" class="headerlink" title="2 preliminaries"></a>2 preliminaries</h1><p>the seller does not know the buyer’s exact value (maximum willingness to pay), it does know the distribution F from which its values are drawn. 然后definition1也是很好理解了。</p>
 <h2 id="2-1-Influence-Model"><a href="#2-1-Influence-Model" class="headerlink" title="2.1 Influence Model"></a>2.1 Influence Model</h2><p>A buyer i’s value for the good now depends on the set of buyers that already own the good.</p>
 <p>$v_i: 2^V \to \mathbb{R}^+$</p>
 <p>When the social network is modeled by a graph, vi(·) is a function only of neighbors of i in the graph</p>
 <p>给了三个不同的distribution model 再看下去可能才知道为什么这样色剂</p>
-<h2 id="2-2-marketing-strategy"><a href="#2-2-marketing-strategy" class="headerlink" title="2.2 marketing strategy"></a>2.2 marketing strategy</h2><p>A marketing strategy has the <strong>seller visiting buyers in some sequence</strong> and <strong>offering each buyer a price</strong>.</p>
-<p>we assume that each buyer is considered exactly once. </p>
-<p>Both the prices offered and the sequence in which buyers are visited can be adaptive, i.e, they can be based on the history of accepts and rejects. </p>
-<h1 id="3-Optimal-marketing-stragtegies"><a href="#3-Optimal-marketing-stragtegies" class="headerlink" title="3 Optimal marketing stragtegies"></a>3 Optimal marketing stragtegies</h1><h2 id="3-1-symmetric-settings"><a href="#3-1-symmetric-settings" class="headerlink" title="3.1 symmetric settings"></a>3.1 symmetric settings</h2><h2 id="3-2-hardness"><a href="#3-2-hardness" class="headerlink" title="3.2 hardness"></a>3.2 hardness</h2><p>the problem of computing the optimal strategy is NP-Hard even when there is no uncertainty in the input parameters. </p>
-<h1 id="4-IE-Marketing"><a href="#4-IE-Marketing" class="headerlink" title="4 IE Marketing"></a>4 IE Marketing</h1>
+<h2 id="2-2-marketing-strategy"><a href="#2-2-marketing-strategy" class="headerlink" title="2.2 marketing strategy"></a>2.2 marketing strategy</h2><p>A marketing strategy has the <strong>seller visiting buyers in some sequence</strong> and <strong>offering each buyer a price</strong>. we assume that each buyer is considered exactly <strong>once</strong>. Both the prices offered and the sequence in which buyers are visited can be <strong>adaptive</strong>.</p>
+<p>A <strong>marketing strategy</strong> and the <strong>value distributions</strong> together yield <strong>a distribution over runs</strong>—this defines the expected revenue of the marketing strategy. We call the marketing strategy that optimizes revenue the <em>optimal marketing strategy.</em></p>
+<h2 id="2-3-An-Upper-Bound-on-Revenue"><a href="#2-3-An-Upper-Bound-on-Revenue" class="headerlink" title="2.3 An Upper Bound on Revenue"></a>2.3 An Upper Bound on Revenue</h2><p>奇怪，问题还没model好久开始讲讲revenue的bound？</p>
+<ul>
+<li><p>why using the optimal price (Definition 1) is short-sighted?</p>
+<p>We may want to offer the buyer a discount, so that it buys the item and influences others. However if the seller is myopic and ignores the buyer i’s ability to influence other buyers it would offer the optimal price.</p>
+</li>
+<li><p>revenue function</p>
+<ul>
+<li>non-negative</li>
+<li>assume monotone</li>
+<li>assume submodular later</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-4-some-technical-facts"><a href="#2-4-some-technical-facts" class="headerlink" title="2.4 some technical facts"></a>2.4 some technical facts</h2><p>The hazard rate h of a distribution with a density function f, distribution function F and support [a, b] is</p>
+<p>The distribution function can be expressed in terms of the hazard rate</p>
+<p>A distribution satisfies the monotone hazard rate condition if h is monotone non-decreasing.</p>
+<h1 id="3-Optimal-marketing-stragtegies"><a href="#3-Optimal-marketing-stragtegies" class="headerlink" title="3 Optimal marketing stragtegies"></a>3 Optimal marketing stragtegies</h1><h2 id="3-1-symmetric-settings"><a href="#3-1-symmetric-settings" class="headerlink" title="3.1 symmetric settings"></a>3.1 symmetric settings</h2><p>where the buyer values are drawn from one of |V| distributions Fk</p>
+<p>为什么有多个distributions ， symmetric难道不是单一的吗</p>
+<p>visit顺序无关</p>
+<p>Further, the offered prices are a function only of the number of buyers that have accepted and the number of buyers who have not been considered.</p>
+<p>$p(k,t)$</p>
+<p>$R(k,t)$ is the maximum expected revenue that can be collected from these remaining buyers.</p>
+<p>$F_k$ 这里的k是什么</p>
+<p>p, i.e with probability 1 −Fk(p). As a result, we have to set the price p to maximize the</p>
+<p>expected remaining revenue. 倒数为0时候渠道最大值</p>
+<h2 id="3-2-hardness"><a href="#3-2-hardness" class="headerlink" title="3.2 hardness"></a>3.2 hardness</h2><p>the problem of computing the optimal strategy is NP-Hard even when there is no uncertainty in the input parameters. </p>
+<p>general 竟然point distributions了，狡猾！</p>
+<p>Given any offer sequence, the prices to offer are obvious; if a set S of buyers have previously bought, offer the next buyer i price vi(S). </p>
+<p>This price simultaneously extracts the maximum revenue possible and ensures that the buyer buys and hence exerts influence on future buyers.  再高buyer就不买（收益0，且没有传播externality），再低buyer虽然买但是seller利润不如之前</p>
+<p>We now show that finding the optimal sequence is NP-Hard even when the values are specified by a simple additive model. </p>
+<p>additive model 听起来是比较简单的</p>
+<p>.Finding the optimal marketing strategy is NP- hard even with <strong>complete information about buyer values</strong>.</p>
+<p>解决方案：</p>
+<p>design approximately optimal marketing strategies that can be found in polynomial time</p>
+<p>后面讲approximation ratio的就都没听懂了</p>
+<h1 id="4-IE-Marketing"><a href="#4-IE-Marketing" class="headerlink" title="4 IE Marketing"></a>4 IE Marketing</h1><p>正式介绍 IE 了，两个特征：polynomial-time， approximation</p>
+<ul>
+<li><p>influence step:</p>
+<p>which gives the item away for free to a judiciously selected set of buyers; followed</p>
+</li>
+<li><p>exploit step </p>
+<p>based on a random sequence of offers and a greedy pricing strategy</p>
+<ol>
+<li><p>The optimal marketing strategy in the symmetric set- ting started by giving the item away for free to a sig- nificant fraction of the players; this motivates the in- fluence step</p>
+</li>
+<li><p>the maximum feedback arc-set problem is a 1/2-approximation</p>
+<p>—&gt; surprisingly, picking a random sequence of nodes yields this(As each edge is selected with probability 1/2). Inspired by this, during the exploit step, we will visit buyers in a se- quence picked uniformly at random.<br>【这是啥逻辑啊】</p>
+</li>
+<li><p>We will use optimal (myopic) pricing(See Definition 1) in the exploit step; </p>
+</li>
+</ol>
+</li>
+</ul>
+<p>怎么选一开始的A 呢</p>
+<p>Offer buyer i the optimal (myopic) price as a function of the distribution Fi,S.？？</p>
+<h2 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h2><p>讲了看似简单的IE 实际上还是不错的</p>
+<p>Given any set of submodular revenue func-<br>tions</p>
+<ul>
+<li><p>For the concrete setting studied at the end of Section 3.1, it is possi- ble to show that the best IE strategy is a 0.94-approximation to the optimal revenue. We</p>
+</li>
+<li><p>undirected additive model (See Section 2.1). We show that there exists an IE strategy that gives a 2/3-approximation<br>algorithm for this problem. We</p>
+</li>
+</ul>
+<p>证明了一下2/3那个approximation ratio</p>
+<p>If value distribution satisfies the monotone<br>hazard rate condition, the buyer accepts the optimal (my- opic) price with probability at least 1/e</p>
+
     </div>
 
     
@@ -389,7 +462,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-our-contributions"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 our contributions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Symmetric-Settings"><span class="nav-number">1.1.1.</span> <span class="nav-text">Symmetric Settings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General-settings"><span class="nav-number">1.1.2.</span> <span class="nav-text">General settings</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Related-work"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Related work</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-preliminaries"><span class="nav-number">2.</span> <span class="nav-text">2 preliminaries</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Influence-Model"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Influence Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-marketing-strategy"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 marketing strategy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Optimal-marketing-stragtegies"><span class="nav-number">3.</span> <span class="nav-text">3 Optimal marketing stragtegies</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-symmetric-settings"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 symmetric settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-hardness"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 hardness</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-IE-Marketing"><span class="nav-number">4.</span> <span class="nav-text">4 IE Marketing</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1 Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-our-contributions"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 our contributions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Symmetric-Settings"><span class="nav-number">1.1.1.</span> <span class="nav-text">Symmetric Settings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#General-settings"><span class="nav-number">1.1.2.</span> <span class="nav-text">General settings</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Related-work"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Related work</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8DIM"><span class="nav-number">1.2.1.</span> <span class="nav-text">介绍IM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E6%9C%AC%E6%96%87%E8%B4%A1%E7%8C%AE"><span class="nav-number">1.2.2.</span> <span class="nav-text">总结本文贡献</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-preliminaries"><span class="nav-number">2.</span> <span class="nav-text">2 preliminaries</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Influence-Model"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Influence Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-marketing-strategy"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 marketing strategy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-An-Upper-Bound-on-Revenue"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 An Upper Bound on Revenue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-some-technical-facts"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 some technical facts</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Optimal-marketing-stragtegies"><span class="nav-number">3.</span> <span class="nav-text">3 Optimal marketing stragtegies</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-symmetric-settings"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 symmetric settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-hardness"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 hardness</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-IE-Marketing"><span class="nav-number">4.</span> <span class="nav-text">4 IE Marketing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1"><span class="nav-number">4.1.</span> <span class="nav-text">4.1</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -405,7 +478,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -453,7 +526,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020-12-10</span>
+  <span itemprop="copyrightYear">2020-12-15</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
