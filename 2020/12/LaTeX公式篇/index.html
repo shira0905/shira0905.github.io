@@ -20,20 +20,21 @@
     var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="常见的公示编辑方案总结。把精华放开头吧：(1)equation(*) 配合次环境 aligned 几乎能覆盖九成的公式编辑问题。(2)align(*) 用于公式组也是极为常见的。(3) \[\] 用于行间不需要引用的公式比较方便，若需要换行对其则可以配合次环境 aligned ，我怀疑这个排版可能比equation更紧凑？。">
+  <meta name="description" content="常见的公示编辑方案总结。把精华放开头吧：(1)equation(*) 配合次环境 aligned 几乎能覆盖九成的公式编辑问题。(2)align(*) 用于公式组也是极为常见的，编号灵活，且个单行label。(3) \[\] 用于行间不需要引用的公式比较方便，若需要换行对其则可以配合次环境 aligned ，我怀疑这个排版可能比equation更紧凑？。(4) \eqref 就不用加括号了！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LaTeX公式篇">
 <meta property="og:url" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/">
 <meta property="og:site_name" content="圆头的部落格">
-<meta property="og:description" content="常见的公示编辑方案总结。把精华放开头吧：(1)equation(*) 配合次环境 aligned 几乎能覆盖九成的公式编辑问题。(2)align(*) 用于公式组也是极为常见的。(3) \[\] 用于行间不需要引用的公式比较方便，若需要换行对其则可以配合次环境 aligned ，我怀疑这个排版可能比equation更紧凑？。">
+<meta property="og:description" content="常见的公示编辑方案总结。把精华放开头吧：(1)equation(*) 配合次环境 aligned 几乎能覆盖九成的公式编辑问题。(2)align(*) 用于公式组也是极为常见的，编号灵活，且个单行label。(3) \[\] 用于行间不需要引用的公式比较方便，若需要换行对其则可以配合次环境 aligned ，我怀疑这个排版可能比equation更紧凑？。(4) \eqref 就不用加括号了！">
 <meta property="og:locale">
 <meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215210442937.png">
 <meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215210757388.png">
 <meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215204746358.png">
 <meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215204213604.png">
 <meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215203655206.png">
+<meta property="og:image" content="https://shira0905.github.io/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215230313495.png">
 <meta property="article:published_time" content="2020-12-15T11:08:58.000Z">
-<meta property="article:modified_time" content="2020-12-15T13:40:57.604Z">
+<meta property="article:modified_time" content="2020-12-15T15:08:40.646Z">
 <meta property="article:author" content="圆头">
 <meta property="article:tag" content="方法论">
 <meta name="twitter:card" content="summary">
@@ -224,7 +225,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-12-15 19:08:58 / Modified: 21:40:57" itemprop="dateCreated datePublished" datetime="2020-12-15T19:08:58+08:00">2020-12-15</time>
+              <time title="Created: 2020-12-15 19:08:58 / Modified: 23:08:40" itemprop="dateCreated datePublished" datetime="2020-12-15T19:08:58+08:00">2020-12-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,13 +248,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>常见的公示编辑方案总结。把精华放开头吧：(1)<code>equation(*)</code> 配合次环境 <code>aligned</code> 几乎能覆盖九成的公式编辑问题。(2)<code>align(*)</code> 用于公式组也是极为常见的。(3) <code>\[\]</code> 用于行间不需要引用的公式比较方便，若需要换行对其则可以配合次环境 <code>aligned</code> ，我怀疑这个排版可能比equation更紧凑？。</p>
+        <p>常见的公示编辑方案总结。把精华放开头吧：(1)<code>equation(*)</code> 配合次环境 <code>aligned</code> 几乎能覆盖九成的公式编辑问题。(2)<code>align(*)</code> 用于公式组也是极为常见的，编号灵活，且个单行label。(3) <code>\[\]</code> 用于行间不需要引用的公式比较方便，若需要换行对其则可以配合次环境 <code>aligned</code> ，我怀疑这个排版可能比equation更紧凑？。(4) <code>\eqref</code> 就不用加括号了！</p>
 <a id="more"></a>
 <p>数学公式的需求可通过<code>amsmath</code>宏包提供的丰富环境达成，在导言区输入<code>usepackage&#123;amsmath&#125;</code>。</p>
 <h2 id="最通用的equation"><a href="#最通用的equation" class="headerlink" title="最通用的equation(*)"></a>最通用的<code>equation(*)</code></h2><ul>
 <li><p>编号问题：默认有编号，加*无编号</p>
 </li>
-<li><p>交叉引用问题：<code>equation</code>肯定是可以加的。至于<code>multline</code> ，<code>align</code>， <code>\[\]</code> 这三种我就不确定了，待试验。</p>
+<li><p>交叉引用问题：<code>equation</code>肯定是可以加的。至于<code>multline</code> ，<code>align</code>， <code>\[\]</code> 这三种我就不确定了，待试验。update <code>align</code>也是可以加label的，而且可以是单行公式加label！</p>
 </li>
 </ul>
 <p><strong>【结论：<code>equation(*)</code> 配合次环境 <code>aligned</code> 几乎能覆盖九成的公示编辑问题。】</strong></p>
@@ -297,6 +298,9 @@
 <p>在默认条件下带有编号。如果不需要编号可在一行的最后加入<code>notag</code>命令，也可以使用<code>tag&#123;·&#125;</code>来自定义改行的公式的编号</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125; </span><br><span class="line">2x - 5y &amp;&#x3D;  8 \\ </span><br><span class="line">3x + 9y &amp;&#x3D;  -12</span><br><span class="line">\end&#123;align&#125;</span><br><span class="line"></span><br><span class="line">\begin&#123;align*&#125; </span><br><span class="line">2x - 5y &amp;&#x3D;  8 \\ </span><br><span class="line">3x + 9y &amp;&#x3D;  -12</span><br><span class="line">\end&#123;align*&#125;</span><br><span class="line"></span><br><span class="line">\begin&#123;align&#125; </span><br><span class="line">2x - 5y &amp;&#x3D;  8 \notag \\ </span><br><span class="line">3x + 9y &amp;&#x3D;  -12</span><br><span class="line">\end&#123;align&#125;</span><br></pre></td></tr></table></figure>
 <img src="/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215203655206.png" class="" title="image-20201215203655206">
+<p><code>align</code>也是可以加label的，而且可以是单行公式加label！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;align&#125; </span><br><span class="line">\label&#123;eqn1&#125; \lambda_i + \mu_i &#x3D; 0 \\ </span><br><span class="line">\label&#123;eqn2&#125; \mu_i \xi_i &#x3D; 0 \\ </span><br><span class="line">\label&#123;eqn3&#125; \lambda_i [y_i( w^T x_i + b) - 1 + \xi_i]&#x3D;0 </span><br><span class="line">\end&#123;align&#125;</span><br><span class="line"></span><br><span class="line">Test Equation~\eqref&#123;eqn1&#125; is the first one</span><br></pre></td></tr></table></figure>
+<img src="/2020/12/LaTeX%E5%85%AC%E5%BC%8F%E7%AF%87/image-20201215230313495.png" class="" title="image-20201215230313495">
 <h2 id="分段函数之次环境-case"><a href="#分段函数之次环境-case" class="headerlink" title="分段函数之次环境 case"></a>分段函数之次环境 <code>case</code></h2><p>用于输入分段函数给公式加上一个在左边的大括号。</p>
 <p>使用次环境的时候需要先进入化学环境。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[D(x) = </span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">	\lim\limits_&#123;x \to 0&#125; \frac&#123;a^x&#125;&#123;b+c&#125;, 	&amp; x&lt;3 \\</span><br><span class="line">	\pi, 																		&amp; x=3 \\</span><br><span class="line">	\int_a^&#123;3b&#125;x_&#123;ij&#125;+e^2 \mathrm&#123;d&#125;x,			&amp; x&gt;3 \\</span><br><span class="line">\end&#123;cases&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
@@ -321,7 +325,10 @@
     <a href="/2020/12/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E5%AE%9E%E4%B9%A0%E5%87%86%E5%A4%87/" rel="prev" title="字节跳动实习准备">
       <i class="fa fa-chevron-left"></i> 字节跳动实习准备
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/%E5%B8%B8%E7%94%A8%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/" rel="next" title="常用集合运算总结">
+      常用集合运算总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -396,7 +403,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -409,7 +416,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -444,7 +451,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020-12-15</span>
+  <span itemprop="copyrightYear">2020-12-17</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
