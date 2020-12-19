@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="森林康养项目最主要的参考资料。既然答应了就好好干吧，就当看看课外书好了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="森林康养产业政策激励机制-博弈分析">
+<meta property="og:url" content="https://shira0905.github.io/2020/12/%E6%A3%AE%E6%9E%97%E5%BA%B7%E5%85%BB%E4%BA%A7%E4%B8%9A%E6%94%BF%E7%AD%96%E6%BF%80%E5%8A%B1%E6%9C%BA%E5%88%B6-%E5%8D%9A%E5%BC%88%E5%88%86%E6%9E%90/">
+<meta property="og:site_name" content="圆头的部落格">
+<meta property="og:description" content="森林康养项目最主要的参考资料。既然答应了就好好干吧，就当看看课外书好了。">
+<meta property="og:locale">
+<meta property="og:image" content="https://shira0905.github.io/2020/12/%E6%A3%AE%E6%9E%97%E5%BA%B7%E5%85%BB%E4%BA%A7%E4%B8%9A%E6%94%BF%E7%AD%96%E6%BF%80%E5%8A%B1%E6%9C%BA%E5%88%B6-%E5%8D%9A%E5%BC%88%E5%88%86%E6%9E%90/image-20201219031632167.png">
+<meta property="article:published_time" content="2020-12-18T15:00:01.000Z">
+<meta property="article:modified_time" content="2020-12-19T05:43:22.936Z">
+<meta property="article:author" content="圆头">
+<meta property="article:tag" content="博弈论">
+<meta property="article:tag" content="森林康养">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shira0905.github.io/2020/12/%E6%A3%AE%E6%9E%97%E5%BA%B7%E5%85%BB%E4%BA%A7%E4%B8%9A%E6%94%BF%E7%AD%96%E6%BF%80%E5%8A%B1%E6%9C%BA%E5%88%B6-%E5%8D%9A%E5%BC%88%E5%88%86%E6%9E%90/image-20201219031632167.png">
+
+<link rel="canonical" href="https://shira0905.github.io/2020/12/%E6%A3%AE%E6%9E%97%E5%BA%B7%E5%85%BB%E4%BA%A7%E4%B8%9A%E6%94%BF%E7%AD%96%E6%BF%80%E5%8A%B1%E6%9C%BA%E5%88%B6-%E5%8D%9A%E5%BC%88%E5%88%86%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>森林康养产业政策激励机制-博弈分析 | 圆头的部落格</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">大道至简</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2020/12/%E6%A3%AE%E6%9E%97%E5%BA%B7%E5%85%BB%E4%BA%A7%E4%B8%9A%E6%94%BF%E7%AD%96%E6%BF%80%E5%8A%B1%E6%9C%BA%E5%88%B6-%E5%8D%9A%E5%BC%88%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="圆头">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          森林康养产业政策激励机制-博弈分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-18 23:00:01" itemprop="dateCreated datePublished" datetime="2020-12-18T23:00:01+08:00">2020-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-19 13:43:22" itemprop="dateModified" datetime="2020-12-19T13:43:22+08:00">2020-12-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>森林康养项目最主要的参考资料。既然答应了就好好干吧，就当看看课外书好了。</p>
+<a id="more"></a>
+<p>时隔两个月终于决定开工了，fx麻麻竟然一次都不催我，搞得我拖到年底。不过讲真看社科的论文也太轻松了吧，一个多小时一篇看的明明白白，果不其然是个被写代码推公式耽误的经济社会学家？甚至，读着读着竟然有点兴奋，问题建模得还挺有条理，好像可以借鉴过来建模我自己的问题呢。【想太美了吧又不是像人家画饼。】甚至甚至，想到了ZP Tang靠水源匹配问题拿了100w的青橙奖。【继续做梦吧，不过借鉴一下Tang的风格发一些cs领域的论文还是有可能的。】</p>
+<h2 id="森林康氧产业的介绍"><a href="#森林康氧产业的介绍" class="headerlink" title="森林康氧产业的介绍"></a>森林康氧产业的介绍</h2><h3 id="林区经济转型"><a href="#林区经济转型" class="headerlink" title="林区经济转型"></a>林区经济转型</h3><p>重点国有林区位于大小兴安岭和长白山重点生态功能区，经济欠发达地区。自2015年实施“全面停伐”政策以来，该地区经济发展处于停滞状态。虽然依靠国家“天保工程”资金，可以维系着森林资源恢复和生态环境改善，但是<strong>由于国有林区经济转型能力薄弱，致使职工相对贫困程度随之加剧</strong>。</p>
+<h3 id="群众"><a href="#群众" class="headerlink" title="群众"></a>群众</h3><p>公众健康意识不断增强的情况下，森林康养产业应运而生。在带薪休假制度得以落实和旅游需求层次不断提高的情况下，<strong>度假旅游方式占比逐年提高</strong>。<strong>森林康养是依托森林资源（森林公园），将旅游、休闲、养生、运动、医疗、扶贫等理念融入森林生态服务开发中的一种旅游服务综合体</strong>，成为生态林业、旅游业、健康服务业融合发展的新业态。</p>
+<h3 id="国家重大战略需求"><a href="#国家重大战略需求" class="headerlink" title="国家重大战略需求"></a>国家重大战略需求</h3><p>“健康中国2030战略”的背景下。</p>
+<p>本课题选题从国家重大战略需求和林区经济转型出发，拟以<strong>“森林康养服务纳入到基本医保个人账户支付范围”这项惠民政策</strong>作为驱动森林康养产业需求的政策启动点，在<strong>社交化商务技术支持</strong>下，开展林业经济与共享经济领域的交叉研究，整合商业领域价值共创以及产业政策研究成果，构建区域经济转型过程中的商业价值与社会价值协同创造体系；拟在政策可行范围内破解森林康养产业<strong>生产要素投入不足</strong>和<strong>需求疲软</strong>难题，在此基础上通过，<strong>消费者互动的心理机制和促进资源整合的互惠合作机制研究</strong>，探索增强人民获得感、提升国民健康水平、促进重点国有林区经济转型三者之间的关系以及协同实现路径。</p>
+<p>【主要目的感觉】</p>
+<h2 id="文献综述"><a href="#文献综述" class="headerlink" title="文献综述"></a>文献综述</h2><h3 id="减少公共预算"><a href="#减少公共预算" class="headerlink" title="减少公共预算"></a>减少公共预算</h3><p>林康养和提供相应的卫生服务可以显著减少公共卫生保健预算。德国的森林医疗型发展模式与医保体系相融合，强制性地要求公务员带薪参与，每年国家医疗费用支出减少30%，而国家健康指数却上升了30%（Mao,2012）。</p>
+<h3 id="政策响应的内涵与政策激励效果研究现状"><a href="#政策响应的内涵与政策激励效果研究现状" class="headerlink" title="政策响应的内涵与政策激励效果研究现状"></a>政策响应的内涵与政策激励效果研究现状</h3><ul>
+<li><p>政策响应主体应该结合自身实际情况作出响应决策，优化政策资源供给与自身需求的匹配(Fast，2018)。<strong>政策主体</strong>指的应该是企业吧？</p>
+<blockquote>
+<p>从政策响应主体来看，企业响应政府的规制、引导和创新等政策是企业对政策的拥护（反对）、执行（抵制）等反馈，并认为企业响应创新政策和获取外部性资源具有自主选择性，也是激发企业发展的重要驱动力（Ludving，2018），企业也会根据自身的需求情况对政府的不同类型政策做出响应（Lazard ，2017;刘雪凤，2017），其响应形式与企业的历史、文化和制度等因素密切相关（Lu，2017）。</p>
+</blockquote>
+</li>
+<li><p>宏观调控难度陡增，<strong>有效而精准的政策激励</strong>对于当今中国显得尤为重要</p>
+<blockquote>
+<p>国内外学者主要从以下三个方面评估政策激励效果：</p>
+<p>①从市场固有缺陷出发，政策激励能够弥补市场失灵、协调市场经济失败和信息外溢，提高企业效益和促进经济发展(Aghion，2015)；</p>
+<p>②有学者认为政策激励的经济效果不明显，反而对企业发展带来负面影响 (Rodrik，1996)。此外也有研究表明受到创新政策激励的企业，研发投入会显著增加 (黎文靖等，2016)；</p>
+<p>③第三类观点认为政策激励的效果是有限度的，主要因为政策的时效性以及同质化产能过剩导致政策激励效果的不确定性（宋凌云等，2013；韩乾等，2014）。</p>
+</blockquote>
+<p>明显3比较客观嘛，还不是得看是什么政策以及什么政策主体。</p>
+</li>
+</ul>
+<h3 id="评述"><a href="#评述" class="headerlink" title="评述"></a>评述</h3><p>虽然森林环境有助于改善人们的亚健康状态，但是由于我国<strong>缺少森林康养服务需求刺激政策以及其它产业扶持政策</strong>，导致森林康养产业发展缓慢。本课题<strong>拟从森林康养产业供给侧和需求侧设计政策</strong>“启动子”，分别从企业响应和居民响应两个层面评估该政策驱动森林康养服务供给和需求的效果。现有文献通常是从<strong>供给侧</strong>研究政策驱动作用，而本课题认为<strong>企业和居民（潜在顾客）</strong>的积极参与是森林康养产业价值共创机制实现的前提和基础，所以<strong>拟将政策供给侧和需求侧进行对接</strong>，<strong>从政策激励视角开展政策响应行为分析和政策激励机制设计</strong>。</p>
+<p>【<del>供给侧是企业吗，需求侧是居民吗。不对，政府是政策供给方。</del>不对，<strong>政府是政策供给方 负责颁布供给侧政策以及需求侧政策，企业是政府的供给侧政策响应主体，居民是政府的需求侧政策响应主体</strong>。】</p>
+<h2 id="产业政策设计及响应机理分析"><a href="#产业政策设计及响应机理分析" class="headerlink" title="产业政策设计及响应机理分析"></a>产业政策设计及响应机理分析</h2><h3 id="政策设计"><a href="#政策设计" class="headerlink" title="政策设计"></a>政策设计</h3><p>拟从政策环境、政策工具、政策制定者以及政策对象等4个方面进行设计。</p>
+<ul>
+<li><p>政策环境</p>
+<p>是复杂的社会－技术系统，通过对国内政策环境的比较分析，设计目前政策环境可能的演进方向和路径。</p>
+</li>
+<li><p>政策工具</p>
+<p>分为激励型政策工具、约束型政策工具、保障型政策工具三个部分</p>
+</li>
+<li><p>政策制定者</p>
+</li>
+<li>政策对象</li>
+</ul>
+<p>本课题主要从政策的内容和执行两个方面<strong>评价激励型政策工具的效果和作用</strong>，识别政策工具存在的缺失与不足，选择适合的政策工具【这不应该主要是激励性政策工具嘛！】，从<strong>理论层面明晰该政策工具对政策对象的作用机制以及作用途径</strong>（直接作用途径、间接作用途径和直接与间接交互作用途径）。</p>
+<p><strong>政府是政策供给主体</strong>，<strong>供给侧政策的响应主体是森林康养产业相关企业</strong>，市场<strong>需求刺激政策的响应主体是城市居民</strong>（作为主要的潜在顾客），因此需要从供需两侧设计政策激励机制。</p>
+<h3 id="机理分析"><a href="#机理分析" class="headerlink" title="机理分析"></a>机理分析</h3><p>政策激励机制的核心内容是政策响应机制，所以本课题结合霍兰的复杂适应系统（CAS）理论，<strong>以“刺激－反应－反馈－修正”为指导思想，从需求侧和供给侧分别构建区域企业和城市居民响应森林康养产业政策的机理模型。</strong></p>
+<p>机理模型构成要素包括主体（政府、森林康养相关企业、城市居民）、模型运行过程？、运行环境？等三大类，其中主体间通过各种机制互相作用，可以较为全面反映政策要素的系统情况及运行能力？</p>
+<img src="/2020/12/%E6%A3%AE%E6%9E%97%E5%BA%B7%E5%85%BB%E4%BA%A7%E4%B8%9A%E6%94%BF%E7%AD%96%E6%BF%80%E5%8A%B1%E6%9C%BA%E5%88%B6-%E5%8D%9A%E5%BC%88%E5%88%86%E6%9E%90/image-20201219031632167.png" class="" title="image-20201219031632167">
+<h2 id="可行政策筛选"><a href="#可行政策筛选" class="headerlink" title="可行政策筛选"></a>可行政策筛选</h2><h3 id="建立供需两侧可行政策集"><a href="#建立供需两侧可行政策集" class="headerlink" title="建立供需两侧可行政策集"></a>建立供需两侧可行政策集</h3><ul>
+<li><p>供给侧候选政策包括供给侧的激励政策主要包括</p>
+<ul>
+<li>补贴政策</li>
+<li>融资政策</li>
+<li>税收优惠政策等</li>
+</ul>
+</li>
+<li><p>需求侧刺激政策包括</p>
+<ul>
+<li>政府可能提供的“将森林康养服务纳入到基本医保个人账户支付范围”政策（报销比例分别是0、10%、20%等，报销比例是0即意味着保持目前现状）和</li>
+<li><strong>企业</strong>可能提供的营销刺激政策（团购优惠、社群宣传奖励等）【这个写在这里不是很合理吧，企业的策略不能算在政府的政策里头吧】</li>
+</ul>
+</li>
+</ul>
+<h3 id="政策调整及市场预测"><a href="#政策调整及市场预测" class="headerlink" title="政策调整及市场预测"></a>政策调整及市场预测</h3><ul>
+<li><p>对于需求侧而言，</p>
+<p>只要政策资源供给满足消费者对森林康养服务的需求偏好，消费者就会做出积极的响应；<br>同时，消费者会通过相互模仿、学习，驱动其参与森林康养消费市场。</p>
+</li>
+<li><p>对于供给侧而言，</p>
+<p>只要政策资源供给在不影响现有经营的前提下能够促进企业发展（增加利润和市场知名度、提高员工幸福感等），企业就会做出积极的响应。</p>
+</li>
+</ul>
+<p>本课题<strong>根据政策响应行为分析结果</strong>，拟从供需两侧进一步<strong>调整</strong>政策，并对森林康养未来<strong>市场规模和市场结构进行预测</strong>。</p>
+<h3 id="价值共创激励机制的仿真分析"><a href="#价值共创激励机制的仿真分析" class="headerlink" title="价值共创激励机制的仿真分析"></a>价值共创激励机制的仿真分析</h3><p>激励机制自身的内容设计、激励门槛和实际效用【响应？】都对价值共创行为都会产生重要的影响。拟将其分为<strong>政策响应机制、互动激励和合作激励机制仿真</strong>，同时通过多主体建立相应联系。</p>
+<p>以政策响应机制仿真为例，主要步骤包括：<br>①结合企业和顾客对激励政策响应程度，对具体的政策工具进行选择；<br>②基于所选择的政策工具，运用Netlogo多智能体仿真平台按照“激励-响应”路径对政策激励下的价值共创机制运作过程进行仿真分析；【这步骤是重点】<br>③根据仿真结果，找出政策“激励-响应”过程中的瓶颈控制点和森林康养产业政策激励机制的阶段性规律。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"># 博弈论</a>
+              <a href="/tags/%E6%A3%AE%E6%9E%97%E5%BA%B7%E5%85%BB/" rel="tag"># 森林康养</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/%E5%B8%B8%E7%94%A8%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/" rel="prev" title="常用集合运算总结">
+      <i class="fa fa-chevron-left"></i> 常用集合运算总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/%E6%A3%AE%E6%9E%97%E5%BA%B7%E6%B0%A7%E4%BB%B7%E5%80%BC%E5%85%B1%E5%88%9B%E8%BF%87%E7%A8%8B%E7%9A%84%E6%BC%94%E5%8C%96%E5%8D%9A%E5%BC%88%E5%88%86%E6%9E%90/" rel="next" title="森林康氧价值共创过程的演化博弈分析">
+      森林康氧价值共创过程的演化博弈分析 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%AE%E6%9E%97%E5%BA%B7%E6%B0%A7%E4%BA%A7%E4%B8%9A%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">森林康氧产业的介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%97%E5%8C%BA%E7%BB%8F%E6%B5%8E%E8%BD%AC%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">林区经济转型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BE%A4%E4%BC%97"><span class="nav-number">1.2.</span> <span class="nav-text">群众</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BD%E5%AE%B6%E9%87%8D%E5%A4%A7%E6%88%98%E7%95%A5%E9%9C%80%E6%B1%82"><span class="nav-number">1.3.</span> <span class="nav-text">国家重大战略需求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%8C%AE%E7%BB%BC%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">文献综述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%8F%E5%B0%91%E5%85%AC%E5%85%B1%E9%A2%84%E7%AE%97"><span class="nav-number">2.1.</span> <span class="nav-text">减少公共预算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BF%E7%AD%96%E5%93%8D%E5%BA%94%E7%9A%84%E5%86%85%E6%B6%B5%E4%B8%8E%E6%94%BF%E7%AD%96%E6%BF%80%E5%8A%B1%E6%95%88%E6%9E%9C%E7%A0%94%E7%A9%B6%E7%8E%B0%E7%8A%B6"><span class="nav-number">2.2.</span> <span class="nav-text">政策响应的内涵与政策激励效果研究现状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E8%BF%B0"><span class="nav-number">2.3.</span> <span class="nav-text">评述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A7%E4%B8%9A%E6%94%BF%E7%AD%96%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%93%8D%E5%BA%94%E6%9C%BA%E7%90%86%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">产业政策设计及响应机理分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BF%E7%AD%96%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.1.</span> <span class="nav-text">政策设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E7%90%86%E5%88%86%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">机理分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A1%8C%E6%94%BF%E7%AD%96%E7%AD%9B%E9%80%89"><span class="nav-number">4.</span> <span class="nav-text">可行政策筛选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E4%BE%9B%E9%9C%80%E4%B8%A4%E4%BE%A7%E5%8F%AF%E8%A1%8C%E6%94%BF%E7%AD%96%E9%9B%86"><span class="nav-number">4.1.</span> <span class="nav-text">建立供需两侧可行政策集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BF%E7%AD%96%E8%B0%83%E6%95%B4%E5%8F%8A%E5%B8%82%E5%9C%BA%E9%A2%84%E6%B5%8B"><span class="nav-number">4.2.</span> <span class="nav-text">政策调整及市场预测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%B7%E5%80%BC%E5%85%B1%E5%88%9B%E6%BF%80%E5%8A%B1%E6%9C%BA%E5%88%B6%E7%9A%84%E4%BB%BF%E7%9C%9F%E5%88%86%E6%9E%90"><span class="nav-number">4.3.</span> <span class="nav-text">价值共创激励机制的仿真分析</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">圆头</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-12-19</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
