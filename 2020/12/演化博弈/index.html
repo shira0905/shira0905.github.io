@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="演化博弈的介绍。参考2份PPT，谢识予的《经济博弈论第五章》，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="演化博弈">
+<meta property="og:url" content="https://shira0905.github.io/2020/12/%E6%BC%94%E5%8C%96%E5%8D%9A%E5%BC%88/">
+<meta property="og:site_name" content="圆头的部落格">
+<meta property="og:description" content="演化博弈的介绍。参考2份PPT，谢识予的《经济博弈论第五章》，">
+<meta property="og:locale">
+<meta property="og:image" content="https://shira0905.github.io/2020/12/%E6%BC%94%E5%8C%96%E5%8D%9A%E5%BC%88/image-20201226010106520.png">
+<meta property="article:published_time" content="2020-12-23T16:25:29.000Z">
+<meta property="article:modified_time" content="2020-12-25T21:26:08.963Z">
+<meta property="article:author" content="圆头">
+<meta property="article:tag" content="博弈论">
+<meta property="article:tag" content="演化博弈">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shira0905.github.io/2020/12/%E6%BC%94%E5%8C%96%E5%8D%9A%E5%BC%88/image-20201226010106520.png">
+
+<link rel="canonical" href="https://shira0905.github.io/2020/12/%E6%BC%94%E5%8C%96%E5%8D%9A%E5%BC%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>演化博弈 | 圆头的部落格</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">大道至简</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2020/12/%E6%BC%94%E5%8C%96%E5%8D%9A%E5%BC%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="圆头">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          演化博弈
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-24 00:25:29" itemprop="dateCreated datePublished" datetime="2020-12-24T00:25:29+08:00">2020-12-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-26 05:26:08" itemprop="dateModified" datetime="2020-12-26T05:26:08+08:00">2020-12-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>演化博弈的介绍。参考2份PPT，谢识予的《经济博弈论第五章》，</p>
+<a id="more"></a>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p>演化博弈，在线学习，经济共创</p>
+<p>复制动态</p>
+<h2 id="一些猜想"><a href="#一些猜想" class="headerlink" title="一些猜想"></a>一些猜想</h2><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>强调人的有限理性，意味着博弈方不会一开始就找到最优策略，而是通过不断学习和试错来寻找较好的策略；同时也意味着均衡是不断调整和改进而不是一次性选择的结果，而且即使达到了均衡也可能再次偏离。</p>
+<p>这和反复博弈又有什么区别呢？</p>
+<h2 id="核心理论和分析框架"><a href="#核心理论和分析框架" class="headerlink" title="核心理论和分析框架"></a>核心理论和分析框架</h2><p>复制动态(replicator dynamics)：描述 只有对优势策略简单模仿能力的、低理性层次的 有限理性博弈方动态策略调整的一种机制。其核心是在群体中较成功的策略采用的个体会逐渐增加，可以用动态微分方程或者微分方程组。<br>大群体中采用各种策略的比例根据复制动态的调整变化，是进化博弈论分析的另？一种主要分析框架。复制动态机制是模拟生物进化博弈的复制动态机制提出的。<br>复制动态的基本原理是：在由有限理性博弈方组成的群体中，结果比平均水平好的策略会逐步被更多博弈方采用，从而群体中采用各种策略的博弈方比例会放生变化。<br>这种进化博弈机制也存在收敛过程和收敛性的问题。</p>
+<img src="/2020/12/%E6%BC%94%E5%8C%96%E5%8D%9A%E5%BC%88/image-20201226010106520.png" class="" title="image-20201226010106520">
+<h2 id="仿真-强化学习"><a href="#仿真-强化学习" class="headerlink" title="仿真 强化学习"></a>仿真 强化学习</h2><p><strong>基于多智能体的演化博弈仿真系统的研究</strong> </p>
+<p>华中科技大学 计算机 刘娟娟</p>
+<blockquote>
+<p>近年来,随着演化博弈论理论的不断完善,<u>演化博弈在经济学领域中</u>的应用日渐成为国内外关注的焦点。随着计算机技术的不断地发展,<u>经济仿真作为一种新的研究方法</u>,也越来越被学者所重视。<u>通过计算机仿真,有助于我们更加深入地理解演化博弈,演化学习算法及演化稳定均衡,更形象地解释、验证一些经济现象</u>。 </p>
+<p>首先,论文对演化博弈理论及其在国内外的研究现状、复杂适应系统和经济仿真进行了评述,同时,<u>对强化学习、模仿学习、信念学习和一些综合演化学习算法进行了归纳</u>。 利用基于多智能体的仿真思想,论文重点构建了演化博弈仿真系统。该仿真系统主要实现了3种仿真情形:同种群体2人博弈,不同群体2人博弈,不同群体多人博弈。在每种仿真情形下,通过调整相关参数及不同的学习算法,可以对群体中的每个个体在演化过程中的策略选择及每个群体整体演化曲线进行模拟、观测。 </p>
+<p>然后,以信贷市场中的银企博弈关系为例,建立博弈模型,并运用仿真系统,采用模仿学习算法对模型进行了仿真,<u>找出在不同情形下银企演化博弈的演化均衡,并对仿真结果进行了相应分析讨论</u>;同时,利用<u>Q_learning学习和EWA学习算法对模型进行了仿</u>真,根据仿真结果,对三种学习算法进行了比较,看出:模仿学习是一种稳定的学习算法,但演化速度慢,Q_learning学习和EWA学习算法受参数影响较大,但演化过程比较平滑,在适当的参数设置下,演化速度相对比较快。 最后,对本文进行了总结,然后提出了演化博弈仿真系统中存在的不足之处,以及有待进一步解决的问题。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"># 博弈论</a>
+              <a href="/tags/%E6%BC%94%E5%8C%96%E5%8D%9A%E5%BC%88/" rel="tag"># 演化博弈</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/modularity-additivity-and-their-applications/" rel="prev" title="modularity, additivity and their applications">
+      <i class="fa fa-chevron-left"></i> modularity, additivity and their applications
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/12/%E6%A3%AE%E6%9E%97%E5%BA%B7%E6%B0%A7%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%B4%A0%E6%9D%90%E5%87%86%E5%A4%87/" rel="next" title="森林康氧项目的素材准备">
+      森林康氧项目的素材准备 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="nav-number">1.</span> <span class="nav-text">关键词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%8C%9C%E6%83%B3"><span class="nav-number">2.</span> <span class="nav-text">一些猜想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%90%86%E8%AE%BA%E5%92%8C%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6"><span class="nav-number">4.</span> <span class="nav-text">核心理论和分析框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BF%E7%9C%9F-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="nav-number">5.</span> <span class="nav-text">仿真 强化学习</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">圆头</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-12-29</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
