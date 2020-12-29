@@ -177,9 +177,9 @@ body {
 body {
   background: var(--body-bg-color);
   color: var(--text-color);
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'EB Garamond', "Noto Serif SC", "Microsoft YaHei", sans-serif;
   font-size: 1em;
-  line-height: 2;
+  line-height: 1.6;
 }
 @media (max-width: 991px) {
   body {
@@ -193,10 +193,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Noto Serif SC', 'EB Garamond', "Noto Serif SC", "Microsoft YaHei", sans-serif;
   font-weight: bold;
-  line-height: 1.5;
-  margin: 20px 0 15px;
+  line-height: 1.2;
+  margin: 16px 0 12px;
 }
 h1 {
   font-size: 1.5em;
@@ -217,7 +217,7 @@ h6 {
   font-size: 0.875em;
 }
 p {
-  margin: 0 0 20px 0;
+  margin: 0 0 5px 0;
 }
 a,
 span.exturl {
@@ -252,7 +252,7 @@ blockquote {
   border-left: 4px solid #ddd;
   color: var(--blockquote-color);
   margin: 0;
-  padding: 0 15px;
+  padding: 0 12px;
 }
 blockquote cite::before {
   content: '-';
@@ -275,6 +275,13 @@ kbd {
   font-family: inherit;
   padding: 0.1em 0.3em;
   white-space: nowrap;
+}
+code {
+  padding: 0px 1px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  border-radius: 3px;
+  font-size: 15px;
 }
 .table-container {
   overflow: auto;
@@ -386,12 +393,12 @@ td {
 pre {
   background: #f7f7f7;
   color: #4d4d4c;
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0 auto 20px;
 }
 pre,
 code {
-  font-family: consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
+  font-family: consolas, Menlo, monospace, "Noto Serif SC", "Microsoft YaHei";
 }
 code {
   background: #eee;
@@ -985,7 +992,7 @@ pre .javascript .function {
   color: var(--brand-hover-color);
 }
 .site-title {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Noto Serif SC', 'EB Garamond', "Noto Serif SC", "Microsoft YaHei", sans-serif;
   font-size: 1.375em;
   font-weight: normal;
   margin: 0;
@@ -1168,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ed5970;
+  background: #4e674d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1512,7 +1519,7 @@ pre .javascript .function {
   }
 }
 .post-body {
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Noto Serif SC', 'EB Garamond', "Noto Serif SC", "Microsoft YaHei", sans-serif;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -1810,7 +1817,7 @@ pre .javascript .function {
 }
 .posts-expand .post-meta {
   color: #999;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Noto Serif SC', 'EB Garamond', "Noto Serif SC", "Microsoft YaHei", sans-serif;
   font-size: 0.75em;
   margin: 3px 0 60px 0;
   text-align: center;
@@ -2405,13 +2412,13 @@ hr {
   }
 }
 .posts-expand.index .post-meta {
-  margin: 5px 0 20px 0;
+  margin: 5px 0 5px 0;
 }
 .posts-expand .post-eof {
   display: none;
 }
 .posts-expand .post-block:not(:first-child) {
-  margin-top: 120px;
+  margin-top: 30px;
 }
 .posts-expand .post-title,
 .posts-expand .post-meta {
@@ -2426,16 +2433,16 @@ hr {
 .posts-expand .post-tags a {
   background: #f5f5f5;
   border-bottom: none;
-  padding: 1px 5px;
+  padding: 1px 1px;
 }
 .posts-expand .post-tags a:hover {
   background: #ccc;
 }
 .posts-expand .post-nav {
-  margin-top: 40px;
+  margin-top: 10px;
 }
 .post-button {
-  margin-top: 20px;
+  margin-top: -6px;
   text-align: left;
 }
 .post-button .btn {
@@ -2449,13 +2456,13 @@ hr {
   border-bottom-color: var(--btn-default-hover-border-color);
 }
 .sidebar {
-  left: -320px;
+  left: -240px;
 }
 .sidebar.sidebar-active {
   left: 0;
 }
 .sidebar {
-  width: 320px;
+  width: 240px;
   z-index: 1200;
   transition-delay: 0s;
   transition-duration: 0.2s;
@@ -2488,4 +2495,18 @@ hr {
 }
 .sub-menu .menu-item {
   display: inline-block;
+}
+.post-body {
+  color: #333;
+  font-size: 1.125em;
+}
+h1 {
+  text-align: center;
+}
+h2 {
+  font-size: 1.5em;
+  text-decoration-line: underline;
+}
+h3 {
+  font-size: 1.375em;
 }

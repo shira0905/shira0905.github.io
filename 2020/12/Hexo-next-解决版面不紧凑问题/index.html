@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="解决版面效率问题：动画速度慢、分页、间距不美观">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo next 解决版面效率问题">
+<meta property="og:url" content="https://shira0905.github.io/2020/12/Hexo-next-%E8%A7%A3%E5%86%B3%E7%89%88%E9%9D%A2%E4%B8%8D%E7%B4%A7%E5%87%91%E9%97%AE%E9%A2%98/">
+<meta property="og:site_name" content="圆头的部落格">
+<meta property="og:description" content="解决版面效率问题：动画速度慢、分页、间距不美观">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-12-29T12:21:24.000Z">
+<meta property="article:modified_time" content="2020-12-29T16:10:04.592Z">
+<meta property="article:author" content="圆头">
+<meta property="article:tag" content="web">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://shira0905.github.io/2020/12/Hexo-next-%E8%A7%A3%E5%86%B3%E7%89%88%E9%9D%A2%E4%B8%8D%E7%B4%A7%E5%87%91%E9%97%AE%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Hexo next 解决版面效率问题 | 圆头的部落格</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">大道至简</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2020/12/Hexo-next-%E8%A7%A3%E5%86%B3%E7%89%88%E9%9D%A2%E4%B8%8D%E7%B4%A7%E5%87%91%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="圆头">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo next 解决版面效率问题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-29 20:21:24" itemprop="dateCreated datePublished" datetime="2020-12-29T20:21:24+08:00">2020-12-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-30 00:10:04" itemprop="dateModified" datetime="2020-12-30T00:10:04+08:00">2020-12-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Career/" itemprop="url" rel="index"><span itemprop="name">Career</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>解决版面效率问题：动画速度慢、分页、间距不美观</p>
+<a id="more"></a>
+<h2 id="取消页面加载动画"><a href="#取消页面加载动画" class="headerlink" title="取消页面加载动画"></a>取消页面加载动画</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ed726bcf6767">https://www.jianshu.com/p/ed726bcf6767</a></p>
+<p>在根目录下的/theme/next/_config.yml文件中搜索<code>motion</code>。将<code>motion</code>下的<code>enable</code>参数设置为<code>false</code>即可关闭页面动画</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">motion:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="首页文章间距"><a href="#首页文章间距" class="headerlink" title="首页文章间距"></a>首页文章间距</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42024255/article/details/82814433">https://blog.csdn.net/weixin_42024255/article/details/82814433</a></p>
+<p>打开<code>\themes\next\source\css\_schemes\Mist\_posts-expanded.styl</code> ，各种 margin 都可以试着调一下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.post-block:not(:first-child) &#123;</span><br><span class="line">	margin-top: 30px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="每页文章篇数"><a href="#每页文章篇数" class="headerlink" title="每页文章篇数"></a>每页文章篇数</h2><p><a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/faqs.html#%E8%AE%BE%E5%AE%9A%E5%BD%92%E6%A1%A3%E9%A1%B5%E9%9D%A2%E6%96%87%E7%AB%A0%E7%9A%84%E7%AF%87%E6%95%B0">http://theme-next.iissnan.com/faqs.html#%E8%AE%BE%E5%AE%9A%E5%BD%92%E6%A1%A3%E9%A1%B5%E9%9D%A2%E6%96%87%E7%AB%A0%E7%9A%84%E7%AF%87%E6%95%B0</a></p>
+<p>在 Hexo 里可以为首页和归档页面设置不同的文章篇数，但可能需要安装 Hexo 插件。详细步骤如下。</p>
+<ol>
+<li><p>使用 <code>npm install --save</code> 命令来安装需要的 Hexo 插件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-generator-index</span><br><span class="line">npm install --save hexo-generator-archive</span><br><span class="line">npm install --save hexo-generator-tag</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>等待扩展全部安装完成后，在 <strong>站点配置文章</strong> 中，设定如下选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">index_generator: # 这个原来文件中就有修改即可，后两个添加</span><br><span class="line">  per_page: 5</span><br><span class="line"></span><br><span class="line">archive_generator:</span><br><span class="line">  per_page: 20</span><br><span class="line">  yearly: true</span><br><span class="line">  monthly: true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> index页面默认10篇每页。我就全部<strong>设成0就是不允许分页</strong>了，点上一页下一页也怪麻烦的。</p>
+</li>
+</ol>
+<h2 id="字体间距等"><a href="#字体间距等" class="headerlink" title="字体间距等"></a>字体间距等</h2><p><a target="_blank" rel="noopener" href="http://renke666.top/2020/01/25/hexo%E6%9B%B4%E6%94%B9%E5%AD%97%E4%BD%93%E4%B8%8E%E6%AE%B5%E8%90%BD%E5%A4%A7%E5%B0%8F/">http://renke666.top/2020/01/25/hexo%E6%9B%B4%E6%94%B9%E5%AD%97%E4%BD%93%E4%B8%8E%E6%AE%B5%E8%90%BD%E5%A4%A7%E5%B0%8F/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/LyShark/p/11834144.html">https://www.cnblogs.com/LyShark/p/11834144.html</a></p>
+<p><code>themes/next/source/css/main.styl</code>  （对于有些版本的next对应的应该是custom.styl）</p>
+<p><code>themes/next/source/css/_common/scaffolding/base.styl</code> 定义了一些字体等等的样式</p>
+<p><code>themes/next/source/css/_variables/base.styl</code> 大局上定义了一些字体等等的样式，并且设成了样式全局变量。</p>
+<h3 id="更明显区分h1-h2-h3"><a href="#更明显区分h1-h2-h3" class="headerlink" title="更明显区分h1 h2 h3"></a>更明显区分h1 h2 h3</h3><p>打开 <code>themes/next/source/css/main.styl</code>  （对于有些版本的next对应的应该是custom.styl）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h2</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: $font-size-headings-base - $font-size-headings-step *<span class="number">1</span>;</span><br><span class="line">  <span class="attribute">text-decoration-line</span>: underline;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">h3</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: $font-size-headings-base - $font-size-headings-step *<span class="number">3</span>;</span><br><span class="line">  <span class="attribute">text-decoration-line</span>: underline;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在 <span class="selector-tag">themes</span>/<span class="selector-tag">next</span>/<span class="selector-tag">source</span>/<span class="selector-tag">css</span>/_<span class="selector-tag">common</span>/<span class="selector-tag">scaffolding</span>/<span class="selector-tag">base</span><span class="selector-class">.styl</span> 找到了<span class="selector-tag">h</span> 样式的代码，</span><br><span class="line">//（但是我还是在 <span class="selector-tag">themes</span>/<span class="selector-tag">next</span>/<span class="selector-tag">source</span>/<span class="selector-tag">css</span>/<span class="selector-tag">main</span><span class="selector-class">.styl</span> 里面修改的）</span><br><span class="line"><span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: $font-family-headings;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">1.2</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">16px</span> <span class="number">0</span> <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">for</span> <span class="selector-tag">headline</span> <span class="selector-tag">in</span> (1 .. 6) &#123;</span><br><span class="line">  h&#123;headline&#125; &#123;</span><br><span class="line">    font-size: $font-size-headings-base - $font-size-headings-step * headline;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="行内代码样式更秀气"><a href="#行内代码样式更秀气" class="headerlink" title="行内代码样式更秀气"></a>行内代码样式更秀气</h3><p>打开 <code>themes/next/source/css/_common/scaffolding/base.styl</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 美化代码（行内代码）</span><br><span class="line"><span class="selector-tag">code</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0px</span> <span class="number">1px</span>;</span><br><span class="line">  <span class="attribute">word-wrap</span>: break-word;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">15px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="段距"><a href="#段距" class="headerlink" title="段距"></a>段距</h3><p>打开 <code>themes/next/source/css/_common/scaffolding/base.styl</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 将段落间距由20<span class="selector-tag">px</span>减小到5<span class="selector-tag">px</span> </span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="行距"><a href="#行距" class="headerlink" title="行距"></a>行距</h3><p>打开<code>themes/next/source/css/_variables/base.styl</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Global line height</span><br><span class="line">$line-height-base         &#x3D; 1.6;</span><br><span class="line">$line-height-code-block   &#x3D; 1.4; &#x2F;&#x2F; Can&#39;t be less than 1.3;</span><br></pre></td></tr></table></figure>
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>打开<code>themes/next/source/css/_variables/base.styl</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Font families.</span><br><span class="line">$font-family-chinese      &#x3D; &quot;Noto Serif SC&quot;, &quot;Microsoft YaHei&quot;;</span><br></pre></td></tr></table></figure>
+<p>打开主题的 <code>_config.yml</code> ，改为<code>enable: true</code> ，并且字体设置成 <code>Noto Serif SC</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">font:</span><br><span class="line">  enable: true</span><br><span class="line"></span><br><span class="line">  # Global font settings used for all elements inside &lt;body&gt;.</span><br><span class="line">  global:</span><br><span class="line">    external: true</span><br><span class="line">    family: EB Garamond</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line">  # Font settings for site title (.site-title).</span><br><span class="line">  title:</span><br><span class="line">    external: true</span><br><span class="line">    family: Noto Serif SC</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line">  # Font settings for headlines (&lt;h1&gt; to &lt;h6&gt;).</span><br><span class="line">  headings:</span><br><span class="line">    external: true</span><br><span class="line">    family: Noto Serif SC</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line">  # Font settings for posts (.post-body).</span><br><span class="line">  posts:</span><br><span class="line">    external: true</span><br><span class="line">    family: Noto Serif SC</span><br><span class="line"></span><br><span class="line">  # Font settings for &lt;code&gt; and code blocks. 代码块字体暂时不做更改</span><br><span class="line">  codes:</span><br><span class="line">    external: true</span><br><span class="line">    family:</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/web/" rel="tag"># web</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/Python-tips-%E9%80%9F%E6%9F%A5/" rel="prev" title="Python tips 速查*">
+      <i class="fa fa-chevron-left"></i> Python tips 速查*
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%96%E6%B6%88%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB"><span class="nav-number">1.</span> <span class="nav-text">取消页面加载动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E9%97%B4%E8%B7%9D"><span class="nav-number">2.</span> <span class="nav-text">首页文章间距</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%8F%E9%A1%B5%E6%96%87%E7%AB%A0%E7%AF%87%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">每页文章篇数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E9%97%B4%E8%B7%9D%E7%AD%89"><span class="nav-number">4.</span> <span class="nav-text">字体间距等</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%98%8E%E6%98%BE%E5%8C%BA%E5%88%86h1-h2-h3"><span class="nav-number">4.1.</span> <span class="nav-text">更明显区分h1 h2 h3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81%E6%A0%B7%E5%BC%8F%E6%9B%B4%E7%A7%80%E6%B0%94"><span class="nav-number">4.2.</span> <span class="nav-text">行内代码样式更秀气</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AE%B5%E8%B7%9D"><span class="nav-number">4.3.</span> <span class="nav-text">段距</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E8%B7%9D"><span class="nav-number">4.4.</span> <span class="nav-text">行距</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%BD%93"><span class="nav-number">4.5.</span> <span class="nav-text">字体</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">圆头</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-12-30</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
