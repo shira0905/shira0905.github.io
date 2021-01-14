@@ -28,8 +28,9 @@
 <meta property="og:description" content="工欲善其事，必先利其器。TeXstudio 使用技巧查询及备忘。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-05T13:34:20.000Z">
-<meta property="article:modified_time" content="2021-01-07T15:57:36.172Z">
+<meta property="article:modified_time" content="2021-01-12T08:37:24.884Z">
 <meta property="article:author" content="圆头">
+<meta property="article:tag" content="干货精华">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://shira0905.github.io/2021/01/TeXstudio%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/">
@@ -223,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-07 23:57:36" itemprop="dateModified" datetime="2021-01-07T23:57:36+08:00">2021-01-07</time>
+                <time title="Modified: 2021-01-12 16:37:24" itemprop="dateModified" datetime="2021-01-12T16:37:24+08:00">2021-01-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,9 +266,6 @@
 <td><script type="math/tex">\sum\limits_{i=1}^n</script></td>
 <td>$\sum\limits_{i=1}^n$</td>
 </tr>
-<tr>
-<td></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -291,6 +289,8 @@
 </tbody>
 </table>
 </div>
+<h2 id="公式美观"><a href="#公式美观" class="headerlink" title="公式美观"></a>公式美观</h2><h3 id="关于各种竖线"><a href="#关于各种竖线" class="headerlink" title="关于各种竖线"></a>关于各种竖线</h3><p>参考：<a target="_blank" rel="noopener" href="http://kuing.orzweb.net/archiver/?tid-139.html">http://kuing.orzweb.net/archiver/?tid-139.html</a></p>
+<h4 id="绝对值下的"><a href="#绝对值下的" class="headerlink" title="绝对值下的 |"></a>绝对值下的 |</h4><p>在 LaTeX 中，直接输入的 | 是被当成普通原子，不含其他性质，所以，如果只是 $|x|$，这没所谓，但是如果是 $|-2|$，就有问题，首先我们应该知道，$-2$ 与 $1-2$ 中的“−”的意义是不同的，前者是负号，后者是减号。所以在 LaTeX 中，两者的“−”与两边的东西的间距亦有所不同：前者间距小，后者大。想要表示是负二的绝对值，因此这里的“−”为负号，它与2之间的间距应表现为小间距，但是如果按照 $|-2|$ 的输入，则会得到大间距，这是因为 | 是 LaTeX 的普通原子，LaTeX 会认为是 | 与 2 相减，因此产生的间距与 1−2 一样。那 (-2) 会不会产生同样的问题？输入 $(-2)$ ，没问题，这是因为 ( 在 LaTeX 不是普通原子，它是“开原子”，与之对应的 ) 是“闭原子”，当 ( 后面跟 -2 ，这时 LaTeX 就会知道并不是 ( 与 2 相减，排出来就正常了。<br>那怎么样才能将 |-2| 中的 | 变得像 ( ) 那样有着开、闭的性质？实际上，LaTeX 中是有另外定义的，命令分别是 \lvert 和 \rvert，性质跟 ( ) 一样，只不过它们是竖线，因此，我们用 <script type="math/tex">\lvert-2\rvert</script> 就得到正确的 $\lvert -2\rvert$。还有一种方法，就是在两边用<code>\left</code> 和 <code>\right</code>，即 <script type="math/tex">\left|-2\right|</script>，也能得到正确的$\left|-2\right|$，而且第二种方法可以自动适合大小，即 $\left|-\dfrac12\right|$ 。但是 \lvert 和 \rvert 不会自动伸长。但有时如果用 \left| \right| 发现自动伸得太长而用 \lvert 和 \rvert 又太小（例如向量的模会有这样的感觉），这时可以用 \bigl| \bigr|、\Bigl| \Bigr| 等来自己调节，这些都是有开、闭性质的。注：其实，<script type="math/tex">\lvert-2\rvert</script> 与 <script type="math/tex">\left|-2\right|</script> 仍然存在细微差别，这里暂时略去不讲。</p>
 <h2 id="格式和规范"><a href="#格式和规范" class="headerlink" title="格式和规范"></a>格式和规范</h2><p>有没有一键缩进的？</p>
 <h2 id="自定义宏"><a href="#自定义宏" class="headerlink" title="自定义宏"></a>自定义宏</h2><p>主要参考 <a target="_blank" rel="noopener" href="http://haccanri.github.io/">http://haccanri.github.io/</a> 。有时会有一些特殊的需求而软件没有给出这个功能时，可以用宏来实现。TeXstudio的宏大致原理是用触发器（trigger）或者类似于latex命令（没用过这个功能）来触发宏，然后通过三种方式来跟编辑器等来交互实现用户自定义的功能。这三种方式分别为“正常”、“环境”和“脚本”，具体的文档参见<a target="_blank" rel="noopener" href="http://texstudio.sourceforge.net/manual/current/usermanual_en.html#SECTION33">帮助文件</a>。</p>
 <h3 id="例：懒人itemize"><a href="#例：懒人itemize" class="headerlink" title="例：懒人itemize"></a>例：懒人itemize</h3><p>文本替换也就是正常替换。之所以在对比中说是部分地实现该功能，是因为我目前还没有找到键盘映射如何触发宏。TeXstudio使用正则表达式来匹配trigger，虽然无法匹配某些按键，但是也更灵活。我自己的使用中用Tab键(\t)来作为一般的触发键。比如如果经常使用itemize，而且希望出来三个item的话，可以使用以下的宏。触发器为<code>:i\t</code>，宏内容是自己想替换的文本</p>
@@ -333,6 +333,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B9%B2%E8%B4%A7%E7%B2%BE%E5%8D%8E/" rel="tag"># 干货精华</a>
+          </div>
 
         
 
@@ -405,7 +408,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B0%E5%BF%86%E7%9B%B2%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">记忆盲点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E8%A7%81%E6%81%A8%E6%99%9A%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%BB%AC"><span class="nav-number">2.</span> <span class="nav-text">相见恨晚的快捷键们</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%92%8C%E8%A7%84%E8%8C%83"><span class="nav-number">3.</span> <span class="nav-text">格式和规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AE%8F"><span class="nav-number">4.</span> <span class="nav-text">自定义宏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%EF%BC%9A%E6%87%92%E4%BA%BAitemize"><span class="nav-number">4.1.</span> <span class="nav-text">例：懒人itemize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%EF%BC%9A%E6%87%92%E4%BA%BA%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F"><span class="nav-number">4.2.</span> <span class="nav-text">例：懒人行内公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%EF%BC%9A%E9%80%89%E4%B8%AD%E6%96%87%E6%9C%AC%E6%9B%B4%E6%94%B9%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.3.</span> <span class="nav-text">例：选中文本更改格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E6%B3%A8"><span class="nav-number">5.</span> <span class="nav-text">标注</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8-todo"><span class="nav-number">5.1.</span> <span class="nav-text">法一：使用%todo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%BA%8C%EF%BC%9A%E8%87%AA%E5%AE%9A%E5%91%BD%E4%BB%A4%E5%BD%A9%E8%89%B2"><span class="nav-number">5.2.</span> <span class="nav-text">法二：自定命令彩色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%89%B2%E5%BD%A9"><span class="nav-number">5.2.1.</span> <span class="nav-text">使用色彩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%96%B0%E5%91%BD%E4%BB%A4"><span class="nav-number">5.2.2.</span> <span class="nav-text">设置新命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">5.2.3.</span> <span class="nav-text">自定义快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Step1%EF%BC%9A%E6%96%B0%E5%A2%9E%E5%AE%8F"><span class="nav-number">5.2.3.1.</span> <span class="nav-text">Step1：新增宏</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step2%EF%BC%9A%E9%85%8D%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">5.2.3.2.</span> <span class="nav-text">Step2：配快捷键</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%B8%89%EF%BC%9A%E4%B8%93%E4%B8%9A%E5%A4%87%E6%B3%A8%E5%8C%85"><span class="nav-number">5.3.</span> <span class="nav-text">法三：专业备注包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">6.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%A9%E9%A1%B5%E5%A4%A7%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">缩页大法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%EF%BC%9A"><span class="nav-number">8.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B0%E5%BF%86%E7%9B%B2%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">记忆盲点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E8%A7%81%E6%81%A8%E6%99%9A%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%BB%AC"><span class="nav-number">2.</span> <span class="nav-text">相见恨晚的快捷键们</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E7%BE%8E%E8%A7%82"><span class="nav-number">3.</span> <span class="nav-text">公式美观</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%90%84%E7%A7%8D%E7%AB%96%E7%BA%BF"><span class="nav-number">3.1.</span> <span class="nav-text">关于各种竖线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%8B%E7%9A%84"><span class="nav-number">3.1.1.</span> <span class="nav-text">绝对值下的 |</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%92%8C%E8%A7%84%E8%8C%83"><span class="nav-number">4.</span> <span class="nav-text">格式和规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AE%8F"><span class="nav-number">5.</span> <span class="nav-text">自定义宏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%EF%BC%9A%E6%87%92%E4%BA%BAitemize"><span class="nav-number">5.1.</span> <span class="nav-text">例：懒人itemize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%EF%BC%9A%E6%87%92%E4%BA%BA%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F"><span class="nav-number">5.2.</span> <span class="nav-text">例：懒人行内公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%EF%BC%9A%E9%80%89%E4%B8%AD%E6%96%87%E6%9C%AC%E6%9B%B4%E6%94%B9%E6%A0%BC%E5%BC%8F"><span class="nav-number">5.3.</span> <span class="nav-text">例：选中文本更改格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E6%B3%A8"><span class="nav-number">6.</span> <span class="nav-text">标注</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8-todo"><span class="nav-number">6.1.</span> <span class="nav-text">法一：使用%todo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%BA%8C%EF%BC%9A%E8%87%AA%E5%AE%9A%E5%91%BD%E4%BB%A4%E5%BD%A9%E8%89%B2"><span class="nav-number">6.2.</span> <span class="nav-text">法二：自定命令彩色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%89%B2%E5%BD%A9"><span class="nav-number">6.2.1.</span> <span class="nav-text">使用色彩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%96%B0%E5%91%BD%E4%BB%A4"><span class="nav-number">6.2.2.</span> <span class="nav-text">设置新命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">6.2.3.</span> <span class="nav-text">自定义快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Step1%EF%BC%9A%E6%96%B0%E5%A2%9E%E5%AE%8F"><span class="nav-number">6.2.3.1.</span> <span class="nav-text">Step1：新增宏</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Step2%EF%BC%9A%E9%85%8D%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">6.2.3.2.</span> <span class="nav-text">Step2：配快捷键</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%B8%89%EF%BC%9A%E4%B8%93%E4%B8%9A%E5%A4%87%E6%B3%A8%E5%8C%85"><span class="nav-number">6.3.</span> <span class="nav-text">法三：专业备注包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">7.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%A9%E9%A1%B5%E5%A4%A7%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">缩页大法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%EF%BC%9A"><span class="nav-number">9.</span> <span class="nav-text">参考：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -421,20 +424,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -469,7 +472,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021-01-08</span>
+  <span itemprop="copyrightYear">2021-01-14</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

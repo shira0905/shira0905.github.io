@@ -20,21 +20,26 @@
     var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="A set function is called fractionally subadditive (or XOS) if it is the maximum of several additive set functions.">
+  <meta name="description" content="A set function is called fractionally subadditive (or XOS) if it is the maximum of several additive set functions. 在看Hiring 那篇论文的时候，有引用Gupta关于submodular 和 XOS(有证明等价于fractionally subadditive)，所以学习一下相关知">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fractionally subadditive (XOS)">
 <meta property="og:url" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/">
 <meta property="og:site_name" content="圆头修行记">
-<meta property="og:description" content="A set function is called fractionally subadditive (or XOS) if it is the maximum of several additive set functions.">
+<meta property="og:description" content="A set function is called fractionally subadditive (or XOS) if it is the maximum of several additive set functions. 在看Hiring 那篇论文的时候，有引用Gupta关于submodular 和 XOS(有证明等价于fractionally subadditive)，所以学习一下相关知">
 <meta property="og:locale">
 <meta property="og:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210108003719980.png">
 <meta property="og:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210108004114763.png">
 <meta property="og:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210108004545154.png">
 <meta property="og:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210108004205762.png">
 <meta property="og:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210108011520848.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210112181557411.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210112183156615.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210112184239486.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210112184425814.png">
 <meta property="article:published_time" content="2021-01-07T15:37:06.000Z">
-<meta property="article:modified_time" content="2021-01-07T17:19:11.512Z">
+<meta property="article:modified_time" content="2021-01-12T11:03:37.495Z">
 <meta property="article:author" content="圆头">
+<meta property="article:tag" content="高度相关">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://shira0905.github.io/2021/01/fractionally-subadditive-XOS/image-20210108003719980.png">
 
@@ -229,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-08 01:19:11" itemprop="dateModified" datetime="2021-01-08T01:19:11+08:00">2021-01-08</time>
+                <time title="Modified: 2021-01-12 19:03:37" itemprop="dateModified" datetime="2021-01-12T19:03:37+08:00">2021-01-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,9 +262,9 @@
 
       
         <p>A <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Set_function">set function</a> is called <strong>fractionally subadditive</strong> (or <strong>XOS</strong>) if it is the maximum of several <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Additive_set_function">additive set functions</a>.</p>
+<p>在看Hiring 那篇论文的时候，有引用Gupta关于submodular 和 XOS(有证明等价于fractionally subadditive)，所以学习一下相关知识。</p>
 <a id="more"></a>
-<p><a target="_blank" rel="noopener" href="https://www.cs.cornell.edu/courses/cs6840/2017sp/lecnotes/lec25.pdf">https://www.cs.cornell.edu/courses/cs6840/2017sp/lecnotes/lec25.pdf</a></p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fractionally-subadditive_valuation#:~:text=A%20set%20function%20is%20called,was%20given%20by%20Uriel%20Feige">https://en.wikipedia.org/wiki/Fractionally-subadditive_valuation#:~:text=A%20set%20function%20is%20called,was%20given%20by%20Uriel%20Feige</a>.</p>
+<h1 id="维基定义"><a href="#维基定义" class="headerlink" title="维基定义"></a>维基定义</h1><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fractionally-subadditive_valuation#:~:text=A%20set%20function%20is%20called,was%20given%20by%20Uriel%20Feige">https://en.wikipedia.org/wiki/Fractionally-subadditive_valuation#:~:text=A%20set%20function%20is%20called,was%20given%20by%20Uriel%20Feige</a>.</p>
 <p>There is a finite base set of items, $M=\{1,…,m\}$, there is a funciton $v$ which assigns a number to each subset of $M$.</p>
 <p>The function $v$ is called fractionally subadditive (or XOS) if there exists a collection of set functions, $\{a_1,…,a_l\}$, such that:</p>
 <ul>
@@ -268,19 +273,24 @@
 </ul>
 <p>或者可以等价地如下定义，也更直观地说明了 “fractionally subadditive” 这个名字的来源。</p>
 <p>The function $v$ is called fractionally subadditive (or XOS) if  for any $S \subseteq M$, and any collection $\{\alpha_i, T_i\}_{i=1}^k$ with $T_i \subseteq M$ such that $\sum\limits_{T_i \in j } \alpha_i \geq 1$ for all $j \in S$ , we have $v(S) \leq \sum\limits_{i=1}^k \alpha_i v(T_i)$. This can be viewed as a fractional relaxation of the dedinition of subadditivity.</p>
-<p>怪不得 Tardos的课件上有</p>
-<p>$subadditivity \subseteq fractionally\space subadditivility$</p>
-<p>但是为什么又有下列lemma，不应该是相等才是吗</p>
-<p>$XOS \subseteq fractionally \space subadditivity $</p>
-<p>还有</p>
-<p>$submodular \subseteq XOS$</p>
-<h1 id="CS6840-Lec24"><a href="#CS6840-Lec24" class="headerlink" title="CS6840 Lec24-"></a>CS6840 Lec24-</h1><h2 id="Subadditive"><a href="#Subadditive" class="headerlink" title="Subadditive"></a>Subadditive</h2><img src="/2021/01/fractionally-subadditive-XOS/image-20210108003719980.png" class="" title="image-20210108003719980">
-<h2 id="Decreasing-Marginal-Mtility"><a href="#Decreasing-Marginal-Mtility" class="headerlink" title="Decreasing Marginal Mtility"></a>Decreasing Marginal Mtility</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><img src="/2021/01/fractionally-subadditive-XOS/image-20210108004114763.png" class="" title="image-20210108004114763">
+<h1 id="CS6840-Lec24-25"><a href="#CS6840-Lec24-25" class="headerlink" title="CS6840 Lec24-25"></a>CS6840 Lec24-25</h1><h2 id="Subadditive"><a href="#Subadditive" class="headerlink" title="Subadditive"></a>Subadditive</h2><img src="/2021/01/fractionally-subadditive-XOS/image-20210108003719980.png" class="" title="image-20210108003719980">
+<h2 id="Decreasing-Marginal-Mtility"><a href="#Decreasing-Marginal-Mtility" class="headerlink" title="Decreasing Marginal Mtility"></a>Decreasing Marginal Mtility</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><img src="/2021/01/fractionally-subadditive-XOS/image-20210108004114763.png" class="" title="image-20210108004114763">
 <h3 id="从新加-j-推广到到新加-A"><a href="#从新加-j-推广到到新加-A" class="headerlink" title="从新加 $j$ 推广到到新加 $A$"></a>从新加 $j$ 推广到到新加 $A$</h3><img src="/2021/01/fractionally-subadditive-XOS/image-20210108004545154.png" class="" title="image-20210108004545154">
 <h3 id="与subadditive-联系"><a href="#与subadditive-联系" class="headerlink" title="与subadditive 联系"></a>与subadditive 联系</h3><img src="/2021/01/fractionally-subadditive-XOS/image-20210108004205762.png" class="" title="image-20210108004205762">
 <p>因为$\emptyset \subseteq B$, 也就是上小节中 令 $S=\emptyset, S’=B $</p>
 <h3 id="另一种形式-submodular-描述-decreasing-marginal-utility"><a href="#另一种形式-submodular-描述-decreasing-marginal-utility" class="headerlink" title="另一种形式 submodular 描述 decreasing marginal utility"></a>另一种形式 submodular 描述 decreasing marginal utility</h3><img src="/2021/01/fractionally-subadditive-XOS/image-20210108011520848.png" class="" title="image-20210108011520848">
-<h2 id="Fractionally-Subadditive"><a href="#Fractionally-Subadditive" class="headerlink" title="Fractionally Subadditive"></a>Fractionally Subadditive</h2>
+<h2 id="Fractionally-Subadditive"><a href="#Fractionally-Subadditive" class="headerlink" title="Fractionally Subadditive"></a>Fractionally Subadditive</h2><p>$\forall i \in S$ 都有 那些包含 $i$ 的集合的 fractional 之和大于1 即 $ \sum\limits_{A:i \in A} x_A \geq 1$，则说明 $S$ is covered.</p>
+<img src="/2021/01/fractionally-subadditive-XOS/image-20210112181557411.png" class="" title="image-20210112181557411">
+<h3 id="subadditive-Rightarrow-fractionally-subadditive"><a href="#subadditive-Rightarrow-fractionally-subadditive" class="headerlink" title="subadditive$\Rightarrow$ fractionally subadditive"></a>subadditive$\Rightarrow$ fractionally subadditive</h3><p>证明就是Theorem 24.3。</p>
+<h2 id="XOS"><a href="#XOS" class="headerlink" title="XOS"></a>XOS</h2><p>讲到了valuation 估计是和之前的课程相关的。</p>
+<img src="/2021/01/fractionally-subadditive-XOS/image-20210112183156615.png" class="" title="image-20210112183156615">
+<h3 id="XOS-Rightarrow-subadditive"><a href="#XOS-Rightarrow-subadditive" class="headerlink" title="XOS $\Rightarrow$ subadditive?"></a>XOS $\Rightarrow$ subadditive?</h3><p>【什么是max occurs，为什么 $A \cup B$ 的max occur 和 $A$ 或者 $B$ 的max occur 不一样】</p>
+<img src="/2021/01/fractionally-subadditive-XOS/image-20210112184239486.png" class="" title="image-20210112184239486">
+<h3 id="XOS-Rightarrow-fractionally-subadditive"><a href="#XOS-Rightarrow-fractionally-subadditive" class="headerlink" title="XOS $\Rightarrow$ fractionally subadditive?"></a>XOS $\Rightarrow$ fractionally subadditive?</h3><img src="/2021/01/fractionally-subadditive-XOS/image-20210112184425814.png" class="" title="image-20210112184425814">
+<h3 id="Fractionally-subadditive-Rightarrow-XOS"><a href="#Fractionally-subadditive-Rightarrow-XOS" class="headerlink" title="Fractionally subadditive $\Rightarrow$ XOS?"></a>Fractionally subadditive $\Rightarrow$ XOS?</h3><p>这个结合 XOS is fractionally subadditive 就可以证明 Fractionally subadditive = XOS</p>
+<p>25.3 有证明</p>
+<h3 id="Submodular-Rightarrow-XOS"><a href="#Submodular-Rightarrow-XOS" class="headerlink" title="Submodular $\Rightarrow$ XOS?"></a>Submodular $\Rightarrow$ XOS?</h3><p>25.2 有证明</p>
+
     </div>
 
     
@@ -288,6 +298,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E5%BA%A6%E7%9B%B8%E5%85%B3/" rel="tag"># 高度相关</a>
+          </div>
 
         
 
@@ -360,7 +373,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CS6840-Lec24"><span class="nav-number"></span> <span class="nav-text">CS6840 Lec24-</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Subadditive"><span class="nav-number">1.</span> <span class="nav-text">Subadditive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decreasing-Marginal-Mtility"><span class="nav-number">2.</span> <span class="nav-text">Decreasing Marginal Mtility</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%96%B0%E5%8A%A0-j-%E6%8E%A8%E5%B9%BF%E5%88%B0%E5%88%B0%E6%96%B0%E5%8A%A0-A"><span class="nav-number">2.2.</span> <span class="nav-text">从新加 $j$ 推广到到新加 $A$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8Esubadditive-%E8%81%94%E7%B3%BB"><span class="nav-number">2.3.</span> <span class="nav-text">与subadditive 联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%BD%A2%E5%BC%8F-submodular-%E6%8F%8F%E8%BF%B0-decreasing-marginal-utility"><span class="nav-number">2.4.</span> <span class="nav-text">另一种形式 submodular 描述 decreasing marginal utility</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fractionally-Subadditive"><span class="nav-number">3.</span> <span class="nav-text">Fractionally Subadditive</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%B4%E5%9F%BA%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">维基定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CS6840-Lec24-25"><span class="nav-number">2.</span> <span class="nav-text">CS6840 Lec24-25</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Subadditive"><span class="nav-number">2.1.</span> <span class="nav-text">Subadditive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decreasing-Marginal-Mtility"><span class="nav-number">2.2.</span> <span class="nav-text">Decreasing Marginal Mtility</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%96%B0%E5%8A%A0-j-%E6%8E%A8%E5%B9%BF%E5%88%B0%E5%88%B0%E6%96%B0%E5%8A%A0-A"><span class="nav-number">2.2.2.</span> <span class="nav-text">从新加 $j$ 推广到到新加 $A$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8Esubadditive-%E8%81%94%E7%B3%BB"><span class="nav-number">2.2.3.</span> <span class="nav-text">与subadditive 联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%BD%A2%E5%BC%8F-submodular-%E6%8F%8F%E8%BF%B0-decreasing-marginal-utility"><span class="nav-number">2.2.4.</span> <span class="nav-text">另一种形式 submodular 描述 decreasing marginal utility</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fractionally-Subadditive"><span class="nav-number">2.3.</span> <span class="nav-text">Fractionally Subadditive</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#subadditive-Rightarrow-fractionally-subadditive"><span class="nav-number">2.3.1.</span> <span class="nav-text">subadditive$\Rightarrow$ fractionally subadditive</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XOS"><span class="nav-number">2.4.</span> <span class="nav-text">XOS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XOS-Rightarrow-subadditive"><span class="nav-number">2.4.1.</span> <span class="nav-text">XOS $\Rightarrow$ subadditive?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XOS-Rightarrow-fractionally-subadditive"><span class="nav-number">2.4.2.</span> <span class="nav-text">XOS $\Rightarrow$ fractionally subadditive?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fractionally-subadditive-Rightarrow-XOS"><span class="nav-number">2.4.3.</span> <span class="nav-text">Fractionally subadditive $\Rightarrow$ XOS?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Submodular-Rightarrow-XOS"><span class="nav-number">2.4.4.</span> <span class="nav-text">Submodular $\Rightarrow$ XOS?</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -376,20 +389,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -424,7 +437,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021-01-08</span>
+  <span itemprop="copyrightYear">2021-01-14</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="微积分回顾总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微积分回顾总结 *">
+<meta property="og:url" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/">
+<meta property="og:site_name" content="圆头修行记">
+<meta property="og:description" content="微积分回顾总结。">
+<meta property="og:locale">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108161633484.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108153446078.png">
+<meta property="article:published_time" content="2021-01-08T07:32:14.000Z">
+<meta property="article:modified_time" content="2021-01-12T11:34:10.304Z">
+<meta property="article:author" content="圆头">
+<meta property="article:tag" content="干货精华">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108161633484.png">
+
+<link rel="canonical" href="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>微积分回顾总结 * | 圆头修行记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头修行记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">尽是些粗制滥造之作</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="圆头">
+      <meta itemprop="description" content="问题解决家 <br> 方法试验家 <br> 习惯养成家 <br> 深度工作家">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头修行记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          微积分回顾总结 *
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-08 15:32:14" itemprop="dateCreated datePublished" datetime="2021-01-08T15:32:14+08:00">2021-01-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-12 19:34:10" itemprop="dateModified" datetime="2021-01-12T19:34:10+08:00">2021-01-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/basic/" itemprop="url" rel="index"><span itemprop="name">basic</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>微积分回顾总结。</p>
+<a id="more"></a>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31464934/answer/152231899">https://www.zhihu.com/question/31464934/answer/152231899</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22199657/answer/115178055">https://www.zhihu.com/question/22199657/answer/115178055</a></p>
+<p>对于一元函数，可微和可导是一回事</p>
+<p>对于多元函数来讲，可微指的是全微分，可导指的是偏导数</p>
+<p>偏微分就好比过这一点的一个截面的切线，偏导数就是该切线的斜率</p>
+<p>全微分要求过这一点的所有的截面切线（360°无死角），共同所在的平面。</p>
+<p>所以偏导数存在不一定存在全微分，但是反过来，如果多元函数可微，就一定可导。</p>
+<h1 id="update-2021-0112"><a href="#update-2021-0112" class="headerlink" title="update 2021 0112"></a>update 2021 0112</h1><h1 id="Before"><a href="#Before" class="headerlink" title="Before"></a>Before</h1><h2 id="微分的定义"><a href="#微分的定义" class="headerlink" title="微分的定义"></a>微分的定义</h2><p>“微分”这个概念最好的表达了微积分这门学科的基本思想： “以直代曲，线性逼近”。</p>
+<p><code>\mathrm&#123;d&#125; x</code></p>
+<h2 id="微分和导数"><a href="#微分和导数" class="headerlink" title="微分和导数"></a>微分和导数</h2><p>到底 $\mathrm{d} x, \mathrm{d}u$ 这些是什么东西，为什么有的地方可以消掉有的不可以。</p>
+<p>其实导数和微分的定义在各个历史时期是不一样的，要想解答上面的疑问，还得从微积分的发展历史上去寻找答案。</p>
+<p>其实导数和微分的定义在各个历史时期是不一样的，要想解答上面的疑问，还得从微积分的发展历史上去寻找答案。</p>
+<p>牛顿和莱布尼兹各自独立发明了微积分，下面采取莱布尼兹的微积分符号进行说明。<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0">https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0</a></p>
+<p>导数的出现不是牛顿和莱布尼兹发明的，之前数学家已经在对曲线的切线进行研究了，但是牛顿和莱布尼兹在解决曲面下面积的时候把导数的定义确定下来了。</p>
+<img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108161633484.png" class="" title="image-20210108161633484">
+<p>无穷小量就在这里出现了，无穷小量是建立微积分的基础</p>
+<p>在当时的观点下，无穷小量到底是什么也是有争论的，当时有数学家打比喻：“无穷小量就好比山上的灰尘，去掉和增加都没有什么影响”，很显然有人认为这是真实存在的。</p>
+<p>在具体计算曲面下面积，即我们现在所说的定积分的时候，必然会遇到导数的问题，所以很自然的开始了对导数的定义和讨论</p>
+<h3 id="导数的古典定义"><a href="#导数的古典定义" class="headerlink" title="导数的古典定义"></a>导数的古典定义</h3><p>在曲线上取两点，连接起来，就称为曲线的割线：割线可以反应曲线的平均变化率，也就是说这一段大概总的趋势是上升还是下降，上升了多少，但是并不精确。</p>
+<h3 id="基于极限重建微积分"><a href="#基于极限重建微积分" class="headerlink" title="基于极限重建微积分"></a>基于极限重建微积分</h3><p>莱布尼兹、欧拉等都认识到了无穷小量导致的麻烦，一直拼命想要修补，但是这个问题要等到200年后，19世纪极限概念的清晰之后才得到解决。</p>
+<p>解决办法是，完全摈弃无穷小量，基于极限的概念，重新建立了微积分。</p>
+<p>可以看到，极限的描述并没有用到什么无穷小量。</p>
+<p><strong>原来是先定义了微分再有的导数，现在却是先定义了导数再有的微分。</strong></p>
+<p>一元函数中的文芬</p>
+<img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108153446078.png" class="" title="image-20210108153446078">
+<p>dy=f’dx，这其实是一个函数，切线函数。</p>
+<p>切线不是 y=f’(x0)(x-x0)+y0吗 （用点斜式来表示），我不太理解这里面所说的“dy=f’dx可以代表切线”这句话？这是两个不同的表达式，希望能解释一下，谢谢！</p>
+<p>你可以将dx看作为是x- x0，dy看作y-y0。这不就是点斜式嘛</p>
+<p>就是改变了变量的名字和原点的位置</p>
+<p>马同学你好，你给出的切线函数dy=f’(x)dx 是一个正比例函数，而从图像来看切线函数显然不总过原点，请问能解释一下这个细节问题吗？<br>以切点为原点</p>
+<p>导数的定义是 △y/△x，当△x趋近0的极限值，导数不是某一点的切线，而是近似看做某一点的切线。</p>
+<p>导数的定义是为了提供一个求某一点切线的办法，因为只有两点才能确定一条直线。<br>因此，导数定义求出的切线不是真实那一点的切线。【是取两点的中点 左端 右端？】<br>理想状态下，那个切点一定存在，我们假设成dy/ds，而dy就是微分。</p>
+<p>从图像可知△y与dy存在误差，这个误差就是无穷小。</p>
+<p>对于一元函数，可微和可导是一回事</p>
+<h2 id="微积分常用latex"><a href="#微积分常用latex" class="headerlink" title="微积分常用latex"></a>微积分常用latex</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>latex</th>
+<th>显示效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\mathrm{d} x</td>
+<td>$\mathrm{d} x$</td>
+</tr>
+<tr>
+<td>\partial</td>
+<td>$\partial$</td>
+</tr>
+<tr>
+<td>\nabla</td>
+<td>$\nabla$</td>
+</tr>
+<tr>
+<td>\infty</td>
+<td>$\infty$</td>
+</tr>
+<tr>
+<td>\int</td>
+<td>$\int$</td>
+</tr>
+<tr>
+<td>\iint</td>
+<td>$\iint$</td>
+</tr>
+<tr>
+<td>\iiint</td>
+<td>$\iiint$</td>
+</tr>
+<tr>
+<td>\oint</td>
+<td>$\oint$</td>
+</tr>
+<tr>
+<td>\triangle</td>
+<td>$\triangle$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B9%B2%E8%B4%A7%E7%B2%BE%E5%8D%8E/" rel="tag"># 干货精华</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/%E6%B0%91%E6%9D%83%E8%BF%90%E5%8A%A8%E4%B8%8E%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97/" rel="prev" title="民权运动与乌合之众（未完）">
+      <i class="fa fa-chevron-left"></i> 民权运动与乌合之众（未完）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/Python-%E9%9A%8F%E6%9C%BA%E7%94%9F%E6%88%90/" rel="next" title="Python 随机生成">
+      Python 随机生成 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#update-2021-0112"><span class="nav-number">1.</span> <span class="nav-text">update 2021 0112</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Before"><span class="nav-number">2.</span> <span class="nav-text">Before</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">微分的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E5%92%8C%E5%AF%BC%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">微分和导数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E7%9A%84%E5%8F%A4%E5%85%B8%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.1.</span> <span class="nav-text">导数的古典定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%9E%81%E9%99%90%E9%87%8D%E5%BB%BA%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="nav-number">2.2.2.</span> <span class="nav-text">基于极限重建微积分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86%E5%B8%B8%E7%94%A8latex"><span class="nav-number">2.3.</span> <span class="nav-text">微积分常用latex</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">圆头</p>
+  <div class="site-description" itemprop="description">问题解决家 <br> 方法试验家 <br> 习惯养成家 <br> 深度工作家</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021-01-14</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
