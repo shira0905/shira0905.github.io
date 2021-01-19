@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="诱因是想到一个问题，给定一个长度为n的数组[1,2,…,n]，用以构建深度为t的完全二叉树，满足从根节点出发到叶节点没有重复出现的数字，列出所有可能的二叉树组合。看这挺简单的一个问题我用代码模拟的时候写了好久都没有完成，那索性就学习一下相关知识点好了。 51.N皇后，37.解数独 这两个题目，可能能对market clearing price的求解有所启发。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回溯、DFS、递归等思想的辨析">
+<meta property="og:url" content="https://shira0905.github.io/2021/01/%E5%9B%9E%E6%BA%AF%E3%80%81DFS%E3%80%81%E9%80%92%E5%BD%92%E7%AD%89%E6%80%9D%E6%83%B3%E7%9A%84%E8%BE%A8%E6%9E%90/">
+<meta property="og:site_name" content="圆头修行记">
+<meta property="og:description" content="诱因是想到一个问题，给定一个长度为n的数组[1,2,…,n]，用以构建深度为t的完全二叉树，满足从根节点出发到叶节点没有重复出现的数字，列出所有可能的二叉树组合。看这挺简单的一个问题我用代码模拟的时候写了好久都没有完成，那索性就学习一下相关知识点好了。 51.N皇后，37.解数独 这两个题目，可能能对market clearing price的求解有所启发。">
+<meta property="og:locale">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%9B%9E%E6%BA%AF%E3%80%81DFS%E3%80%81%E9%80%92%E5%BD%92%E7%AD%89%E6%80%9D%E6%83%B3%E7%9A%84%E8%BE%A8%E6%9E%90/image-20210119234821938.png">
+<meta property="article:published_time" content="2021-01-19T11:27:59.000Z">
+<meta property="article:modified_time" content="2021-01-19T15:48:44.134Z">
+<meta property="article:author" content="圆头">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shira0905.github.io/2021/01/%E5%9B%9E%E6%BA%AF%E3%80%81DFS%E3%80%81%E9%80%92%E5%BD%92%E7%AD%89%E6%80%9D%E6%83%B3%E7%9A%84%E8%BE%A8%E6%9E%90/image-20210119234821938.png">
+
+<link rel="canonical" href="https://shira0905.github.io/2021/01/%E5%9B%9E%E6%BA%AF%E3%80%81DFS%E3%80%81%E9%80%92%E5%BD%92%E7%AD%89%E6%80%9D%E6%83%B3%E7%9A%84%E8%BE%A8%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>回溯、DFS、递归等思想的辨析 | 圆头修行记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头修行记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">尽是些粗制滥造之作</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2021/01/%E5%9B%9E%E6%BA%AF%E3%80%81DFS%E3%80%81%E9%80%92%E5%BD%92%E7%AD%89%E6%80%9D%E6%83%B3%E7%9A%84%E8%BE%A8%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="圆头">
+      <meta itemprop="description" content="问题解决家 <br> 方法试验家 <br> 习惯养成家 <br> 深度工作家">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头修行记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          回溯、DFS、递归等思想的辨析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-19 19:27:59 / Modified: 23:48:44" itemprop="dateCreated datePublished" datetime="2021-01-19T19:27:59+08:00">2021-01-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>诱因是想到一个问题，给定一个长度为n的数组[1,2,…,n]，用以构建深度为t的完全二叉树，满足从根节点出发到叶节点没有重复出现的数字，列出所有可能的二叉树组合。看这挺简单的一个问题我用代码模拟的时候写了好久都没有完成，那索性就学习一下相关知识点好了。 51.N皇后，37.解数独 这两个题目，可能能对market clearing price的求解有所启发。</p>
+<a id="more"></a>
+<h2 id="概念辨析"><a href="#概念辨析" class="headerlink" title="概念辨析"></a>概念辨析</h2><p>递归就是自我调用，经常作为一种编程的实现方式，比如题主问题中的DFS 、动态规划、回溯法都可以用递归来实现，当然也可以用非递归来实现。</p>
+<p>回溯是一种通用的算法，把问题分步解决，在每一步都试验所有的可能，当发现已经找到一种方式或者目前这种方式不可能是结果的时候，退回上一步继续尝试其他可能。很多时候每一步的处理都是一致的，这时候用递归来实现就很自然。</p>
+<p>当回溯用于树的时候，就是深度优先搜索。当然了，几乎所有可以用回溯解决的问题都可以表示为树。那么这俩在这里就几乎同义了。如果一个问题解决的时候显式地使用了树，那么我们就叫它dfs。很多时候没有用树我们也管它叫dfs严格地说是不对的，但是dfs比回溯打字的时候好输入。别的回答里提到了砍枝，实际上这二者都可以砍枝。</p>
+<p>至于动态规划，被题主放到这里是因为都是竞赛中经常会遇到并且学起来不容易明白吗？回溯可以用于所有用穷举法可以解决的问题，而DP只用于具有最优子结构的问题。所以不是所有问题都适合用dp来解决，比如八皇后。dp需要存贮子问题的解，回溯不需要。</p>
+<h2 id="理解回溯"><a href="#理解回溯" class="headerlink" title="理解回溯"></a>理解回溯</h2><p>从 [1, 2, 3] 到 [1, 3, 2] ，深度优先遍历是这样做的，从 [1, 2, 3] 回到 [1, 2] 的时候，需要撤销刚刚已经选择的数 3，因为在这一层只有一个数 3 我们已经尝试过了，因此程序回到上一层，需要撤销对 2 的选择，好让后面的程序知道，选择 3 了以后还能够选择 2。</p>
+<p>执行深度优先遍历，从较深层的结点返回到较浅层结点的时候，需要做「状态重置」，即「回到过去」、「恢复现场」。</p>
+<h3 id="可不可以BFS"><a href="#可不可以BFS" class="headerlink" title="可不可以BFS"></a>可不可以BFS</h3><p>可以，但是coding更困难</p>
+<h4 id="状态切换便捷"><a href="#状态切换便捷" class="headerlink" title="状态切换便捷"></a>状态切换便捷</h4><ul>
+<li>在深度优先遍历的时候，不同状态之间的切换很容易 ，可以再看一下上面有很多箭头的那张图，每两个状态之间的差别只有 11 处，因此回退非常方便，这样全局才能使用一份状态变量完成搜索；</li>
+<li>如果使用广度优先遍历，从浅层转到深层，状态的变化就很大，此时我们不得不在每一个状态都新建变量去保存它，从性能来说是不划算的；</li>
+</ul>
+<h4 id="数据结构简单"><a href="#数据结构简单" class="headerlink" title="数据结构简单"></a>数据结构简单</h4><ul>
+<li>如果使用广度优先遍历就得使用队列，然后编写结点类。队列中需要存储每一步的状态信息，需要存储的数据很大，真正能用到的很少 。</li>
+<li>使用深度优先遍历，直接使用了系统栈，系统栈帮助我们保存了每一个结点的状态信息。我们不用编写结点类，不必手动编写栈完成深度优先遍历。</li>
+</ul>
+<h3 id="可不可以不回溯"><a href="#可不可以不回溯" class="headerlink" title="可不可以不回溯"></a>可不可以不回溯</h3><p>可以，但是巨费空间。回溯对比非回溯的好处：</p>
+<ul>
+<li><p>搜索问题的状态空间一般很大。回溯法只需要叶子结点的那个状态，在叶子结点执行拷贝，时间复杂度是 O(N)。路径变量在深度优先遍历的时候，结点之间的转换只需要 O(1)。</p>
+</li>
+<li><p>允许剪枝：由于回溯算法的时间复杂度很高，因此在遍历的时候，如果能够提前知道这一条分支不能搜索到满意的结果，就可以提前结束。</p>
+</li>
+</ul>
+<h2 id="经典例子"><a href="#经典例子" class="headerlink" title="经典例子"></a>经典例子</h2><h3 id="17-电话号码的字母组合"><a href="#17-电话号码的字母组合" class="headerlink" title="17. 电话号码的字母组合"></a>17. 电话号码的字母组合</h3><h3 id="39-组合总数"><a href="#39-组合总数" class="headerlink" title="39. 组合总数"></a>39. 组合总数</h3><p>给定一个<strong>无重复元素</strong>的数组 <code>candidates</code> 和一个目标数 <code>target</code> ，找出 <code>candidates</code> 中所有可以使数字和为 <code>target</code> 的组合。<code>candidates</code> 中的数字可以无限制重复被选取。</p>
+<h3 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a>46. 全排列</h3><p>给定一个 <strong>没有重复</strong> 数字的序列，返回其所有可能的全排列。</p>
+<p>题解如下：</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/">https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/</a></p>
+<p>补充说明（2020 年 8 月 31 日补充）：请大家做了一些回溯算法的问题以后顺便思考一下：深度优先遍历、递归、栈，它们三者的关系，我个人以为它们背后统一的逻辑都是「后进先出」。完成练习有助于我们深刻理解算法思想，我们加油！</p>
+<img src="/2021/01/%E5%9B%9E%E6%BA%AF%E3%80%81DFS%E3%80%81%E9%80%92%E5%BD%92%E7%AD%89%E6%80%9D%E6%83%B3%E7%9A%84%E8%BE%A8%E6%9E%90/image-20210119234821938.png" class="" title="image-20210119234821938">
+<h3 id="51-N皇后"><a href="#51-N皇后" class="headerlink" title="51. N皇后"></a>51. N皇后</h3><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p>下面提供一些我做过的「回溯」算法的问题，以便大家学习和理解「回溯」算法。</p>
+<h3 id="题型一：排列、组合、子集相关问题"><a href="#题型一：排列、组合、子集相关问题" class="headerlink" title="题型一：排列、组合、子集相关问题"></a>题型一：排列、组合、子集相关问题</h3><p>提示：这部分练习可以帮助我们熟悉「回溯算法」的一些概念和通用的解题思路。解题的步骤是：先画图，再编码。去思考可以剪枝的条件， 为什么有的时候用 used 数组，有的时候设置搜索起点 begin 变量，理解状态变量设计的想法。</p>
+<ol>
+<li>全排列（中等）</li>
+<li>全排列 II（中等）：思考为什么造成了重复，如何在搜索之前就判断这一支会产生重复；</li>
+<li>组合总和（中等）</li>
+<li>组合总和 II（中等）</li>
+<li>组合（中等）</li>
+<li>子集（中等）</li>
+<li>子集 II（中等）：剪枝技巧同 47 题、39 题、40 题；</li>
+<li>第 k 个排列（中等）：利用了剪枝的思想，减去了大量枝叶，直接来到需要的叶子结点；</li>
+<li>复原 IP 地址（中等）</li>
+</ol>
+<h3 id="题型二：Flood-Fill"><a href="#题型二：Flood-Fill" class="headerlink" title="题型二：Flood Fill"></a>题型二：Flood Fill</h3><p>提示：Flood 是「洪水」的意思，Flood Fill 直译是「泛洪填充」的意思，体现了洪水能够从一点开始，迅速填满当前位置附近的地势低的区域。类似的应用还有：PS 软件中的「点一下把这一片区域的颜色都替换掉」，扫雷游戏「点一下打开一大片没有雷的区域」。</p>
+<p>下面这几个问题，思想不难，但是初学的时候代码很不容易写对，并且也很难调试。我们的建议是多写几遍，忘记了就再写一次，参考规范的编写实现（设置 visited 数组，设置方向数组，抽取私有方法），把代码写对。</p>
+<ol>
+<li>图像渲染（Flood Fill，中等）</li>
+<li>岛屿数量（中等）</li>
+<li>被围绕的区域（中等）</li>
+<li>单词搜索（中等）<br>说明：以上问题都不建议修改输入数据，设置 visited 数组是标准的做法。可能会遇到参数很多，是不是都可以写成成员变量的问题，面试中拿不准的记得问一下面试官</li>
+</ol>
+<h3 id="题型三：字符串中的回溯问题"><a href="#题型三：字符串中的回溯问题" class="headerlink" title="题型三：字符串中的回溯问题"></a>题型三：字符串中的回溯问题</h3><p>提示：字符串的问题的特殊之处在于，字符串的拼接生成新对象，因此在这一类问题上没有显示「回溯」的过程，但是如果使用 StringBuilder 拼接字符串就另当别论。<br>在这里把它们单独作为一个题型，是希望朋友们能够注意到这个非常细节的地方。</p>
+<ol>
+<li>电话号码的字母组合（中等），题解；</li>
+<li>字母大小写全排列（中等）；</li>
+</ol>
+<p>括号生成（中等） ：这道题广度优先遍历也很好写，可以通过这个问题理解一下为什么回溯算法都是深度优先遍历，并且都用递归来写。</p>
+<h3 id="题型四：游戏问题"><a href="#题型四：游戏问题" class="headerlink" title="题型四：游戏问题"></a>题型四：游戏问题</h3><p>回溯算法是早期简单的人工智能，有些教程把回溯叫做暴力搜索，但回溯没有那么暴力，回溯是有方向地搜索。「力扣」上有一些简单的游戏类问题，解决它们有一定的难度，大家可以尝试一下。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/266403334">https://www.zhihu.com/question/266403334</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/">leetcode 回溯算法入门级详解 + 练习 by liweiwei1419</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/%E9%97%B4%E6%AD%87%E6%80%A7%E6%96%AD%E9%A3%9F%E5%89%8D%E7%9A%84%E5%A4%A7%E9%A4%90/" rel="prev" title="间歇性断食之断食前大餐和开食大餐">
+      <i class="fa fa-chevron-left"></i> 间歇性断食之断食前大餐和开食大餐
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/MacBook%E4%B8%8D%E7%94%A8%E9%BC%A0%E6%A0%87%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/" rel="next" title="MacBook不用鼠标技巧分享">
+      MacBook不用鼠标技巧分享 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%BE%A8%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">概念辨析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E5%9B%9E%E6%BA%AF"><span class="nav-number">2.</span> <span class="nav-text">理解回溯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E4%B8%8D%E5%8F%AF%E4%BB%A5BFS"><span class="nav-number">2.1.</span> <span class="nav-text">可不可以BFS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%88%87%E6%8D%A2%E4%BE%BF%E6%8D%B7"><span class="nav-number">2.1.1.</span> <span class="nav-text">状态切换便捷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%80%E5%8D%95"><span class="nav-number">2.1.2.</span> <span class="nav-text">数据结构简单</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E4%B8%8D%E5%8F%AF%E4%BB%A5%E4%B8%8D%E5%9B%9E%E6%BA%AF"><span class="nav-number">2.2.</span> <span class="nav-text">可不可以不回溯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E4%BE%8B%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text">经典例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#17-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88"><span class="nav-number">3.1.</span> <span class="nav-text">17. 电话号码的字母组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#39-%E7%BB%84%E5%90%88%E6%80%BB%E6%95%B0"><span class="nav-number">3.2.</span> <span class="nav-text">39. 组合总数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#46-%E5%85%A8%E6%8E%92%E5%88%97"><span class="nav-number">3.3.</span> <span class="nav-text">46. 全排列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#51-N%E7%9A%87%E5%90%8E"><span class="nav-number">3.4.</span> <span class="nav-text">51. N皇后</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-number">4.</span> <span class="nav-text">练习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E5%9E%8B%E4%B8%80%EF%BC%9A%E6%8E%92%E5%88%97%E3%80%81%E7%BB%84%E5%90%88%E3%80%81%E5%AD%90%E9%9B%86%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="nav-number">4.1.</span> <span class="nav-text">题型一：排列、组合、子集相关问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E5%9E%8B%E4%BA%8C%EF%BC%9AFlood-Fill"><span class="nav-number">4.2.</span> <span class="nav-text">题型二：Flood Fill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E5%9E%8B%E4%B8%89%EF%BC%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98"><span class="nav-number">4.3.</span> <span class="nav-text">题型三：字符串中的回溯问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E5%9E%8B%E5%9B%9B%EF%BC%9A%E6%B8%B8%E6%88%8F%E9%97%AE%E9%A2%98"><span class="nav-number">4.4.</span> <span class="nav-text">题型四：游戏问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">圆头</p>
+  <div class="site-description" itemprop="description">问题解决家 <br> 方法试验家 <br> 习惯养成家 <br> 深度工作家</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021-01-20</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

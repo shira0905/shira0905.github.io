@@ -28,7 +28,7 @@
 <meta property="og:description" content="开始突击。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-12T19:35:25.000Z">
-<meta property="article:modified_time" content="2021-01-12T19:40:23.777Z">
+<meta property="article:modified_time" content="2021-01-15T06:13:32.827Z">
 <meta property="article:author" content="圆头">
 <meta name="twitter:card" content="summary">
 
@@ -215,17 +215,27 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-01-13 03:35:25 / Modified: 03:40:23" itemprop="dateCreated datePublished" datetime="2021-01-13T03:35:25+08:00">2021-01-13</time>
+              <time title="Created: 2021-01-13 03:35:25" itemprop="dateCreated datePublished" datetime="2021-01-13T03:35:25+08:00">2021-01-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-15 14:13:32" itemprop="dateModified" datetime="2021-01-15T14:13:32+08:00">2021-01-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                  <a href="/categories/Career/" itemprop="url" rel="index"><span itemprop="name">Career</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Career/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
                 </span>
             </span>
 
@@ -244,6 +254,10 @@
 <a id="more"></a>
 <h2 id="0111M"><a href="#0111M" class="headerlink" title="0111M"></a>0111M</h2><h4 id="很多二叉树题"><a href="#很多二叉树题" class="headerlink" title="很多二叉树题"></a>很多二叉树题</h4><h2 id="0112T"><a href="#0112T" class="headerlink" title="0112T"></a>0112T</h2><h4 id="一些链表题"><a href="#一些链表题" class="headerlink" title="一些链表题"></a>一些链表题</h4><h4 id="一些双指针题"><a href="#一些双指针题" class="headerlink" title="一些双指针题"></a>一些双指针题</h4><p>临界条件又搞不拎清了</p>
 <h4 id="hashmap的题"><a href="#hashmap的题" class="headerlink" title="hashmap的题"></a>hashmap的题</h4><p>还是比较好做的：字符和对用编码数字的转换可用 <code>chr()</code>  <code>ord()</code>  ， 可以用 <code>del d[key]</code> 删除掉这个key的item。</p>
+<h2 id="边界检查"><a href="#边界检查" class="headerlink" title="边界检查"></a>边界检查</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参数是否为None</span></span><br><span class="line"><span class="keyword">if</span> para == <span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">	</span><br><span class="line"><span class="comment"># 数组或者字符串长度是否为0，</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(s) == <span class="number">0</span>: <span class="comment"># 有时候1，2也可以放在corner case 处理</span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">#	访问一个下标的时候，一定要确保这个下标不会越界</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt;<span class="built_in">len</span>(s) <span class="keyword">and</span> s[i]!=<span class="string">&#x27;xxx&#x27;</span>:</span><br><span class="line">    print(s[i])</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问一个对象的属性或者方法时，一定要确保这个对象不是空</span></span><br><span class="line">p = head</span><br><span class="line"><span class="keyword">while</span> p != <span class="literal">None</span> <span class="keyword">and</span> p.val != <span class="number">111</span>:</span><br><span class="line">    p = p.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+<h2 id="高频bug"><a href="#高频bug" class="headerlink" title="高频bug"></a>高频bug</h2><ul>
+<li><code>def zidingyi(self, a):</code></li>
+</ul>
 
     </div>
 
@@ -324,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0111M"><span class="nav-number">1.</span> <span class="nav-text">0111M</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%88%E5%A4%9A%E4%BA%8C%E5%8F%89%E6%A0%91%E9%A2%98"><span class="nav-number">1.0.1.</span> <span class="nav-text">很多二叉树题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0112T"><span class="nav-number">2.</span> <span class="nav-text">0112T</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E9%93%BE%E8%A1%A8%E9%A2%98"><span class="nav-number">2.0.1.</span> <span class="nav-text">一些链表题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%8F%8C%E6%8C%87%E9%92%88%E9%A2%98"><span class="nav-number">2.0.2.</span> <span class="nav-text">一些双指针题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hashmap%E7%9A%84%E9%A2%98"><span class="nav-number">2.0.3.</span> <span class="nav-text">hashmap的题</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0111M"><span class="nav-number">1.</span> <span class="nav-text">0111M</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%88%E5%A4%9A%E4%BA%8C%E5%8F%89%E6%A0%91%E9%A2%98"><span class="nav-number">1.0.1.</span> <span class="nav-text">很多二叉树题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0112T"><span class="nav-number">2.</span> <span class="nav-text">0112T</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E9%93%BE%E8%A1%A8%E9%A2%98"><span class="nav-number">2.0.1.</span> <span class="nav-text">一些链表题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%8F%8C%E6%8C%87%E9%92%88%E9%A2%98"><span class="nav-number">2.0.2.</span> <span class="nav-text">一些双指针题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hashmap%E7%9A%84%E9%A2%98"><span class="nav-number">2.0.3.</span> <span class="nav-text">hashmap的题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E6%A3%80%E6%9F%A5"><span class="nav-number">3.</span> <span class="nav-text">边界检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%A2%91bug"><span class="nav-number">4.</span> <span class="nav-text">高频bug</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -340,14 +354,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -388,7 +402,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021-01-14</span>
+  <span itemprop="copyrightYear">2021-01-20</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
