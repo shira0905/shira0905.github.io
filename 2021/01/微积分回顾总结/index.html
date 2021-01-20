@@ -28,9 +28,14 @@
 <meta property="og:description" content="微积分回顾总结。">
 <meta property="og:locale">
 <meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108161633484.png">
-<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108153446078.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120114124272.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120115917965.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120114710233.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120115835084.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120121525841.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120122859655.png">
 <meta property="article:published_time" content="2021-01-08T07:32:14.000Z">
-<meta property="article:modified_time" content="2021-01-12T11:34:10.304Z">
+<meta property="article:modified_time" content="2021-01-20T15:38:59.812Z">
 <meta property="article:author" content="圆头">
 <meta property="article:tag" content="干货精华">
 <meta name="twitter:card" content="summary">
@@ -227,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-12 19:34:10" itemprop="dateModified" datetime="2021-01-12T19:34:10+08:00">2021-01-12</time>
+                <time title="Modified: 2021-01-20 23:38:59" itemprop="dateModified" datetime="2021-01-20T23:38:59+08:00">2021-01-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,41 +261,69 @@
       
         <p>微积分回顾总结。</p>
 <a id="more"></a>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31464934/answer/152231899">https://www.zhihu.com/question/31464934/answer/152231899</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22199657/answer/115178055">https://www.zhihu.com/question/22199657/answer/115178055</a></p>
-<p>对于一元函数，可微和可导是一回事</p>
-<p>对于多元函数来讲，可微指的是全微分，可导指的是偏导数</p>
-<p>偏微分就好比过这一点的一个截面的切线，偏导数就是该切线的斜率</p>
-<p>全微分要求过这一点的所有的截面切线（360°无死角），共同所在的平面。</p>
-<p>所以偏导数存在不一定存在全微分，但是反过来，如果多元函数可微，就一定可导。</p>
-<h1 id="update-2021-0112"><a href="#update-2021-0112" class="headerlink" title="update 2021 0112"></a>update 2021 0112</h1><h1 id="Before"><a href="#Before" class="headerlink" title="Before"></a>Before</h1><h2 id="微分的定义"><a href="#微分的定义" class="headerlink" title="微分的定义"></a>微分的定义</h2><p>“微分”这个概念最好的表达了微积分这门学科的基本思想： “以直代曲，线性逼近”。</p>
-<p><code>\mathrm&#123;d&#125; x</code></p>
-<h2 id="微分和导数"><a href="#微分和导数" class="headerlink" title="微分和导数"></a>微分和导数</h2><p>到底 $\mathrm{d} x, \mathrm{d}u$ 这些是什么东西，为什么有的地方可以消掉有的不可以。</p>
-<p>其实导数和微分的定义在各个历史时期是不一样的，要想解答上面的疑问，还得从微积分的发展历史上去寻找答案。</p>
-<p>其实导数和微分的定义在各个历史时期是不一样的，要想解答上面的疑问，还得从微积分的发展历史上去寻找答案。</p>
-<p>牛顿和莱布尼兹各自独立发明了微积分，下面采取莱布尼兹的微积分符号进行说明。<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0">https://zh.wikipedia.org/wiki/%E5%AF%BC%E6%95%B0</a></p>
-<p>导数的出现不是牛顿和莱布尼兹发明的，之前数学家已经在对曲线的切线进行研究了，但是牛顿和莱布尼兹在解决曲面下面积的时候把导数的定义确定下来了。</p>
-<img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108161633484.png" class="" title="image-20210108161633484">
-<p>无穷小量就在这里出现了，无穷小量是建立微积分的基础</p>
-<p>在当时的观点下，无穷小量到底是什么也是有争论的，当时有数学家打比喻：“无穷小量就好比山上的灰尘，去掉和增加都没有什么影响”，很显然有人认为这是真实存在的。</p>
-<p>在具体计算曲面下面积，即我们现在所说的定积分的时候，必然会遇到导数的问题，所以很自然的开始了对导数的定义和讨论</p>
-<h3 id="导数的古典定义"><a href="#导数的古典定义" class="headerlink" title="导数的古典定义"></a>导数的古典定义</h3><p>在曲线上取两点，连接起来，就称为曲线的割线：割线可以反应曲线的平均变化率，也就是说这一段大概总的趋势是上升还是下降，上升了多少，但是并不精确。</p>
-<h3 id="基于极限重建微积分"><a href="#基于极限重建微积分" class="headerlink" title="基于极限重建微积分"></a>基于极限重建微积分</h3><p>莱布尼兹、欧拉等都认识到了无穷小量导致的麻烦，一直拼命想要修补，但是这个问题要等到200年后，19世纪极限概念的清晰之后才得到解决。</p>
-<p>解决办法是，完全摈弃无穷小量，基于极限的概念，重新建立了微积分。</p>
-<p>可以看到，极限的描述并没有用到什么无穷小量。</p>
-<p><strong>原来是先定义了微分再有的导数，现在却是先定义了导数再有的微分。</strong></p>
-<p>一元函数中的文芬</p>
-<img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108153446078.png" class="" title="image-20210108153446078">
-<p>dy=f’dx，这其实是一个函数，切线函数。</p>
-<p>切线不是 y=f’(x0)(x-x0)+y0吗 （用点斜式来表示），我不太理解这里面所说的“dy=f’dx可以代表切线”这句话？这是两个不同的表达式，希望能解释一下，谢谢！</p>
-<p>你可以将dx看作为是x- x0，dy看作y-y0。这不就是点斜式嘛</p>
-<p>就是改变了变量的名字和原点的位置</p>
-<p>马同学你好，你给出的切线函数dy=f’(x)dx 是一个正比例函数，而从图像来看切线函数显然不总过原点，请问能解释一下这个细节问题吗？<br>以切点为原点</p>
-<p>导数的定义是 △y/△x，当△x趋近0的极限值，导数不是某一点的切线，而是近似看做某一点的切线。</p>
-<p>导数的定义是为了提供一个求某一点切线的办法，因为只有两点才能确定一条直线。<br>因此，导数定义求出的切线不是真实那一点的切线。【是取两点的中点 左端 右端？】<br>理想状态下，那个切点一定存在，我们假设成dy/ds，而dy就是微分。</p>
-<p>从图像可知△y与dy存在误差，这个误差就是无穷小。</p>
-<p>对于一元函数，可微和可导是一回事</p>
-<h2 id="微积分常用latex"><a href="#微积分常用latex" class="headerlink" title="微积分常用latex"></a>微积分常用latex</h2><div class="table-container">
+<h1 id="历史渊源"><a href="#历史渊源" class="headerlink" title="历史渊源"></a>历史渊源</h1><p><strong>关于导数、微分、差分、极限、无穷小量等概念的定义以及历史渊源</strong>。到底 $\mathrm{d} x, \mathrm{d}u$ 这些是什么东西，为什么有的地方可以消掉有的不可以。其实导数和微分的定义在各个历史时期是不一样的，要想解答上面的疑问，还得从微积分的发展历史上去寻找答案。</p>
+<h2 id="古典微积分"><a href="#古典微积分" class="headerlink" title="古典微积分"></a>古典微积分</h2><p>先从牛顿和莱布尼兹开始的古典微积分讲起。采取莱布尼兹的微积分符号进行说明（要了解各种微积分符号，可以参看 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/导数">维基百科</a> ）。</p>
+<h3 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h3><p>$\Delta x$ 差分 </p>
+<p>$\mathrm{d} x$ 微分</p>
+<p>$f’(x)$ 导数，也可以写成 $\frac{\mathrm{d} y}{\mathrm{d} x}$，所以也可以叫做微商。</p>
+<h3 id="导数的出现"><a href="#导数的出现" class="headerlink" title="导数的出现"></a>导数的出现</h3><p>早在牛顿和莱布尼兹之前就有了，之前的数学家就已经对曲线的切线进行研究了。但是牛顿和莱布尼兹在解决曲面下面积的时候把<strong>导数定义确定</strong>下来了。</p>
+<h3 id="无穷小量"><a href="#无穷小量" class="headerlink" title="无穷小量"></a>无穷小量</h3><img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210108161633484.png" class="" title="image-20210108161633484">
+<p>把$[a,b]$ 均分成 $n$ 份，每份的间隔长度记为$\Delta x$，以$\Delta x$ 为底的所有矩形相加近似得面积。<br>当 $n \to \infin $ 时，$\Delta x$变得比任何的正实数都小称为<strong>无穷小量</strong>，记作$\mathrm{d} x$ 即 $x$ 的<strong>微分</strong>。<br>就在这里出现了，无穷小量是建立微积分的基础。</p>
+<h3 id="导数的古典意义"><a href="#导数的古典意义" class="headerlink" title="导数的古典意义"></a>导数的古典意义</h3><p>在曲线上取两点，连接起来，就称为曲线的割线。割线可以反应曲线的平均变化率，也就是说这一段大概总的趋势是上升还是下降，上升了多少，但是并不精确。当两点无限接近，知道相距 $\mathrm{d}x$ 的时候，割线就成了切线。</p>
+<img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120114124272.png" class="" title="image-20210120114124272">
+<p><strong>有了切线之后，再进一步去定义导数</strong>：$a$ 和 $b$ 之间距离为 $\mathrm{d}x$ 即 $x$ 的微分，$\mathrm{d}x$ 的切线增量是 $\mathrm{d}y$ 即 $y$ 的微分。所以切线的斜率是 $f’(x)= \frac{\mathrm{d} y}{\mathrm{d} x}$。 重申一遍：由于$\mathrm{d}x$ 是无穷小量，所以$a$ 和 $b$ 连线即为切线。导数的分子分母都为无穷小量，所以导数也被莱布尼兹称为<strong>微商（微分之商)</strong>。</p>
+<h3 id="无穷小量导致的麻烦"><a href="#无穷小量导致的麻烦" class="headerlink" title="无穷小量导致的麻烦"></a>无穷小量导致的麻烦</h3><h4 id="关于切线的矛盾"><a href="#关于切线的矛盾" class="headerlink" title="关于切线的矛盾"></a>关于切线的矛盾</h4><ul>
+<li>$a$ 和 $b$ 之间距离为 $\mathrm{d}x$，这样切线和曲线香蕉的就不只是一个点了。</li>
+<li>$a$ 和 $b$ 要是重叠的话，一个点又确定不了直线。</li>
+</ul>
+<p>所以关于切线的定义就有极大的争议，有人认为两点重叠，有人不这么认为。所以就切线的定义而言，微积分的基础就是不牢固的。</p>
+<h4 id="导数计算的例子"><a href="#导数计算的例子" class="headerlink" title="导数计算的例子"></a>导数计算的例子</h4><img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120115917965.png" class="" title="image-20210120115917965">
+<p>$\mathrm{d}x$ 先是在约分中被约掉，然后又在加法中被忽略，就是说，先被当作了非0的量，又被当作了0，这就是大主教贝克莱（就是在高中政治书被嘲笑的唯心主义的代表）所攻击的像幽灵一样的数，一会是0一会又不是0。无穷小量和无穷小量相除为什么可以得到不一样的值？难道不应该都是1？</p>
+<h4 id="阿基米德公理？"><a href="#阿基米德公理？" class="headerlink" title="阿基米德公理？"></a>阿基米德公理？</h4><p>无穷小量还违反了 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/阿基米德公理">阿基米德公理</a> ，这个才是更严重的缺陷，康托尔证明过，如果阿基米德公理被违背的话会出大问题。</p>
+<p>一边是看起来没有错的微积分，一边是有严重缺陷的无穷小量，这就是第二次数学危机。数学的严格性受到了挑战，“对于数学，严格性不是一切，但是没有了严格性就没有了一切”。</p>
+<h3 id="古典微积分的总结"><a href="#古典微积分的总结" class="headerlink" title="古典微积分的总结"></a>古典微积分的总结</h3><ul>
+<li>切线：通过无穷小量定义了切线</li>
+<li>导数：导数就是切线的斜率</li>
+<li>微分：微分是微小的增量，即无穷小量</li>
+</ul>
+<h2 id="基于极限重建微积分"><a href="#基于极限重建微积分" class="headerlink" title="基于极限重建微积分"></a>基于极限重建微积分</h2><p>莱布尼兹、欧拉等都认识到了无穷小量导致的麻烦，一直拼命想要修补，但是这个问题要等到200年后，19世纪极限概念的清晰之后才得到解决。</p>
+<p>解决办法是，<strong>完全摈弃无穷小量，基于极限的概念</strong>，重新建立了微积分</p>
+<h3 id="极限的描述"><a href="#极限的描述" class="headerlink" title="极限的描述"></a>极限的描述</h3><p>现在都是用 $\epsilon - \delta$ 语言来描述极限。可以看到，<strong>极限的描述并没有用到什么无穷小量</strong>。表达的意思就是横坐标越靠近 $x_0$，其值越接近 $L$。</p>
+<img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120114710233.png" class="" title="image-20210120114710233">
+<h3 id="导数的极限定义"><a href="#导数的极限定义" class="headerlink" title="导数的极限定义"></a>导数的极限定义</h3><script type="math/tex; mode=display">
+f'(x_0)  = \frac{\mathrm{d} y}{\mathrm{d} x} \\
+= \lim_\limits{\Delta x \to 0} \frac{\Delta y}{\Delta x} \\
+= \lim_\limits{\Delta x \to 0} \frac{f(x_0 + \Delta x)- f(x_0)}{\Delta x}</script><p>【第一行定义了导数是微分之商，第二行用极限条件下差分之商等于微分之商】</p>
+<p>用极限重新严格定义了导数，已经脱离了微商的概念，此时，导数应该被看成一个<u>整体</u>。</p>
+<h3 id="用导数去定义微分-？？？"><a href="#用导数去定义微分-？？？" class="headerlink" title="用导数去定义微分 ？？？"></a>用导数去定义微分 ？？？</h3><p>不过我们仍然可以去定义什么是微分，剧情反转：古典微积分是先定义了微分是无穷小量然后再有的倒数，现在确实先定义了导数再有的微分。</p>
+<img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120115835084.png" class="" title="image-20210120115835084">
+<h4 id="仔细瞧瞧这个微分-？？？"><a href="#仔细瞧瞧这个微分-？？？" class="headerlink" title="仔细瞧瞧这个微分 ？？？"></a>仔细瞧瞧这个微分 ？？？</h4><p>$\Delta y=f’(x_0) \Delta x +a \Delta x$ 可以得出 $\Delta y$ 由两个部分组成，通过下图来观察一下几何意义：</p>
+<img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120121525841.png" class="" title="image-20210120121525841">
+<ol>
+<li>斜率$a$ 的切线根据导数定义就可以算出黑色线就是切线，斜率为 $f’(x)$</li>
+<li>$\Delta x$ 对应的<strong>曲线</strong>的增量是 $\Delta y$</li>
+<li>$\Delta x$ 对应的<strong>切线</strong>的增量$f’(x) \Delta x$</li>
+</ol>
+<p>我们把$f’(x) \Delta x$定义为 $\mathrm{d}y$，也就是 $\mathrm{d}y = f’(x) \Delta x$。<br>我们令 $y=x$ ，为什么可以得到 $\mathrm{d}y =1 \Delta x$， 然后推出 $\mathrm{d} x = \Delta x$   ？？？？</p>
+<h3 id="与古典微积分的区别"><a href="#与古典微积分的区别" class="headerlink" title="与古典微积分的区别"></a>与古典微积分的区别</h3><p>$\mathrm{d}y = f’(x) \Delta x$ 标明微分是个函数，而不是想古典微积分中那样是一个数是一个无穷小量。<br>$\mathrm{d} x = \Delta x$ 也是个函数，不是一个数。<br>微分是用线性函数去逼近原函数，而导数现在又可以被称为微商了（微分之商）。</p>
+<img src="/2021/01/%E5%BE%AE%E7%A7%AF%E5%88%86%E5%9B%9E%E9%A1%BE%E6%80%BB%E7%BB%93/image-20210120122859655.png" class="" title="image-20210120122859655">
+<hr>
+<h3 id="对于极限微积分的总结"><a href="#对于极限微积分的总结" class="headerlink" title="对于极限微积分的总结"></a>对于极限微积分的总结</h3><ul>
+<li>导数：被定义为一个极限，其意义就是变化率</li>
+<li>微分：是一个线性函数，其意义就是变化的具体数值</li>
+<li>切线：有了导数之后就可以被确定下来了</li>
+</ul>
+<h2 id="对比总结"><a href="#对比总结" class="headerlink" title="对比总结"></a>对比总结</h2><p>微积分实际上被发明了两次，古典微积分和极限微积分可以说是两个东西。我们再来比较一下古典微积分和极限微积分。</p>
+<ul>
+<li>古典微积分是先定义微分再定义导数，极限微积分是先定义导数再定义微分。</li>
+<li>古典微积分的导数是基于无穷小量定义的，极限微积分的导数是基于极限定义的。</li>
+<li>古典微积分的微分是无穷小量，极限微积分的微分是一个线性函数。</li>
+<li>古典微积分的定积分是求无穷小矩形面积的和，极限微积分的定积分是求黎曼和。</li>
+<li>古典微积分的切线是可以画出来的，极限微积分的切线是算出来的。</li>
+<li>古典微积分的建立过程很直观，极限微积分的建立过程更抽象。</li>
+</ul>
+<p>古典微积分最大的好处就是很直观，不过也是因为太直观了，所以我们一直都无法忘记它带来的印象，也对我们理解极限微积分造成了障碍。也让我们在实际应用中造成了错误的理解。古典微积分其实已经被摒弃了，我们应该知道这一点，重新从极限的角度去认识微积分。我们应该从古典微积分，以直代曲、化整为零的数学思想出发去开始认识微积分。并且，莱布尼兹一直认为数学符号应该具有启发性，他设计的微积分符号确实很符合直觉，我们可以继续借用他的符号来描述微积分。</p>
+<h1 id="从一元到多元"><a href="#从一元到多元" class="headerlink" title="从一元到多元"></a>从一元到多元</h1><h1 id="微积分常用latex"><a href="#微积分常用latex" class="headerlink" title="微积分常用latex"></a>微积分常用latex</h1><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -338,6 +371,8 @@
 </tbody>
 </table>
 </div>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.matongxue.com/">微分和导数的关系是什么?  by 马同学</a></p>
+<!-- https://www.matongxue.com/madocs/15/ -->
 
     </div>
 
@@ -421,7 +456,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#update-2021-0112"><span class="nav-number">1.</span> <span class="nav-text">update 2021 0112</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Before"><span class="nav-number">2.</span> <span class="nav-text">Before</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">微分的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%88%86%E5%92%8C%E5%AF%BC%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">微分和导数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E7%9A%84%E5%8F%A4%E5%85%B8%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.1.</span> <span class="nav-text">导数的古典定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%9E%81%E9%99%90%E9%87%8D%E5%BB%BA%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="nav-number">2.2.2.</span> <span class="nav-text">基于极限重建微积分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86%E5%B8%B8%E7%94%A8latex"><span class="nav-number">2.3.</span> <span class="nav-text">微积分常用latex</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2%E6%B8%8A%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">历史渊源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A4%E5%85%B8%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="nav-number">1.1.</span> <span class="nav-text">古典微积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.1.</span> <span class="nav-text">符号说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E7%9A%84%E5%87%BA%E7%8E%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">导数的出现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%A9%B7%E5%B0%8F%E9%87%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">无穷小量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E7%9A%84%E5%8F%A4%E5%85%B8%E6%84%8F%E4%B9%89"><span class="nav-number">1.1.4.</span> <span class="nav-text">导数的古典意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%A9%B7%E5%B0%8F%E9%87%8F%E5%AF%BC%E8%87%B4%E7%9A%84%E9%BA%BB%E7%83%A6"><span class="nav-number">1.1.5.</span> <span class="nav-text">无穷小量导致的麻烦</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%88%87%E7%BA%BF%E7%9A%84%E7%9F%9B%E7%9B%BE"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">关于切线的矛盾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E8%AE%A1%E7%AE%97%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">导数计算的例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%BF%E5%9F%BA%E7%B1%B3%E5%BE%B7%E5%85%AC%E7%90%86%EF%BC%9F"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">阿基米德公理？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A4%E5%85%B8%E5%BE%AE%E7%A7%AF%E5%88%86%E7%9A%84%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.6.</span> <span class="nav-text">古典微积分的总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%9E%81%E9%99%90%E9%87%8D%E5%BB%BA%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="nav-number">1.2.</span> <span class="nav-text">基于极限重建微积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E7%9A%84%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">极限的描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0%E7%9A%84%E6%9E%81%E9%99%90%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">导数的极限定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E5%AF%BC%E6%95%B0%E5%8E%BB%E5%AE%9A%E4%B9%89%E5%BE%AE%E5%88%86-%EF%BC%9F%EF%BC%9F%EF%BC%9F"><span class="nav-number">1.2.3.</span> <span class="nav-text">用导数去定义微分 ？？？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%94%E7%BB%86%E7%9E%A7%E7%9E%A7%E8%BF%99%E4%B8%AA%E5%BE%AE%E5%88%86-%EF%BC%9F%EF%BC%9F%EF%BC%9F"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">仔细瞧瞧这个微分 ？？？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E5%8F%A4%E5%85%B8%E5%BE%AE%E7%A7%AF%E5%88%86%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.4.</span> <span class="nav-text">与古典微积分的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E6%9E%81%E9%99%90%E5%BE%AE%E7%A7%AF%E5%88%86%E7%9A%84%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.5.</span> <span class="nav-text">对于极限微积分的总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">对比总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E4%B8%80%E5%85%83%E5%88%B0%E5%A4%9A%E5%85%83"><span class="nav-number">2.</span> <span class="nav-text">从一元到多元</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86%E5%B8%B8%E7%94%A8latex"><span class="nav-number">3.</span> <span class="nav-text">微积分常用latex</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.1.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -437,7 +472,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -485,7 +520,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021-01-20</span>
+  <span itemprop="copyrightYear">2021-01-21</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
