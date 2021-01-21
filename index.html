@@ -190,6 +190,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-%E8%B0%A2%E5%B8%88%E5%85%84%E6%8E%A8%E8%8D%90%E7%9A%84%E4%B8%89%E7%AF%87%E6%96%87%E7%AB%A0%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="匠心圆头">
+      <meta itemprop="description" content="问题解决家 <br> 方法试验家 <br> 习惯养成家 <br> 深度工作家">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头修行记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-%E8%B0%A2%E5%B8%88%E5%85%84%E6%8E%A8%E8%8D%90%E7%9A%84%E4%B8%89%E7%AF%87%E6%96%87%E7%AB%A0%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">文献阅读 谢师兄推荐的三篇文章分析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-21 18:18:39" itemprop="dateCreated datePublished" datetime="2021-01-21T18:18:39+08:00">2021-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-22 01:46:16" itemprop="dateModified" datetime="2021-01-22T01:46:16+08:00">2021-01-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h1 id="2019-ICML-Learning-to-Clear-the-Market"><a href="#2019-ICML-Learning-to-Clear-the-Market" class="headerlink" title="2019-ICML-Learning to Clear the Market"></a>2019-ICML-Learning to Clear the Market</h1><p>  I remember that one formulation of our work is via market clearing framework, where one needs to know the valuation of requesters. This work may give us some idea to clear the market when we do not know the valuation of requesters.  </p>
+<p>umm 可是 known valuation 都还没解决。</p>
+<h4 id="中心"><a href="#中心" class="headerlink" title="中心"></a>中心</h4><p>In this work, we cast the problem of predicting clearing prices into a learning frame- work and use the resulting models to perform rev- enue optimization in auctions and markets with contextual information.</p>
+<h4 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h4><p>massive dataset bids</p>
+<p>convex nature of the clearing loss function</p>
+<p>convergence rate linear</p>
+<p>还是 revenue optimization 而不是 market clearing</p>
+<p>First to use it as a loss funciton in a machine learing context</p>
+<p>什么是 market clearing loss function 呢?</p>
+<p>为什么说它的 shape 允许我们去 最后结果 price 有多保守或者多激进?</p>
+<p>什么又是 computational economic 呢, 是不是什么 strategy 呢?</p>
+<h4 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h4><p>a record -&gt; an item characterized by a feature vector</p>
+<p>也强调了一下  revenue 和 market clearing (efficient) 的区别</p>
+<p>umm 完了,又得写一篇关于 convex optimization 的总结了.</p>
+<p>这个 intuition 我没有 get 到是什么意思啊.</p>
+<p>有点怀疑这篇文章到底有没有糊弄</p>
+<h3 id="chapter2-market-clearing-loss"><a href="#chapter2-market-clearing-loss" class="headerlink" title="chapter2 market clearing loss"></a>chapter2 market clearing loss</h3><p>duality between allocation and pricing 由于这个 duality 所以有了 the  form of the loss function to fit the clearing prices??</p>
+<p>怎么理解这里的 learning 和 fit?</p>
+<p>Allocation and Pricing<br>n buyers and m sellers</p>
+<p>trade quantities of an item 看来可分</p>
+<p>page3 的第一段看起来比较符合我们的模型,<br>每个 buyer 有个 unit valuation , 当 unit 价格小于 unit valuation 的时候 buyer 才愿意买.<br>每个 seller 有个 unit cost, 当 unit 价格大于 unit cost 的时候 seller 才愿意卖.</p>
+<p>然后就产生了以下的 allocation 问题:</p>
+<p>!! 竟然是为了研究 the quantity  supplied by the seller…什么奇葩的问题啊</p>
+<p>max the gains from trade: value comsumed ? - cost of production.  这是 social welfare 吗?</p>
+<img src="/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-%E8%B0%A2%E5%B8%88%E5%85%84%E6%8E%A8%E8%8D%90%E7%9A%84%E4%B8%89%E7%AF%87%E6%96%87%E7%AB%A0%E5%88%86%E6%9E%90/image-20210122012724504.png" class="" title="image-20210122012724504">
+<p>生产了的但没有卖出去的全都得扔掉了.</p>
+<p>问题的 dual 的物理意义是什么? 看看后面解释得靠不靠谱. </p>
+<p>与 0 比较更大者</p>
+<p>prime 和 dual 是不是两问题同解? </p>
+<h1 id="2019-ICML-Learning-to-bid-in-revenue-maximizing-auctions"><a href="#2019-ICML-Learning-to-bid-in-revenue-maximizing-auctions" class="headerlink" title="2019-ICML-Learning to bid in revenue-maximizing auctions"></a>2019-ICML-Learning to bid in revenue-maximizing auctions</h1><p>  I remember that another formulation of our work via an auction framework, where one needs to know the valuation of requesters. This work may give us some idea to bid when we do not know the valuation of requesters. </p>
+<h1 id="2020-Arxiv-Bandit-Learning-in-Decentralized-Matching-Markets"><a href="#2020-Arxiv-Bandit-Learning-in-Decentralized-Matching-Markets" class="headerlink" title="2020-Arxiv-Bandit Learning in Decentralized Matching Markets"></a>2020-Arxiv-Bandit Learning in Decentralized Matching Markets</h1><p>  Current our assume a centralized operator to set the price and requester have no preference over requesters. But what if we want to eliminate the centralized operator and allow users to have preference over the requester, i.e., a user may only like to be added to some requesters. This paper may give us certain idea. </p>
+<h4 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h4><p>MAB 混合 two-sided matching market</p>
+<p>我估计剧情会是</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2021/01/2021%E5%87%8F%E8%84%82%E5%A4%A7%E8%AE%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -443,7 +550,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/MacBook%E4%B8%8D%E7%94%A8%E9%BC%A0%E6%A0%87%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/" class="post-title-link" itemprop="url">MacBook不用鼠标技巧分享（更）*</a>
+            <a href="/2021/01/MacBook%E4%B8%8D%E7%94%A8%E9%BC%A0%E6%A0%87%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/" class="post-title-link" itemprop="url">MacBook不用鼠标技巧整理（更）*</a>
         </h2>
 
         <div class="post-meta">
@@ -460,7 +567,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-21 15:37:17" itemprop="dateModified" datetime="2021-01-21T15:37:17+08:00">2021-01-21</time>
+                <time title="Modified: 2021-01-22 00:46:04" itemprop="dateModified" datetime="2021-01-22T00:46:04+08:00">2021-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -487,7 +594,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>尽管MacBook的触控板很优秀，但是总归还不如用键盘来得快速方便，尤其是像我这种使用外接键盘的憨憨。</p>
+          <p>尽管MacBook的触控板很优秀，但是总归还不如用键盘来得快速方便，尤其是像我这种使用外接键盘的憨憨。<br>umm 感觉已经不限于不用鼠标这个方面了，估计即将更名为MacBook懒人手册</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/01/MacBook%E4%B8%8D%E7%94%A8%E9%BC%A0%E6%A0%87%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/#more" rel="contents">
@@ -688,7 +795,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/Python%E9%AB%98%E9%A2%91%E7%94%A8%E6%B3%95%E5%A4%87%E5%BF%98%E5%92%8C%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Python高频用法备忘和总结（更）*</a>
+            <a href="/2021/01/Python%E9%AB%98%E9%A2%91%E7%94%A8%E6%B3%95%E5%A4%87%E5%BF%98%E5%92%8C%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Python高频用法备忘和整理（更）*</a>
         </h2>
 
         <div class="post-meta">
@@ -705,7 +812,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-19 23:03:22" itemprop="dateModified" datetime="2021-01-19T23:03:22+08:00">2021-01-19</time>
+                <time title="Modified: 2021-01-21 18:20:32" itemprop="dateModified" datetime="2021-01-21T18:20:32+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1265,7 +1372,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7%E5%92%8C%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">论文写作技巧和总结（更）*</a>
+            <a href="/2021/01/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7%E5%92%8C%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">论文写作技巧整理（更）*</a>
         </h2>
 
         <div class="post-meta">
@@ -1282,7 +1389,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-20 02:02:06" itemprop="dateModified" datetime="2021-01-20T02:02:06+08:00">2021-01-20</time>
+                <time title="Modified: 2021-01-21 18:20:57" itemprop="dateModified" datetime="2021-01-21T18:20:57+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1350,7 +1457,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/%E7%9B%B8%E5%85%B3%E4%BC%9A%E8%AE%AE2021-2022/" class="post-title-link" itemprop="url">相关会议期刊整理2021-2022（更）*</a>
+            <a href="/2021/01/%E7%9B%B8%E5%85%B3%E4%BC%9A%E8%AE%AE2021-2022/" class="post-title-link" itemprop="url">相关会议期刊2021-2022整理（更）*</a>
         </h2>
 
         <div class="post-meta">
@@ -1367,7 +1474,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-14 20:40:19" itemprop="dateModified" datetime="2021-01-14T20:40:19+08:00">2021-01-14</time>
+                <time title="Modified: 2021-01-21 18:22:12" itemprop="dateModified" datetime="2021-01-21T18:22:12+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1918,7 +2025,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/%E8%B5%84%E6%BA%90%E5%B9%B2%E8%B4%A7%EF%BC%88%E6%9B%B4%EF%BC%89/" class="post-title-link" itemprop="url">资源干货（更）*</a>
+            <a href="/2021/01/%E8%B5%84%E6%BA%90%E5%B9%B2%E8%B4%A7%EF%BC%88%E6%9B%B4%EF%BC%89/" class="post-title-link" itemprop="url">常用下载或在线资源整理（更）*</a>
         </h2>
 
         <div class="post-meta">
@@ -1935,7 +2042,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-10 19:21:05" itemprop="dateModified" datetime="2021-01-10T19:21:05+08:00">2021-01-10</time>
+                <time title="Modified: 2021-01-21 18:42:21" itemprop="dateModified" datetime="2021-01-21T18:42:21+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2173,7 +2280,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/TeXstudio%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">TeXstudio和LaTeX使用技巧和备忘（更）*</a>
+            <a href="/2021/01/TeXstudio%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">TeXstudio和LaTeX使用技巧整理（更）*</a>
         </h2>
 
         <div class="post-meta">
@@ -2190,7 +2297,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-12 16:37:24" itemprop="dateModified" datetime="2021-01-12T16:37:24+08:00">2021-01-12</time>
+                <time title="Modified: 2021-01-21 18:28:59" itemprop="dateModified" datetime="2021-01-21T18:28:59+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -5217,7 +5324,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/%E5%B9%B3%E6%97%B6%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AF%BE%E9%A2%98%E7%BB%84/" class="post-title-link" itemprop="url">平时值得关注的相关课题组（更）*</a>
+            <a href="/2020/12/%E5%B9%B3%E6%97%B6%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AF%BE%E9%A2%98%E7%BB%84/" class="post-title-link" itemprop="url">值得关注的researcher整理（更）*</a>
         </h2>
 
         <div class="post-meta">
@@ -5234,7 +5341,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-10 19:20:10" itemprop="dateModified" datetime="2021-01-10T19:20:10+08:00">2021-01-10</time>
+                <time title="Modified: 2021-01-21 19:07:13" itemprop="dateModified" datetime="2021-01-21T19:07:13+08:00">2021-01-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -7137,14 +7244,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -7185,7 +7292,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021-01-21</span>
+  <span itemprop="copyrightYear">2021-01-22</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
