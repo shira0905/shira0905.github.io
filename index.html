@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-22 01:46:16" itemprop="dateModified" datetime="2021-01-22T01:46:16+08:00">2021-01-22</time>
+                <time title="Modified: 2021-01-22 01:48:37" itemprop="dateModified" datetime="2021-01-22T01:48:37+08:00">2021-01-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,7 +229,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/reading/" itemprop="url" rel="index"><span itemprop="name">reading</span></a>
                 </span>
             </span>
 
@@ -244,41 +248,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <a id="more"></a>
-<h1 id="2019-ICML-Learning-to-Clear-the-Market"><a href="#2019-ICML-Learning-to-Clear-the-Market" class="headerlink" title="2019-ICML-Learning to Clear the Market"></a>2019-ICML-Learning to Clear the Market</h1><p>  I remember that one formulation of our work is via market clearing framework, where one needs to know the valuation of requesters. This work may give us some idea to clear the market when we do not know the valuation of requesters.  </p>
-<p>umm 可是 known valuation 都还没解决。</p>
-<h4 id="中心"><a href="#中心" class="headerlink" title="中心"></a>中心</h4><p>In this work, we cast the problem of predicting clearing prices into a learning frame- work and use the resulting models to perform rev- enue optimization in auctions and markets with contextual information.</p>
-<h4 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h4><p>massive dataset bids</p>
-<p>convex nature of the clearing loss function</p>
-<p>convergence rate linear</p>
-<p>还是 revenue optimization 而不是 market clearing</p>
-<p>First to use it as a loss funciton in a machine learing context</p>
-<p>什么是 market clearing loss function 呢?</p>
-<p>为什么说它的 shape 允许我们去 最后结果 price 有多保守或者多激进?</p>
-<p>什么又是 computational economic 呢, 是不是什么 strategy 呢?</p>
-<h4 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h4><p>a record -&gt; an item characterized by a feature vector</p>
-<p>也强调了一下  revenue 和 market clearing (efficient) 的区别</p>
-<p>umm 完了,又得写一篇关于 convex optimization 的总结了.</p>
-<p>这个 intuition 我没有 get 到是什么意思啊.</p>
-<p>有点怀疑这篇文章到底有没有糊弄</p>
-<h3 id="chapter2-market-clearing-loss"><a href="#chapter2-market-clearing-loss" class="headerlink" title="chapter2 market clearing loss"></a>chapter2 market clearing loss</h3><p>duality between allocation and pricing 由于这个 duality 所以有了 the  form of the loss function to fit the clearing prices??</p>
-<p>怎么理解这里的 learning 和 fit?</p>
-<p>Allocation and Pricing<br>n buyers and m sellers</p>
-<p>trade quantities of an item 看来可分</p>
-<p>page3 的第一段看起来比较符合我们的模型,<br>每个 buyer 有个 unit valuation , 当 unit 价格小于 unit valuation 的时候 buyer 才愿意买.<br>每个 seller 有个 unit cost, 当 unit 价格大于 unit cost 的时候 seller 才愿意卖.</p>
-<p>然后就产生了以下的 allocation 问题:</p>
-<p>!! 竟然是为了研究 the quantity  supplied by the seller…什么奇葩的问题啊</p>
-<p>max the gains from trade: value comsumed ? - cost of production.  这是 social welfare 吗?</p>
-<img src="/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-%E8%B0%A2%E5%B8%88%E5%85%84%E6%8E%A8%E8%8D%90%E7%9A%84%E4%B8%89%E7%AF%87%E6%96%87%E7%AB%A0%E5%88%86%E6%9E%90/image-20210122012724504.png" class="" title="image-20210122012724504">
-<p>生产了的但没有卖出去的全都得扔掉了.</p>
-<p>问题的 dual 的物理意义是什么? 看看后面解释得靠不靠谱. </p>
-<p>与 0 比较更大者</p>
-<p>prime 和 dual 是不是两问题同解? </p>
-<h1 id="2019-ICML-Learning-to-bid-in-revenue-maximizing-auctions"><a href="#2019-ICML-Learning-to-bid-in-revenue-maximizing-auctions" class="headerlink" title="2019-ICML-Learning to bid in revenue-maximizing auctions"></a>2019-ICML-Learning to bid in revenue-maximizing auctions</h1><p>  I remember that another formulation of our work via an auction framework, where one needs to know the valuation of requesters. This work may give us some idea to bid when we do not know the valuation of requesters. </p>
-<h1 id="2020-Arxiv-Bandit-Learning-in-Decentralized-Matching-Markets"><a href="#2020-Arxiv-Bandit-Learning-in-Decentralized-Matching-Markets" class="headerlink" title="2020-Arxiv-Bandit Learning in Decentralized Matching Markets"></a>2020-Arxiv-Bandit Learning in Decentralized Matching Markets</h1><p>  Current our assume a centralized operator to set the price and requester have no preference over requesters. But what if we want to eliminate the centralized operator and allow users to have preference over the requester, i.e., a user may only like to be added to some requesters. This paper may give us certain idea. </p>
-<h4 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h4><p>MAB 混合 two-sided matching market</p>
-<p>我估计剧情会是</p>
-
+          <p>关键词: revenue maximization, uncertainty valuation, online setting, auction, learning</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-%E8%B0%A2%E5%B8%88%E5%85%84%E6%8E%A8%E8%8D%90%E7%9A%84%E4%B8%89%E7%AF%87%E6%96%87%E7%AB%A0%E5%88%86%E6%9E%90/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -7251,7 +7229,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
