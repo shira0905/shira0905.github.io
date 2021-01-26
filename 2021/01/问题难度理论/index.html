@@ -29,7 +29,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://shira0905.github.io/2021/01/%E9%97%AE%E9%A2%98%E9%9A%BE%E5%BA%A6%E7%90%86%E8%AE%BA/image-20210112210250942.png">
 <meta property="article:published_time" content="2021-01-12T13:00:54.000Z">
-<meta property="article:modified_time" content="2021-01-15T08:31:43.351Z">
+<meta property="article:modified_time" content="2021-01-26T13:11:08.854Z">
 <meta property="article:author" content="匠心圆头">
 <meta property="article:tag" content="干货精华">
 <meta name="twitter:card" content="summary">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-15 16:31:43" itemprop="dateModified" datetime="2021-01-15T16:31:43+08:00">2021-01-15</time>
+                <time title="Modified: 2021-01-26 21:11:08" itemprop="dateModified" datetime="2021-01-26T21:11:08+08:00">2021-01-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -255,8 +255,6 @@
       
         <p>P, NP, NPC, NP-hard等概念的整理。</p>
 <a id="more"></a>
-<p>参考/转载自 <a target="_blank" rel="noopener" href="http://www.matrix67.com/blog/archives/105">http://www.matrix67.com/blog/archives/105</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/golden1314521/article/details/51470999">https://blog.csdn.net/golden1314521/article/details/51470999</a></p>
 <h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>当问题规模扩大后，程序需要的时间长度增长得有多快。</p>
 <p>不管数据有多大，程序处理花的时间始终是那么多的，我们就说这个程序很好，具有O(1)的时间复杂度，也称常数级复杂度；数据规模变得有多大，花的时间也跟着变得有多长，这个程序的时间复杂度就是O(n)，比如找n个数中的最大值；而像冒泡排序、插入排序等，数据扩大2倍，时间变慢4倍的，属于O(n^2)的复杂度。还有一些穷举类的算法，所需时间长度成几何阶数上涨，这就是O(a^n)的指数级复杂度，甚至O(n!)的阶乘级复杂度。</p>
 <p>容易看出，前面的几类复杂度被分为两种级别，其中后者的复杂度无论如何都远远大于前者：一种是O(1),O(log(n)),O(n^a)等，我们把它叫做多项式级的复杂度，因为它的规模n出现在底数的位置；另一种是O(a^n)和O(n!)型复杂度，它是非多项式级的，其复杂度计算机往往不能承受。</p>
@@ -285,7 +283,7 @@
 <p> “问题A可约化为问题B”有一个重要的直观意义：B的时间复杂度高于或者等于A的时间复杂度。也就是说，问题A不比问题B难。这很容易理解。既然问题A能用问题B来解决，倘若B的时间复杂度比A的时间复杂度还低了，那A的算法就可以改进为B的算法，两者的时间复杂度还是相同。正如解一元二次方程比解一元一次方程难，因为解决前者的方法可以用来解决后者。</p>
 <p>约化的标准概念就不难理解了：如果能找到这样一个变化法则，<strong>对任意一个程序A的输入，都能按这个法则变换成程序B的输入</strong>，使两程序的输出相同，那么我们说，问题A可约化为问题B。当然，我们所说的“可约化”是指的可“多项式地”约化(Polynomial-time Reducible)，即变换输入的方法是能在多项式的时间里完成的。约化的过程只有用多项式的时间完成才有意义。</p>
 <h2 id="NPC问题"><a href="#NPC问题" class="headerlink" title="NPC问题"></a>NPC问题</h2><p>约化具有传递性。自然地，我们会想问，如果不断地约化上去，不断找到能“通吃”若干小NP问题的一个稍复杂的大NP问题，那么最后是否有可能找到一个时间复杂度最高，并且能“通吃”所有的 NP问题的这样一个超级NP问题？<br>答案居然是肯定的。也就是说，存在这样一个NP问题，所有的NP问题都可以约化成它。换句话说，只要解决了这个问题，那么所有的NP问题都解决了。这种问题的存在难以置信，并且更加不可思议的是，这种问题不只一个，它有很多个，它是一类问题。这一类问题就是传说中的NPC 问题，也就是NP-完全问题。</p>
-<p>NPC问题的出现使整个NP问题的研究得到了飞跃式的发展。<del>我们有理由相信，NPC问题是最复杂的问题。再次回到全文开头，我们可以看到，人们想表达一个问题不存在多项式的高效算法时应该说它“属于NPC问题”。</del>【这得再P不等于NP的假设下吧】此时，我的目的终于达到了，我已经把NP问题和NPC问题区别开了。到此为止，本文已经写了近5000字了，我佩服你还能看到这里来，同时也佩服一下自己能写到这里来。</p>
+<p>NPC问题的出现使整个NP问题的研究得到了飞跃式的发展。<del>我们有理由相信，NPC问题是最复杂的问题。再次回到全文开头，我们可以看到，人们想表达一个问题不存在多项式的高效算法时应该说它“属于NPC问题”。</del>【这得再P不等于NP的假设下吧】此时， 已经把NP问题和NPC问题区别开了。</p>
 <p><strong>NPC问题的定义</strong>非常简单。同时满足下面两个条件的问题就是NPC问题。首先，它得是一个NP问题；然后，所有的NP问题都可以约化到它。<strong>证明一个问题是 NPC问题</strong>也很简单。先证明它至少是一个NP问题，再证明其中一个已知的NPC问题能约化到它（由约化的传递性，则NPC问题定义的第二条也得以满足；至于第一个NPC问题是怎么来的，下文将介绍），这样就可以说它是NPC问题了。</p>
 <p>既然所有的NP问题都能约化成NPC问题，那么只要任意一个NPC问题找到了一个多项式的算法，那么所有的NP问题都能用这个算法解决了，NP也就等于P 了。因此，给NPC找一个多项式算法太不可思议了。因此，前文才说，“正是NPC问题的存在，使人们相信P≠NP”。【NPC的存在也是很不可思议】我们可以就此直观地理解，NPC问题目前没有多项式的有效算法，只能用指数级甚至阶乘级复杂度的搜索。</p>
 <p>万幸的是这第一个NP-Complete问题在40年前被找到了，它就是著名的SAT问题。SAT实际上并没有真的遍历所有的算法一个个去reduce，相反，他证明了所有的算法都是可以编码为boolean formula问题，这意味着所有算法都可以使用SAT的求解器去求解，因为他们本质上就是boolean formula问题。至于怎么证的，太难了这里就不讲了。【我与其说SAT是基本，其实Circuit Satisfiability更直观。然后把Circuit reduce到3SAT也挺优雅的～】</p>
@@ -295,6 +293,9 @@
 <h2 id="NP-hard问题"><a href="#NP-hard问题" class="headerlink" title="NP-hard问题"></a>NP-hard问题</h2><p>满足NPC问题定义的第二条但不一定要满足第一条。即，所有的NP问题都可以约化到它，但是不一定是个NP问题（不一定多项式时间可验证），即使NPC问题发现了多项式级的算法，NP-Hard问题有可能仍然无法得到多项式级的算法。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>左图没问题。所有的NP问题都能约化到NP-hard，但是它不一定是一个NP问题。<br>右图【NPC作为通吃NP的大boss，难道不是应该是 NPC 属于 NP 吗】？P=NP说明，只要一个问题是多项式时间可验证一个解的，那么一定多项式时间可以求出解，所以即使通吃NP的大boss也是多项式时间可以求解的，由于NPC问题都可以互相归约，所以所有NPC时间复杂度难度相等都是多项式时间可解，虽然图中画的是P=NP=NPC，但我觉得NPC 是属于P或者NP中最难的一类。</p>
 <img src="/2021/01/%E9%97%AE%E9%A2%98%E9%9A%BE%E5%BA%A6%E7%90%86%E8%AE%BA/image-20210112210250942.png" class="" title="image-20210112210250942">
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p> <a target="_blank" rel="noopener" href="http://www.matrix67.com/blog/archives/105">http://www.matrix67.com/blog/archives/105</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/golden1314521/article/details/51470999">https://blog.csdn.net/golden1314521/article/details/51470999</a></p>
+
     </div>
 
     
@@ -377,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%A3%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">可解的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">P类问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NP%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">NP问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9ENP%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">非NP问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-NP%E5%90%97"><span class="nav-number">6.</span> <span class="nav-text">P&#x3D;NP吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E7%BA%A6%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">7.</span> <span class="nav-text">归约的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NPC%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">NPC问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NP-hard%E9%97%AE%E9%A2%98"><span class="nav-number">9.</span> <span class="nav-text">NP-hard问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%A3%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">可解的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">P类问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NP%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">NP问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9ENP%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">非NP问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-NP%E5%90%97"><span class="nav-number">6.</span> <span class="nav-text">P&#x3D;NP吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E7%BA%A6%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">7.</span> <span class="nav-text">归约的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NPC%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">NPC问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NP-hard%E9%97%AE%E9%A2%98"><span class="nav-number">9.</span> <span class="nav-text">NP-hard问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">11.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -393,7 +394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -441,7 +442,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021-01-24</span>
+  <span itemprop="copyrightYear">2021-01-26</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
