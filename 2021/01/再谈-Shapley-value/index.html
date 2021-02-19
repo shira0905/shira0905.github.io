@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="这次主要重实现">
+  <meta name="description" content="这次重实现, 延伸和应用.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="再谈 Shapley value">
 <meta property="og:url" content="https://shira0905.github.io/2021/01/%E5%86%8D%E8%B0%88-Shapley-value/">
 <meta property="og:site_name" content="圆头修行记">
-<meta property="og:description" content="这次主要重实现">
+<meta property="og:description" content="这次重实现, 延伸和应用.">
 <meta property="og:locale">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E5%86%8D%E8%B0%88-Shapley-value/image-20210127133756543.png">
 <meta property="article:published_time" content="2021-01-23T00:41:31.000Z">
-<meta property="article:modified_time" content="2021-01-25T08:35:35.189Z">
+<meta property="article:modified_time" content="2021-02-19T14:39:20.293Z">
 <meta property="article:author" content="匠心圆头">
+<meta property="article:tag" content="高度相关">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shira0905.github.io/2021/01/%E5%86%8D%E8%B0%88-Shapley-value/image-20210127133756543.png">
 
 <link rel="canonical" href="https://shira0905.github.io/2021/01/%E5%86%8D%E8%B0%88-Shapley-value/">
 
@@ -223,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-25 16:35:35" itemprop="dateModified" datetime="2021-01-25T16:35:35+08:00">2021-01-25</time>
+                <time title="Modified: 2021-02-19 22:39:20" itemprop="dateModified" datetime="2021-02-19T22:39:20+08:00">2021-02-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -250,11 +253,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这次主要重实现</p>
+        <p>这次重实现, 延伸和应用.</p>
 <a id="more"></a>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/85791430">https://zhuanlan.zhihu.com/p/85791430</a></p>
+<h1 id="如何用于预测特征-题外话"><a href="#如何用于预测特征-题外话" class="headerlink" title="如何用于预测特征(题外话)"></a>如何用于预测特征(题外话)</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/85791430">https://zhuanlan.zhihu.com/p/85791430</a></p>
 <p>Shapley值是一个来自合作博弈论（coalitional game theory）的方法，由Shapley在1953年创造的Shapley值是一种根据玩家对总支出的贡献来为玩家分配支出的方法，玩家在联盟中合作并从这种合作中获得一定的收益。</p>
-<h2 id="如何用于预测特征"><a href="#如何用于预测特征" class="headerlink" title="如何用于预测特征"></a>如何用于预测特征</h2><p>假设以下情形：已经训练了一个机器学习模型来预测公寓价格，分别有park、size、floor、car四个特征。某个面积为50平方米（size=50）、位于二楼（floor=2nd）、附近有一个公园（park=nearby）、禁止猫咪（cat=banned）的公寓，它预测价格为300,000欧元，你需要解释这个预测，即每个特征是如何促进预测的？</p>
+<h2 id="toy-example"><a href="#toy-example" class="headerlink" title="toy example"></a>toy example</h2><p>假设以下情形：已经训练了一个机器学习模型来预测公寓价格，分别有park、size、floor、car四个特征。某个面积为50平方米（size=50）、位于二楼（floor=2nd）、附近有一个公园（park=nearby）、禁止猫咪（cat=banned）的公寓，它预测价格为300,000欧元，你需要解释这个预测，即每个特征是如何促进预测的？</p>
 <p>当所有公寓的平均预测为310,000欧元时，与平均预测相比，每个特征值对预测的贡献是多少？<br>【这句话什么意思呢? 什么是平均预测】</p>
 <p>线性回归模型的答案很简单，每个特征的贡献是特征的权重乘以特征值，但这仅适用于线性模型，</p>
 <p>在我们的公寓示例中，park=nearby，cat=banned，size=50，floor=2nd的特征值共同实现了300,000欧元的预测。我们的目标是解释实际预测（300,000欧元）和平均预测（310,000欧元）之间的差异：-10,000欧元。答案可能是：park=nearby贡献了30,000欧元，size=50贡献了10,000欧元，floor=2nd贡献了0欧元，cat=banned贡献了-50,000欧元，这些贡献加起来为-10,000欧元，即最终预测减去平均预测的公寓价格。</p>
@@ -283,39 +286,59 @@
 <p>特征值（feature value）是实例特征的数值或类别值</p>
 <p>Shapley值（Shapley value）是特征对预测的贡献</p>
 <p>值函数（value function）是联盟（feature values）的支出函数。</p>
-<h2 id="measure-of-centrality-in-networks"><a href="#measure-of-centrality-in-networks" class="headerlink" title="measure of centrality in networks."></a>measure of centrality in networks.</h2><h2 id="Efficient-Computation-of-the-Shapley-Value-for-Game-Theoretic-Network-Centrality"><a href="#Efficient-Computation-of-the-Shapley-Value-for-Game-Theoretic-Network-Centrality" class="headerlink" title="Efficient Computation of the Shapley Value for Game-Theoretic Network Centrality"></a>Efficient Computation of the Shapley Value for Game-Theoretic Network Centrality</h2><p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1402.0567.pdf">https://arxiv.org/pdf/1402.0567.pdf</a></p>
-<p>Tomasz P. Michalak, Karthik V. Aadithya, Piotr L. Szczepanski, Balaraman Ravindran, and Nicholas R. Jennings. 2013. Efficient computation of the shapley value for game-theoretic network centrality. <em>J. Artif. Int. Res.</em> 46, 1 (January 2013), 607–650.</p>
-<p>Cited by 130 · ‎</p>
-<p>measure of centrality in networks.</p>
-<p>To date, the only practicable approach to compute Shapley value-based centrality has been via <strong>Monte Carlo simulations</strong> which are computationally expensive and not guaranteed to give an exact answer.</p>
-<p>we develop exact analytical formulae for Shap- ley value-based centrality in both weighted and unweighted networks and develop efficient (polynomial time) and exact algorithms based on them.</p>
-<p> they deliver significant speedups over the Monte Carlo approach</p>
-<p> construct a consistent ranking of individual nodes using such group results??? </p>
-<p>In more detail, for a given agent, such an individual marginal contribution is measured as the weighted average marginal increase in the payoff of any coalition that this agent could potentially join. Shapley famously proved that his concept—known since then as the Shapley value—is the only division scheme that meets certain desirable normative properties.3 </p>
-<p>key idea of the game theoretic centrality is to define a cooperative game over a network in which </p>
+<h2 id="python-SHAP"><a href="#python-SHAP" class="headerlink" title="python SHAP"></a>python SHAP</h2><p>有内嵌方程, 可以用夏普利值来来解读机器学习模型. 基于树的模型.</p>
+<h1 id="老板建议sampling"><a href="#老板建议sampling" class="headerlink" title="老板建议sampling"></a>老板建议sampling</h1><p>我跟老板说了centrality那篇里面的算法, 不过老板似乎是一点兴趣都没有, 建议我用sampling来算, 可能是可以拓展成bandit之类的模型? </p>
+<h2 id="参考1-dis-aggregation"><a href="#参考1-dis-aggregation" class="headerlink" title="参考1: (dis)aggregation"></a>参考1: (dis)aggregation</h2><p>Disaggregating User Evaluations Using the Shapley Value</p>
+<p><strong>可以得到的</strong></p>
 <ul>
-<li>agents are the nodes, </li>
-<li>coalitions are the groups of nodes, </li>
-<li>and payoffs of coalitions are defined so as to meet requirements of a given application</li>
-</ul>
-<p>?? This means that the Shapley value of each agent in such a game can then be interpreted as a centrality measure because it represents the average marginal contribution made by each node to every coalition of the other nodes.4</p>
-<p>?? In other words, the Shapley value answers the question of how to construct a <strong>consistent</strong> ranking of individual nodes once groups of nodes have been evaluated.</p>
-<p>We denote them g2,g3,g4, and g5, respectively. While each of these games captures a different flavor of centrality, </p>
-<p>【Bachrach, Rosenschein, and Porat (2008b) showed that the computation of the Banzhaf index for connectivity games, in which agents own vertices and control adjacent edges and aim to become connected to the certain set of primary edges, is #P-Complete.】</p>
-<p>he problem of maximizing the prob- ability of hitting a strategically chosen hidden virtual network by placing a wiretap on a single link of a communication network was analysed by Aziz, Lachish, Paterson, and Savani (2009b).  有趣</p>
-<h2 id="chapter-4"><a href="#chapter-4" class="headerlink" title="chapter 4"></a>chapter 4</h2><p>The third game defines sphere of influence as the set of all nodes within a cutoff distance of C (as measured by shortest path lengths on the weighted graph). </p>
-<p>Suri and Narahari (2010) </p>
-<h1 id="老板说用sampling来算"><a href="#老板说用sampling来算" class="headerlink" title="老板说用sampling来算"></a>老板说用sampling来算</h1><p>我也不知道为什么要用sampling来算, 可能是可以拓展成bandit之类的模型? </p>
-<h2 id="Disaggregating-User-Evaluations-Using-the-Shapley-Value"><a href="#Disaggregating-User-Evaluations-Using-the-Shapley-Value" class="headerlink" title="Disaggregating User Evaluations Using the Shapley Value"></a>Disaggregating User Evaluations Using the Shapley Value</h2><h4 id="可以得到的"><a href="#可以得到的" class="headerlink" title="可以得到的"></a>可以得到的</h4><ul>
 <li>aggregation of evaluations across users</li>
 <li>composed services</li>
 </ul>
-<h4 id="需要求得"><a href="#需要求得" class="headerlink" title="需要求得"></a>需要求得</h4><ul>
+<p><strong>需要求的</strong></p>
+<ul>
 <li>valuations for the single component</li>
 </ul>
-<p>aggregation and disaggregation</p>
 <p>最后一段讲了一些应用: worker 在团队中的贡献, learning algorithm 中部分training data 或者部分特征的做做</p>
-<h2 id="Xie-MOBIHOC-2021"><a href="#Xie-MOBIHOC-2021" class="headerlink" title="Xie MOBIHOC 2021"></a>Xie MOBIHOC 2021</h2><h4 id="什么是cooperation-preference"><a href="#什么是cooperation-preference" class="headerlink" title="什么是cooperation preference"></a>什么是cooperation preference</h4><h4 id="计算Shapley-value"><a href="#计算Shapley-value" class="headerlink" title="计算Shapley value"></a>计算Shapley value</h4><p>design computationally efficient randomized algorithms with theoretical guarantees to fully cover the computational space of our generalized Shapley value.</p>
+<h2 id="参考2-Xie-2021"><a href="#参考2-Xie-2021" class="headerlink" title="参考2: Xie_2021"></a>参考2: Xie_2021</h2><p>MOBIHOC2021</p>
+<h3 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h3><p>cooperation preference: 提出这个概念的原因是注意到不同的coalition形成的可能性其实是不一样的, 而传统的计算方法其实是假设每个grand coalition的排列出现的概率一等. 这个想法确实很妙, 这才是有意思的研究嘛!</p>
+<p>design computationally efficient randomized algorithms with theoretical guarantees to fully cover the computational space of our generalized Shapley value.</p>
+<h3 id="Sec2-2-model-了-cooperation-preference"><a href="#Sec2-2-model-了-cooperation-preference" class="headerlink" title="Sec2.2 model 了 cooperation preference"></a>Sec2.2 model 了 cooperation preference</h3><ul>
+<li><p>probabilistic representation of the classical Shapley value.<br>stochastic process to capture the coliation preference, 也就是用 joining probability 去 capture the cooperation preference</p>
+</li>
+<li><p>有两个数学模型: group-wise 和 pair-wise</p>
+<p>这个不是关键点, Monte Carlo algorithm 只看 group-wise 应该就可以.</p>
+</li>
+</ul>
+<p>closed-form formular for the payoff division </p>
+<ul>
+<li><p>probability distribution μ to capture the preference profile</p>
+<p>也就是所有的成员的conditional probability 都相乘, 还是看example比较直观: </p>
+</li>
+</ul>
+<img src="/2021/01/%E5%86%8D%E8%B0%88-Shapley-value/image-20210127133756543.png" class="" title="image-20210127133756543">
+<h3 id="Monte-Carlo"><a href="#Monte-Carlo" class="headerlink" title="Monte Carlo"></a>Monte Carlo</h3><h4 id="什么是-一个-texttt-MC-Oracle-μ-of-mu"><a href="#什么是-一个-texttt-MC-Oracle-μ-of-mu" class="headerlink" title="什么是 一个 $\texttt{MC-Oracle}(μ)$  of $\mu$"></a>什么是 一个 $\texttt{MC-Oracle}(μ)$  of $\mu$</h4><p>从其中生成 K orderings? 一个ordering 是什么? </p>
+<p>一个ordering 可以得到一个 sample: 也就是对 Shapley value of n的一个sample</p>
+<p>用所有样本的均值去estimate $\phi_n(V)$ </p>
+<h4 id="算法里面的line3是怎么来的"><a href="#算法里面的line3是怎么来的" class="headerlink" title="算法里面的line3是怎么来的"></a>算法里面的line3是怎么来的</h4><p>We next investigate how to design a computationally efficient MC-Oracle(μ). </p>
+<ul>
+<li><p>Algorithm 2: 看看怎么实现实现group-wise O(N) 即可.</p>
+<ul>
+<li><p>输入: 爷爷R, F</p>
+</li>
+<li><p>输出: 一个排列</p>
+</li>
+<li><p>算法:</p>
+<p>t=1-N 时, 根据Eq(4)评估conditional probability (conditional on  )<br>从上述的distributions中生成a player, 这里应该是随机生成的吧?  根据上一行的随机分布生成</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>好吧, 完全是蒙特卡洛了, 就是根据概率生成嘛. 就是那个概率的计算还需要好好理解一下. </p>
+<p>【那怎么让计算机能够根据任意一个随机分布 产生样本呢? 好像这个就是蒙特卡洛采样算法的动机是不是, 重要性采样吗? 还是需要复习一下的. B站上面下载的关于Monte Carlo的视频讲的真的很好, 我也有关于Monte Carlo的总结帖, 到时候再来放超链接. 】</p>
+<h3 id="思考到我的问题"><a href="#思考到我的问题" class="headerlink" title="思考到我的问题"></a>思考到我的问题</h3><p>如果我们有preference的话, 那如果现在的U是我的朋友多一点, 那么我愿意加入跟他们一起合作.<br>但在我们的问题里面, 而且coliation 的formation并不是按照概率的, 而是按照p这个形成的. 也就是说我并不能自己决定是否加入U, 这里统一定价的话总觉得应该把大家都看成一台台电台更合理, 没有感情的赚钱工作机器, 所以无法吧preference model出来.  </p>
+<p>没有preference的话, 也就是一个special case, 可以直接用algo1和algo2.</p>
+<h1 id="实现sampling"><a href="#实现sampling" class="headerlink" title="实现sampling"></a>实现sampling</h1><p> implementation of <a target="_blank" rel="noopener" href="https://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf">Shapley values</a> which uses a <a target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s10115-013-0679-x">monte-carlo approximation</a> algorithm.</p>
+<p>【我们的sampling 怎么sample呢】</p>
 
     </div>
 
@@ -324,6 +347,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E5%BA%A6%E7%9B%B8%E5%85%B3/" rel="tag"># 高度相关</a>
+          </div>
 
         
 
@@ -331,8 +357,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/%E4%BC%98%E5%8C%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" rel="prev" title="优化基础知识整理(更)*">
-      <i class="fa fa-chevron-left"></i> 优化基础知识整理(更)*
+    <a href="/2021/01/%E4%BC%98%E5%8C%96%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" rel="prev" title="优化基础知识整理 [未完,待填坑]*">
+      <i class="fa fa-chevron-left"></i> 优化基础知识整理 [未完,待填坑]*
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-0123S%E5%A4%A7%E6%9D%82%E7%83%A9/" rel="next" title="文献阅读 0123S大杂烩">
@@ -396,7 +422,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8%E4%BA%8E%E9%A2%84%E6%B5%8B%E7%89%B9%E5%BE%81"><span class="nav-number">1.</span> <span class="nav-text">如何用于预测特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#measure-of-centrality-in-networks"><span class="nav-number">2.</span> <span class="nav-text">measure of centrality in networks.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Efficient-Computation-of-the-Shapley-Value-for-Game-Theoretic-Network-Centrality"><span class="nav-number">3.</span> <span class="nav-text">Efficient Computation of the Shapley Value for Game-Theoretic Network Centrality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-4"><span class="nav-number">4.</span> <span class="nav-text">chapter 4</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%81%E6%9D%BF%E8%AF%B4%E7%94%A8sampling%E6%9D%A5%E7%AE%97"><span class="nav-number"></span> <span class="nav-text">老板说用sampling来算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Disaggregating-User-Evaluations-Using-the-Shapley-Value"><span class="nav-number">1.</span> <span class="nav-text">Disaggregating User Evaluations Using the Shapley Value</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E5%BE%97%E5%88%B0%E7%9A%84"><span class="nav-number">1.0.1.</span> <span class="nav-text">可以得到的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E6%B1%82%E5%BE%97"><span class="nav-number">1.0.2.</span> <span class="nav-text">需要求得</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xie-MOBIHOC-2021"><span class="nav-number">2.</span> <span class="nav-text">Xie MOBIHOC 2021</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFcooperation-preference"><span class="nav-number">2.0.1.</span> <span class="nav-text">什么是cooperation preference</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97Shapley-value"><span class="nav-number">2.0.2.</span> <span class="nav-text">计算Shapley value</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8%E4%BA%8E%E9%A2%84%E6%B5%8B%E7%89%B9%E5%BE%81-%E9%A2%98%E5%A4%96%E8%AF%9D"><span class="nav-number">1.</span> <span class="nav-text">如何用于预测特征(题外话)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#toy-example"><span class="nav-number">1.1.</span> <span class="nav-text">toy example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-SHAP"><span class="nav-number">1.2.</span> <span class="nav-text">python SHAP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%80%81%E6%9D%BF%E5%BB%BA%E8%AE%AEsampling"><span class="nav-number">2.</span> <span class="nav-text">老板建议sampling</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%831-dis-aggregation"><span class="nav-number">2.1.</span> <span class="nav-text">参考1: (dis)aggregation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%832-Xie-2021"><span class="nav-number">2.2.</span> <span class="nav-text">参考2: Xie_2021</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%80%9D%E6%83%B3"><span class="nav-number">2.2.1.</span> <span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sec2-2-model-%E4%BA%86-cooperation-preference"><span class="nav-number">2.2.2.</span> <span class="nav-text">Sec2.2 model 了 cooperation preference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monte-Carlo"><span class="nav-number">2.2.3.</span> <span class="nav-text">Monte Carlo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-%E4%B8%80%E4%B8%AA-texttt-MC-Oracle-%CE%BC-of-mu"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">什么是 一个 $\texttt{MC-Oracle}(μ)$  of $\mu$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E9%87%8C%E9%9D%A2%E7%9A%84line3%E6%98%AF%E6%80%8E%E4%B9%88%E6%9D%A5%E7%9A%84"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">算法里面的line3是怎么来的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E5%88%B0%E6%88%91%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.2.4.</span> <span class="nav-text">思考到我的问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0sampling"><span class="nav-number">3.</span> <span class="nav-text">实现sampling</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -412,14 +438,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -460,7 +486,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021-01-26</span>
+  <span itemprop="copyrightYear">2021-02-20</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="EM算法总结.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EM算法总结 [未完, 待填坑]">
+<meta property="og:url" content="https://shira0905.github.io/2021/02/EM%E7%AE%97%E6%B3%95/">
+<meta property="og:site_name" content="圆头修行记">
+<meta property="og:description" content="EM算法总结.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-02-04T11:35:09.000Z">
+<meta property="article:modified_time" content="2021-02-19T17:28:59.761Z">
+<meta property="article:author" content="匠心圆头">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://shira0905.github.io/2021/02/EM%E7%AE%97%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>EM算法总结 [未完, 待填坑] | 圆头修行记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头修行记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">尽是些粗制滥造之作</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2021/02/EM%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="匠心圆头">
+      <meta itemprop="description" content="问题解决家 <br> 方法试验家 <br> 习惯养成家 <br> 深度工作家">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头修行记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          EM算法总结 [未完, 待填坑]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-04 19:35:09" itemprop="dateCreated datePublished" datetime="2021-02-04T19:35:09+08:00">2021-02-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-20 01:28:59" itemprop="dateModified" datetime="2021-02-20T01:28:59+08:00">2021-02-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/base/" itemprop="url" rel="index"><span itemprop="name">base</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>EM算法总结.</p>
+<a id="more"></a>
+<h1 id="问题引出"><a href="#问题引出" class="headerlink" title="问题引出"></a>问题引出</h1><p>极大似然和EM(Expectation Maximization)算法，与其说是一种算法，不如说是一种解决问题的思想, 解决问题的一类框架.</p>
+<h2 id="一般场景"><a href="#一般场景" class="headerlink" title="一般场景"></a>一般场景</h2><p>假设现在有两枚硬币1和2，,随机抛掷后正面朝上概率分别为 $p$ 和 $q$ 。<br>为了估计这两个概率，做实验，每次取一枚硬币，连掷5下，记录下结果，如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">硬币</th>
+<th style="text-align:center">结果</th>
+<th style="text-align:center">统计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">正正反正反</td>
+<td style="text-align:center">3正-2反</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">反反正正反</td>
+<td style="text-align:center">2正-3反</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">正反反反反</td>
+<td style="text-align:center">1正-4反</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">正反反正正</td>
+<td style="text-align:center">3正-2反</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">反正正反反</td>
+<td style="text-align:center">2正-3反</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以很容易地估计出 $p$ 和 $q$，如下：<br>$p = （3+1+2）/ 15 = 0.4$<br>$q=  （2+3）/10 = 0.5$</p>
+<h2 id="现有场景"><a href="#现有场景" class="headerlink" title="现有场景"></a>现有场景</h2><p>统计机器学习 书上3枚硬币的例子:</p>
+<blockquote>
+<p>硬币B和硬币C 抛掷后正面向上的概率分别为 $p$ 和 $q$,<br>硬币A随机抛掷后正面向上的概率是$\pi$ .<br>如果A正面则抛B, 如果A反面则抛C, 以B或C的结果作为观测值, A的结果是隐变量不能被观测到.</p>
+</blockquote>
+<p>还是上表的问题(跟书上例子不太一样, 不用$\pi$)，现在我们抹去每轮投掷时使用的硬币标记，如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">硬币</th>
+<th style="text-align:center">结果</th>
+<th style="text-align:center">统计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">正正反正反</td>
+<td style="text-align:center">3正-2反</td>
+</tr>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">反反正正反</td>
+<td style="text-align:center">2正-3反</td>
+</tr>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">正反反反反</td>
+<td style="text-align:center">1正-4反</td>
+</tr>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">正反反正正</td>
+<td style="text-align:center">3正-2反</td>
+</tr>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">反正正反反</td>
+<td style="text-align:center">2正-3反</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>存在隐变量$z,$ $z=(z1,z2,z3,z4,z5)$未知, 所以有32中可能<br>我们必须先估计出$z$，然后才能进一步估计  $p$ 和 $q$ .<br>但要估计$z$，我们又得知道  $p$ 和 $q$ ，这样我们才能用最大似然概率法则去估计$z$.<br>这不是鸡生蛋和蛋生鸡的问题吗，如何破？</p>
+<h1 id="EM初级版"><a href="#EM初级版" class="headerlink" title="EM初级版"></a>EM初级版</h1><ul>
+<li>随机初始化 $p=0.2, q=0.7$.</li>
+<li>如果以上为真, 那么看看那5轮, 分别求抛掷的是硬币1的概率和抛掷的是硬币2的概率,<br>以第一轮为例,<br>如果是硬币1: 得出3正2反的概率为 $0.2\times0.2\times0.2\times0.8\times0.8 = 0.00512$ ,<br>如果是硬币2: 得出3正2反的概率为 $0.7\times0.7\times0.7\times0.3\times0.3=0.03087$<br>然后依次求出其他4轮中的相应概率。做成表格如下：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">轮数</th>
+<th style="text-align:center">若是硬币1</th>
+<th style="text-align:center">若是硬币2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.00512</td>
+<td style="text-align:center">0.03087</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.02048</td>
+<td style="text-align:center">0.01323</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.08192</td>
+<td style="text-align:center">0.00567</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.00512</td>
+<td style="text-align:center">0.03087</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0.02048</td>
+<td style="text-align:center">0.01323</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>按照最大似然法则 (不同模型导致”像这样的观测”的可能性大者胜出)：<br> 第1轮中最有可能的是<strong>硬币2</strong><br> 第2轮中最有可能的是<strong>硬币1</strong><br> 第3轮中最有可能的是<strong>硬币1</strong><br> 第4轮中最有可能的是<strong>硬币2</strong><br> 第5轮中最有可能的是<strong>硬币1</strong></p>
+<p>我们就把上面的值估计为隐变量的值, 也就是A的结果, 是$(0,1,1,0,1)$</p>
+</li>
+<li><p>如果以上为真, 那么然后按照最大似然概率法则来估计新的 $p$ 和 $q$</p>
+<p>第1,4轮都是硬币1的结果  $p = (3+3)/10 = 0.6$<br>第2,3,5轮都是硬币2的结果 $q=(2+1+2)/15 = 0.33$</p>
+</li>
+<li><p>如果以上为真, 那么看看那5轮, 分别抛掷B和C的概率,<br>以第一轮为例,<br>如果是硬币1，得出3正2反的概率为 $0.6\times 0.6\times 0.4\times 0.6\times 0.4 $<br>如果是硬币2，得出3正2反的概率为 $033\times 0.33\times 0.66\times 0.33\times 0.66 $<br>然后依次求出其他4轮中的相应概率。做成表格如下：</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">轮数</th>
+<th style="text-align:center">若是硬币1</th>
+<th style="text-align:center">若是硬币2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.02304</td>
+<td style="text-align:center">0.01646</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.03456</td>
+<td style="text-align:center">0.0329218</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.05184</td>
+<td style="text-align:center">0.06584</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.02304</td>
+<td style="text-align:center">0.01646</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0.03456</td>
+<td style="text-align:center">0.0329218</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>按照最大似然法则 (不同模型导致”像这样的观测”的可能性大者胜出)：<br> 第1轮中最有可能的是<strong>硬币1</strong><br> 第2轮中最有可能的是<strong>硬币1</strong><br> 第3轮中最有可能的是<strong>硬币2</strong><br> 第4轮中最有可能的是<strong>硬币1</strong><br> 第5轮中最有可能的是<strong>硬币1</strong></p>
+<p> 隐变量的值, 也就是A的结果, 估计为$(1,1,0,1,1)$</p>
+</li>
+<li><p>如果以上为真, 那么然后按照最大似然概率法则来估计新的$p$ 和 $q$</p>
+<p>第12,4,5轮都是硬币1的结果  $p = 10/20 = 0.5$<br>第3轮都是硬币2的结果 $q=1/5 = 0.2$</p>
+</li>
+</ul>
+<p>看到没？我们估计的$p$ 和 $q$相比于它们的初始值，更接近它们的真实值了！<br>可以期待，我们继续按照上面的思路，用估计出的p和q再来估计z，再用z来估计新的$p$ 和 $q$，反复迭代下去，就可以最终得到$p = 0.4, q=0.5$，此时无论怎样迭代，$p$ 和 $q$ 的值都会保持0.4和0.5不变，于是乎，我们就找到了$p$ 和 $q$的最大似然估计。</p>
+<p>这里有两个问题：<br> 1、新估计出的p和q一定会更接近真实的 $p$ 和 $q$ ？<br> 答案是：没错，一定会更接近真实的 $p$ 和 $q$ ，数学可以证明，但这超出了本文的主题，请参阅其他书籍或文章。<br> 2、迭代一定会收敛到真实的 $p$ 和 $q$ 吗？<br> 答案是：不一定，取决于$p$ 和 $q$ 的初始化值.</p>
+<h1 id="EM进阶版"><a href="#EM进阶版" class="headerlink" title="EM进阶版"></a>EM进阶版</h1><p>在初级版本中, 我们用最大似然法则估计出隐变量的值, 比如$p,q$给为初始值时候, 用最大似然估计出隐变量是$(0,1,1,0,1)$,<br>然后再用z值按照最大似然概率法则估计新的 $p$ 和 $q$<br>也就是说，我们使用了一个最可能的z值，而不是所有可能的$z$值。<br>如果考虑所有可能的z值，对每一个z值都估计出一个新的 $p$ 和 $q$ ，将每一个z值概率大小作为权重，将所有新的 $p$ 和 $q$ 分别加权相加，这样的 $p$ 和 $q$ 应该会更好一些。</p>
+<p>所有的z值有多少个呢？显然，有$2^5=32$种，需要我们进行32次估值？？不需要，我们可以<strong>用期望来简化运算</strong>。</p>
+<ul>
+<li>随机初始化 $p=0.2, q=0.7$</li>
+<li>如果以上为真, 那么看看那5轮, 分别抛掷B和C的概率,<br>以第一轮为例,<br>如果是硬币1，得出3正2反的概率为 $0.2\times 0.2\times 0.2\times 0.8\times 0.8 = 0.00512$<br>如果是硬币2，得出3正2反的概率为$0.7\times 0.7\times 0.7\times 0.3\times 0.3=0.03087$<br>然后依次求出其他4轮中的相应概率。做成表格如下：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">轮数</th>
+<th style="text-align:center">若是硬币1</th>
+<th style="text-align:center">若是硬币2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.00512</td>
+<td style="text-align:center">0.03087</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.02048</td>
+<td style="text-align:center">0.01323</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.08192</td>
+<td style="text-align:center">0.00567</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.00512</td>
+<td style="text-align:center">0.03087</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0.02048</td>
+<td style="text-align:center">0.01323</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>按照最大似然法则 (不同模型导致”像这样的观测”的可能性大者胜出)：<br>第1轮中, 用硬币1的概率是<strong>0.00512/(0.00512+0.03087)=0.14</strong>; 使用硬币2的概率是<strong>1-0.14=0.86</strong><br>然后依次求出其他4论使用硬币1和硬币2的概率，如下：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">轮数</th>
+<th style="text-align:center">z_i=硬币1</th>
+<th style="text-align:center">z_i=硬币2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.14</td>
+<td style="text-align:center">0.86</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.61</td>
+<td style="text-align:center">0.39</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.94</td>
+<td style="text-align:center">0.06</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.14</td>
+<td style="text-align:center">0.86</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0.61</td>
+<td style="text-align:center">0.39</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>上表中的右两列表示期望值。看第一行，0.86表示，从期望的角度看，这轮抛掷使用硬币2的概率是0.86。相比于前面的方法，我们按照最大似然概率，直接将第1轮估计为用的硬币2，此时的我们更加谨慎，我们只说，有0.14的概率是硬币1，有0.86的概率是硬币2，不再是非此即彼。这样我们在估计p或者q时，就可以用上全部的数据，而不是部分的数据，显然这样会更好一些。</p>
+<p>这一步，<strong>我们实际上是估计出了z的概率分布，这步被称作E步</strong>。</p>
+<ul>
+<li>结合下表：我们按照期望最大似然概率的法则来估计新的 $p$ 和 $q$ ：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">硬币</th>
+<th style="text-align:center">结果</th>
+<th style="text-align:center">统计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">正正反正反</td>
+<td style="text-align:center">3正-2反</td>
+</tr>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">反反正正反</td>
+<td style="text-align:center">2正-3反</td>
+</tr>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">正反反反反</td>
+<td style="text-align:center">1正-4反</td>
+</tr>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">正反反正正</td>
+<td style="text-align:center">3正-2反</td>
+</tr>
+<tr>
+<td style="text-align:center">Unknown</td>
+<td style="text-align:center">反正正反反</td>
+<td style="text-align:center">2正-3反</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>B的结果  <script type="math/tex">p = \frac{抛B出现正面的总次数}{抛B的总次数} = \frac{0.14*3+0.61*2+0.94*1+0.14*3+0.61*2}{0.14*5+0.61*5+0.94*5+0.14*5+0.61*5} = 4.22/12.2=0.35</script></p>
+<script type="math/tex; mode=display">0.14*(3/5)+0.61*(2/5)+0.94*(1/5)+0.14*(3/5)+0.61*(2/5) = 4.22/5</script><p>【为什么不能像这样算呢？】</p>
+<p>这步中，我<strong>们根据E步中求出的z的概率分布，依据最大似然概率法则去估计p和q，被称作M步</strong>。</p>
+<h1 id="EM的严谨推导"><a href="#EM的严谨推导" class="headerlink" title="EM的严谨推导"></a>EM的严谨推导</h1><h1 id="EM算法的应用"><a href="#EM算法的应用" class="headerlink" title="EM算法的应用"></a>EM算法的应用</h1><p>不同于监督学习, 有时训练数据只有输入没有输出, 从这样的数据学习模型称为非监督学习问题.</p>
+<p>EM算法可以用于生成模型的非监督学习, 生成模型由联合概率分布 $P(X,Y)$ 表示, 可以认为非监督学习训练数据是联合概率分布产生的数据, X为观测数据, Y为未观测数据.</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1121509ac1dc">如何感性地理解EM算法? — 简书</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/%E9%9A%90%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/" rel="prev" title="隐马尔科夫模型总结 [未完,待填坑]">
+      <i class="fa fa-chevron-left"></i> 隐马尔科夫模型总结 [未完,待填坑]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/NLP-Notebook/" rel="next" title="NLP Notebook (更)*">
+      NLP Notebook (更)* <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%BC%95%E5%87%BA"><span class="nav-number">1.</span> <span class="nav-text">问题引出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%9C%BA%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">一般场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E6%9C%89%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.</span> <span class="nav-text">现有场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EM%E5%88%9D%E7%BA%A7%E7%89%88"><span class="nav-number">2.</span> <span class="nav-text">EM初级版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EM%E8%BF%9B%E9%98%B6%E7%89%88"><span class="nav-number">3.</span> <span class="nav-text">EM进阶版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EM%E7%9A%84%E4%B8%A5%E8%B0%A8%E6%8E%A8%E5%AF%BC"><span class="nav-number">4.</span> <span class="nav-text">EM的严谨推导</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EM%E7%AE%97%E6%B3%95%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">EM算法的应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="匠心圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">匠心圆头</p>
+  <div class="site-description" itemprop="description">问题解决家 <br> 方法试验家 <br> 习惯养成家 <br> 深度工作家</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021-02-20</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">匠心圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

@@ -22,13 +22,13 @@
 
   <meta name="description" content="深度优先搜索一分耕耘一分收获。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="九章05DFS">
+<meta property="og:title" content="九章05DFS [未完,弃坑]">
 <meta property="og:url" content="https://shira0905.github.io/2020/12/%E4%B9%9D%E7%AB%A005DFS/">
 <meta property="og:site_name" content="圆头修行记">
 <meta property="og:description" content="深度优先搜索一分耕耘一分收获。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-12-29T05:13:48.000Z">
-<meta property="article:modified_time" content="2021-01-07T12:09:29.870Z">
+<meta property="article:modified_time" content="2021-02-19T15:44:18.035Z">
 <meta property="article:author" content="匠心圆头">
 <meta name="twitter:card" content="summary">
 
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>九章05DFS | 圆头修行记</title>
+  <title>九章05DFS [未完,弃坑] | 圆头修行记</title>
   
 
 
@@ -206,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          九章05DFS
+          九章05DFS [未完,弃坑]
         </h1>
 
         <div class="post-meta">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-07 20:09:29" itemprop="dateModified" datetime="2021-01-07T20:09:29+08:00">2021-01-07</time>
+                <time title="Modified: 2021-02-19 23:44:18" itemprop="dateModified" datetime="2021-02-19T23:44:18+08:00">2021-02-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,9 +252,9 @@
       
         <p>深度优先搜索一分耕耘一分收获。</p>
 <a id="more"></a>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><h3 id="问题模型："><a href="#问题模型：" class="headerlink" title="问题模型："></a>问题模型：</h3><p>组合搜索问题：求出所有满足条件的组合，组合中的元素是顺序无关的。<br>排列搜索问题：求出所有满足条件的排列，组合中的元素是顺序相关的。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="问题模型："><a href="#问题模型：" class="headerlink" title="问题模型："></a>问题模型：</h3><p>组合搜索问题：求出所有满足条件的组合，组合中的元素是顺序无关的。<br>排列搜索问题：求出所有满足条件的排列，组合中的元素是顺序相关的。</p>
 <h3 id="独孤九剑-破鞭式："><a href="#独孤九剑-破鞭式：" class="headerlink" title="独孤九剑 破鞭式："></a>独孤九剑 破鞭式：</h3><p>碰到让你找所有方案的题，一定是DFS。<br>90% DFS的题，要么是排列，要么是组合。<br>面试官如果不特别要求的话 DFS 都可以使用递归的方式来实现。<br>非递归背模板，基本会用上stack。</p>
-<h1 id="练兵"><a href="#练兵" class="headerlink" title="练兵"></a>练兵</h1><h2 id="带练"><a href="#带练" class="headerlink" title="带练"></a>带练</h2><h3 id="combination-sum"><a href="#combination-sum" class="headerlink" title="combination sum"></a>combination sum</h3><p>第一章的subsets我没做 umm</p>
+<h2 id="练兵"><a href="#练兵" class="headerlink" title="练兵"></a>练兵</h2><h3 id="带练"><a href="#带练" class="headerlink" title="带练"></a>带练</h3><h4 id="combination-sum"><a href="#combination-sum" class="headerlink" title="combination sum"></a>combination sum</h4><p>第一章的subsets我没做 umm</p>
 <h2 id="必背"><a href="#必背" class="headerlink" title="必背"></a>必背</h2><p> Tree Traversal<br><a target="_blank" rel="noopener" href="http://www.jiuzhang.com/solutions/binary-tree-preorder-traversal/">http://www.jiuzhang.com/solutions/binary-tree-preorder-traversal/</a><br><a target="_blank" rel="noopener" href="http://www.jiuzhang.com/solutions/binary-tree-inorder-traversal/">http://www.jiuzhang.com/solutions/binary-tree-inorder-traversal/</a><br><a target="_blank" rel="noopener" href="http://www.jiuzhang.com/solutions/binary-tree-postorder-traversal/">http://www.jiuzhang.com/solutions/binary-tree-postorder-traversal/</a><br><a target="_blank" rel="noopener" href="http://www.jiuzhang.com/solutions/binary-search-tree-iterator/">http://www.jiuzhang.com/solutions/binary-search-tree-iterator/</a> </p>
 <p>Combination<br><a target="_blank" rel="noopener" href="http://www.jiuzhang.com/solutions/subsets/">http://www.jiuzhang.com/solutions/subsets/</a><br>Permutation<br><a target="_blank" rel="noopener" href="http://www.jiuzhang.com/solutions/permutations/">http://www.jiuzhang.com/solutions/permutations/</a></p>
 
@@ -272,8 +272,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/%E4%B9%9D%E7%AB%A004BFS/" rel="prev" title="九章04BFS">
-      <i class="fa fa-chevron-left"></i> 九章04BFS
+    <a href="/2020/12/%E4%B9%9D%E7%AB%A004BFS/" rel="prev" title="九章04BFS [未完,弃坑]">
+      <i class="fa fa-chevron-left"></i> 九章04BFS [未完,弃坑]
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/12/Hexo-next-%E8%A7%A3%E5%86%B3%E7%89%88%E9%9D%A2%E4%B8%8D%E7%B4%A7%E5%87%91%E9%97%AE%E9%A2%98/" rel="next" title="Hexo next 解决版面效率问题">
@@ -337,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">问题模型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%AC%E5%AD%A4%E4%B9%9D%E5%89%91-%E7%A0%B4%E9%9E%AD%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.0.2.</span> <span class="nav-text">独孤九剑 破鞭式：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%83%E5%85%B5"><span class="nav-number">2.</span> <span class="nav-text">练兵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E7%BB%83"><span class="nav-number">2.1.</span> <span class="nav-text">带练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#combination-sum"><span class="nav-number">2.1.1.</span> <span class="nav-text">combination sum</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%85%E8%83%8C"><span class="nav-number">2.2.</span> <span class="nav-text">必背</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">问题模型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%AC%E5%AD%A4%E4%B9%9D%E5%89%91-%E7%A0%B4%E9%9E%AD%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">独孤九剑 破鞭式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E5%85%B5"><span class="nav-number">2.</span> <span class="nav-text">练兵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%BB%83"><span class="nav-number">2.1.</span> <span class="nav-text">带练</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#combination-sum"><span class="nav-number">2.1.1.</span> <span class="nav-text">combination sum</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%85%E8%83%8C"><span class="nav-number">3.</span> <span class="nav-text">必背</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -353,14 +353,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -401,7 +401,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021-01-26</span>
+  <span itemprop="copyrightYear">2021-02-20</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
