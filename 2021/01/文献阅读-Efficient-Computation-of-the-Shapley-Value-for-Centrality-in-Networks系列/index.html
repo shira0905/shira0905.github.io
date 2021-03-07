@@ -22,7 +22,7 @@
 
   <meta name="description" content="同标题的有好几篇, 写得很棒, 是很有趣的文章. woc 竟然还搞了个website, 战斗民族精神啊.http:&#x2F;&#x2F;www.game-theoretic-centrality.com&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文献阅读 Efficient Computation of the Shapley Value for Centrality in Networks系列 [未完,待填坑]*">
+<meta property="og:title" content="文献阅读 Efficient Computation of the Shapley Value for Centrality in Networks系列 *">
 <meta property="og:url" content="https://shira0905.github.io/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-Efficient-Computation-of-the-Shapley-Value-for-Centrality-in-Networks%E7%B3%BB%E5%88%97/">
 <meta property="og:site_name" content="圆头修行记">
 <meta property="og:description" content="同标题的有好几篇, 写得很棒, 是很有趣的文章. woc 竟然还搞了个website, 战斗民族精神啊.http:&#x2F;&#x2F;www.game-theoretic-centrality.com&#x2F;">
@@ -30,8 +30,9 @@
 <meta property="og:image" content="https://shira0905.github.io/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-Efficient-Computation-of-the-Shapley-Value-for-Centrality-in-Networks%E7%B3%BB%E5%88%97/image-20210125085336816.png">
 <meta property="og:image" content="https://shira0905.github.io/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-Efficient-Computation-of-the-Shapley-Value-for-Centrality-in-Networks%E7%B3%BB%E5%88%97/image-20210125085604333.png">
 <meta property="og:image" content="https://shira0905.github.io/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-Efficient-Computation-of-the-Shapley-Value-for-Centrality-in-Networks%E7%B3%BB%E5%88%97/image-20210125084004636.png">
+<meta property="og:image" content="https://shira0905.github.io/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-Efficient-Computation-of-the-Shapley-Value-for-Centrality-in-Networks%E7%B3%BB%E5%88%97/image-20210221113019518.png">
 <meta property="article:published_time" content="2021-01-25T00:23:45.000Z">
-<meta property="article:modified_time" content="2021-02-19T16:41:59.160Z">
+<meta property="article:modified_time" content="2021-02-21T03:44:00.872Z">
 <meta property="article:author" content="匠心圆头">
 <meta property="article:tag" content="高度相关">
 <meta name="twitter:card" content="summary">
@@ -50,7 +51,7 @@
   };
 </script>
 
-  <title>文献阅读 Efficient Computation of the Shapley Value for Centrality in Networks系列 [未完,待填坑]* | 圆头修行记</title>
+  <title>文献阅读 Efficient Computation of the Shapley Value for Centrality in Networks系列 * | 圆头修行记</title>
   
 
 
@@ -108,7 +109,7 @@
       <h1 class="site-title">圆头修行记</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">尽是些粗制滥造之作</p>
+      <p class="site-subtitle" itemprop="description">不自见，故明；不自是，故彰；不自伐，故有功；不自矜，故长。</p>
   </div>
 
   <div class="site-nav-right">
@@ -203,7 +204,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/zsy.jpg">
       <meta itemprop="name" content="匠心圆头">
-      <meta itemprop="description" content="问题解决家 <br> 方法试验家 <br> 习惯养成家 <br> 深度工作家">
+      <meta itemprop="description" content="致虚极<br>守静笃">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -211,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          文献阅读 Efficient Computation of the Shapley Value for Centrality in Networks系列 [未完,待填坑]*
+          文献阅读 Efficient Computation of the Shapley Value for Centrality in Networks系列 *
         </h1>
 
         <div class="post-meta">
@@ -228,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-02-20 00:41:59" itemprop="dateModified" datetime="2021-02-20T00:41:59+08:00">2021-02-20</time>
+                <time title="Modified: 2021-02-21 11:44:00" itemprop="dateModified" datetime="2021-02-21T11:44:00+08:00">2021-02-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -274,6 +275,97 @@
 <p>(2) centrality的度量在传统上是对单个节点的, 此处generalized到节点的集合, 并且可以算集合总的单个节点的所贡献的团队整体centrality (这个整体centrality也就是也正方程的值)</p>
 <p>(3) 对于这类定义在subset nodes上的量化影响力概念的特征方程,每个节点的平均边际贡献, 也就是每个节点的Shapley value. 用这个度量来作为重要度/centrality是符合常理的. 所有节点作为grand coalition V对应的特征方程的值是|V|, 然后每个节点在其中的贡献大小作为其重要度/centrality的值,</p>
 <p>(4) 计算方面,如果抛开Shapley的概念, 那么就是求看每个节点的编辑贡献值的期望over all the permutation. 最直接的方法是求出所有的permutation进行平均, 但是其实可以用另外的思维也就是topograph的结构推导出的exact closed form, 来进行计算.  并且因为这个clodes form只和它的邻居们有关, 也就意味着复杂度不高</p>
+<h2 id="Game-1"><a href="#Game-1" class="headerlink" title="Game 1"></a>Game 1</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>$\nu_1(C)=$  # agents at most 1degree away<br>the fringe of a coalition $C \subseteq V(G)$ includes all nodes reachable from the coalition in at most one hop.</p>
+<p>$ \{v \in V(G): v \in C \text{ or } \exists u \in C \text{ such that } (u,v)\in E(G) \}$ 或者我自己写的形式如下 $ \{v \in V(G): v \in C \text{ or } \exists u \in C \text{ such that } d(u,v)=1 \}$ </p>
+<script type="math/tex; mode=display">
+\nu_1(C) = 
+\begin{cases}
+    0,     & C=\emptyset \\
+ \big| \{v \in V(G): v \in C \text{ or } \exists u \in C \text{ such that } (u,v)\in E(G) \} \big|, & otherwise \\
+\end{cases}</script><h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>过程类似Game2的</p>
+<h2 id="Game-2"><a href="#Game-2" class="headerlink" title="Game 2"></a>Game 2</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>$\nu(C)=$  # agents with at least k neighbors in C</p>
+<script type="math/tex; mode=display">
+\nu_2(C) = 
+\begin{cases}
+    0,     & C=\emptyset \\
+ \big| \{v \in V(G): v \in C \text{ or } |N_G(v) \cap C| \geq k \} \big|, & otherwise \\
+\end{cases}</script><p>Intuitively, in this model each node can become active if a monotone activation function reaches some threshold. 如果说C是activate的人, 那么对任意一个人来说, 如果他的邻居中有&gt;=k个人是activate的, 那么这个人也将会被activate.</p>
+<p>Note that this game reduces to game g1 for k =1.  只需要有一个共同邻居就能被count in.</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>What is the necessary and sufficient condition for node $v_i$ to marginally contribute node $v_j \in N_G(v_i) \cup \{v_i\}$ to the value of the coalition $C$ ?</p>
+<ul>
+<li><p>If $v_j = v_i$</p>
+<p>$N_G(v_j) \cap C &lt; k$</p>
+</li>
+<li><p>If $v_j \neq v_i$</p>
+<ul>
+<li>$v_j \notin C$ , and</li>
+<li>$N_G(v_j)\cap C==k-1$  </li>
+</ul>
+</li>
+</ul>
+<h3 id="推导-见草稿纸"><a href="#推导-见草稿纸" class="headerlink" title="推导(见草稿纸)"></a>推导(见草稿纸)</h3><h4 id="If-v-j-neq-v-i"><a href="#If-v-j-neq-v-i" class="headerlink" title="If $v_j \neq v_i$"></a>If $v_j \neq v_i$</h4><ul>
+<li>$v_j$ 在 $v_i$ 之后, 不然就已经是圈里人了 [对应 $v_j \notin C$]</li>
+<li>v_i 之前 恰好有 k-1 个 v_j 的邻居 [对应 $N_G(v_j)\cap C==k-1$  ]<ul>
+<li>少了则 v_i 加入C之后 v_j 还是不能入圈</li>
+<li>多了则 v_i已经是圈里人</li>
+</ul>
+</li>
+</ul>
+<p>所以这样的permutation分析如下: </p>
+<ul>
+<li>为 $N_G(v_j)\cup\{v_j\}$ 选坑位 【注意这里是包括了 $v_i$ 的】</li>
+<li>从 $v_j$ 的 除了 $v_i$ 之外的 邻居里面取出 $k-1$ 个放在 $v_i$ 之前 $ N_G(v_j)-1 \choose k-1 $</li>
+<li>排列  $(k-1)!(N_G(v_j)+1-k)!$</li>
+<li>其他坑位由非$N_G(v_j)\cup\{v_j\}$的无关节点随意排序  $(|V(G)|-|N_G(v_j)|-1)!$</li>
+</ul>
+<h4 id="If-v-j-v-i"><a href="#If-v-j-v-i" class="headerlink" title="If $v_j = v_i$"></a>If $v_j = v_i$</h4><p>v_i 之前 恰好x 个 v_j 的邻居, x =0,1,…., k-1</p>
+<ul>
+<li>为 $N_G(v_j)\cup\{v_j\}$ 选坑位 </li>
+<li>从 $v_j$ 的 邻居里面取出 $x$ 个放在 $v_j$ 之前  $ N_G(v_j) \choose x $</li>
+<li>排列  $x!(N_G(v_j)-x)!$</li>
+<li>其他坑位由非$N_G(v_j)\cup\{v_j\}$的无关节点随意排序  $(|V(G)|-|N_G(v_j)|-1)!$</li>
+</ul>
+<p>综上, 可以得到expected (over permutation of $V(G)$) increase of $\nu$ after $v_i$ joining $C$</p>
+<h2 id="Game-3"><a href="#Game-3" class="headerlink" title="Game 3"></a>Game 3</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>$\nu_3(C)=$  # agents at most $d_{cutoff}$ away</p>
+<p>weighted graphs.</p>
+<script type="math/tex; mode=display">
+\nu_3(C) = 
+\begin{cases}
+    0,     & C=\emptyset \\
+ \big| \{v \in V(G): \exists u \in C \text{ such that } d(u,v)\leq d_{cutoff} \} \big|, & otherwise \\
+\end{cases}</script><h3 id="推导-见草稿纸-1"><a href="#推导-见草稿纸-1" class="headerlink" title="推导(见草稿纸)"></a>推导(见草稿纸)</h3><p>类似 game 1</p>
+<p>$SV_3(v_i) = \sum_{v_j \in N(v_i,d)\cup\{v_i\}} \frac{1}{1+deg(v_j,d)}$</p>
+<h3 id="算法复杂度分析"><a href="#算法复杂度分析" class="headerlink" title="算法复杂度分析"></a>算法复杂度分析</h3><ol>
+<li><p>For each node v in the network G, the extended neighborhood and its size  are first computed using Dijkstra’s algorithm, in $O(|E|+|V|log|V|)$ time (Cormen, 2001). 【怎么是这个时间复杂度？】</p>
+</li>
+<li><p>The results are then used to directly implement the above equation, which takes maximum time $O(|V|^2)$.</p>
+<p>In practice this step runs much faster because the worst case situation only occurs when every node is reachable from every other node within cutoff.</p>
+</li>
+</ol>
+<p>Overall the complexity is $O(|V||E| + |V|^2log|V|)$  ， 这里是因为第一步比第二步复杂， 用第一步的复杂度即可。</p>
+<h4 id="复习一些图上几个常用算法"><a href="#复习一些图上几个常用算法" class="headerlink" title="复习一些图上几个常用算法"></a>复习一些图上几个常用算法</h4><p>参考: <a target="_blank" rel="noopener" href="https://www.cs.auckland.ac.nz/compsci220s1c/lectures/2016S1C/CS220-Lectures27-29.pdf">https://www.cs.auckland.ac.nz/compsci220s1c/lectures/2016S1C/CS220-Lectures27-29.pdf</a></p>
+<p>假设有n 个点m条边 </p>
+<ul>
+<li><p>单源最短路径 $\forall w \geq 0$ , 用 Dijkstra 算法.</p>
+<p>greedy的思想, 初始化S加入start, 然后每一次都选距离S中的点们距离最短的点v, 将其加入S中 (S中的任意点x已经d[x])最优在之后不会再update了), 然后对于每个v的出度邻居u, 检查经过v的距离是不是会比原来的距离更段, 如果是的话则更新d[u].</p>
+<img src="/2021/01/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB-Efficient-Computation-of-the-Shapley-Value-for-Centrality-in-Networks%E7%B3%BB%E5%88%97/image-20210221113019518.png" class="" title="image-20210221113019518">
+</li>
+</ul>
+<ul>
+<li><p>单源最短路径 $\exists w&lt;0$ , 用 Bellman Ford算法</p>
+<p>进行 n-1 轮的逐条边更新, </p>
+<p>在每一轮, 对于每一条边(u,v), 检测  — 如果 $d(u)+d(u,v) \leq d(v)$ 那么更新 $d(v) = d(u)+d(u,v)$</p>
+<p>注意: 如果不存在负和圈的时候, 在m-1极其之前, 一定会收敛</p>
+<p>$O((n-1)*m)$</p>
+<p>最坏情况 边可能有 $n(n-1)/2$  这个时候 $O(n^3)$</p>
+</li>
+<li><p>all pairs 最短路径 Floyd.  矩阵DP, t时刻, 考察点 $v_t$, 根据 $A^{v_{t-1}}$ 生成 $A^{v_{t}}$ , 也就是 $v_t$ 变为一个可经过点时候, 各个节点对的距离会不会有所生成改善. 所以时间复杂度为 $O(n^3)$</p>
+</li>
+<li><p>Prims 和 Kruskal 是最小生成树的算法, 前者是已选边的相邻边的greedy检测是否造成环, 后者是从边集里面greedy检测是否成环.</p>
+</li>
+<li><p>cutoff 最短路径求解?</p>
+</li>
+</ul>
 
     </div>
 
@@ -357,7 +449,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95"><span class="nav-number">1.</span> <span class="nav-text">引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%AE%B00219"><span class="nav-number">2.</span> <span class="nav-text">笔记0219</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95"><span class="nav-number">1.</span> <span class="nav-text">引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%AE%B00219"><span class="nav-number">2.</span> <span class="nav-text">笔记0219</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Game-1"><span class="nav-number">3.</span> <span class="nav-text">Game 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC"><span class="nav-number">3.2.</span> <span class="nav-text">推导</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Game-2"><span class="nav-number">4.</span> <span class="nav-text">Game 2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-number">4.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">4.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC-%E8%A7%81%E8%8D%89%E7%A8%BF%E7%BA%B8"><span class="nav-number">4.3.</span> <span class="nav-text">推导(见草稿纸)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#If-v-j-neq-v-i"><span class="nav-number">4.3.1.</span> <span class="nav-text">If $v_j \neq v_i$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#If-v-j-v-i"><span class="nav-number">4.3.2.</span> <span class="nav-text">If $v_j &#x3D; v_i$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Game-3"><span class="nav-number">5.</span> <span class="nav-text">Game 3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="nav-number">5.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC-%E8%A7%81%E8%8D%89%E7%A8%BF%E7%BA%B8-1"><span class="nav-number">5.2.</span> <span class="nav-text">推导(见草稿纸)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">5.3.</span> <span class="nav-text">算法复杂度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E4%B9%A0%E4%B8%80%E4%BA%9B%E5%9B%BE%E4%B8%8A%E5%87%A0%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95"><span class="nav-number">5.3.1.</span> <span class="nav-text">复习一些图上几个常用算法</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -366,14 +458,14 @@
     <img class="site-author-image" itemprop="image" alt="匠心圆头"
       src="/images/zsy.jpg">
   <p class="site-author-name" itemprop="name">匠心圆头</p>
-  <div class="site-description" itemprop="description">问题解决家 <br> 方法试验家 <br> 习惯养成家 <br> 深度工作家</div>
+  <div class="site-description" itemprop="description">致虚极<br>守静笃</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -421,7 +513,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021-02-20</span>
+  <span itemprop="copyrightYear">2021-03-07</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
