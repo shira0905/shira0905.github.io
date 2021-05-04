@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一文入门Bert, 加快速度.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一文入门Bert">
+<meta property="og:url" content="https://shira0905.github.io/2021/03/%E4%B8%80%E6%96%87%E5%85%A5%E9%97%A8Bert/">
+<meta property="og:site_name" content="圆头修行记">
+<meta property="og:description" content="一文入门Bert, 加快速度.">
+<meta property="og:locale">
+<meta property="og:image" content="https://shira0905.github.io/2021/03/%E4%B8%80%E6%96%87%E5%85%A5%E9%97%A8Bert/20210310-一文入门Bert/equation">
+<meta property="article:published_time" content="2021-03-10T05:54:24.000Z">
+<meta property="article:modified_time" content="2021-03-10T09:12:08.299Z">
+<meta property="article:author" content="匠心圆头">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shira0905.github.io/2021/03/%E4%B8%80%E6%96%87%E5%85%A5%E9%97%A8Bert/20210310-一文入门Bert/equation">
+
+<link rel="canonical" href="https://shira0905.github.io/2021/03/%E4%B8%80%E6%96%87%E5%85%A5%E9%97%A8Bert/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>一文入门Bert | 圆头修行记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头修行记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">不自见，故明；不自是，故彰；<br>不自伐，故有功；不自矜，故长。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2021/03/%E4%B8%80%E6%96%87%E5%85%A5%E9%97%A8Bert/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="匠心圆头">
+      <meta itemprop="description" content="致虚极，守静笃。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头修行记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一文入门Bert
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-10 13:54:24 / Modified: 17:12:08" itemprop="dateCreated datePublished" datetime="2021-03-10T13:54:24+08:00">2021-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一文入门Bert, 加快速度. </p>
+<a id="more"></a>
+<h1 id="NLP的巨人肩膀"><a href="#NLP的巨人肩膀" class="headerlink" title="NLP的巨人肩膀"></a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50443871">NLP的巨人肩膀</a></h1><p>大家发现如果用已经在ImageNet中训练好的模型，并用这些模型中的参数来初始化新任务中的模型，可以显著的提升新任务下的效果。</p>
+<p>因此，利用大规模数据集预训练模型进行迁移学习的方法被认为是CV中的标配.</p>
+<p>总结起来就是，<strong>CV中的“巨人肩膀”是ImageNet以及由之而来Google等公司或团队在大规模数据集上预训练得到的模型，而“梯子”便是transfer learning之下的fine-tuning</strong>。</p>
+<p>在word2vec诞生之前，NLP中并没有一个统一的方法去表示一段文本</p>
+<p>各位前辈和大师们发明了许多的方法：从one-hot表示一个词到用bag-of-words来表示一段文本</p>
+<h2 id="语言模型"><a href="#语言模型" class="headerlink" title="语言模型"></a>语言模型</h2><h3 id="基于统计的语言模型"><a href="#基于统计的语言模型" class="headerlink" title="基于统计的语言模型"></a>基于统计的语言模型</h3><p>语言模型的本质是对一段自然语言的文本进行预测概率的大小</p>
+<p>自然要用这个文本在所有人类历史上产生过的所有文本集合中，先求这个文本的频率</p>
+<p>但问题是全人类所有历史的语料这种统计显然无法实现</p>
+<p>因此为了将这个不可能的统计任务变得可能，首先有人将文本不当做一个整体，而是把它拆散成一个个的词</p>
+<p>通过每个词之间的概率关系，从而求得整个文本的概率大小</p>
+<p>这个式子的计算依然过于复杂，我们一般都会引入马尔科夫假设: 假定一个句子中的词只与它前面的n个词相关，特别地，当n=1的时候，句子的概率计算公式最为简洁</p>
+<p>基于统计的语言模型很多缺点</p>
+<p>&gt;<br>&gt;</p>
+<blockquote>
+<p>第一，很多情况下 <img src="20210310-一文入门Bert/equation" alt="[公式]"> 的计算会遇到特别多零值，尤其是在n取值比较大的情况下，这种数据稀疏导致的计算为0的现象变得特别严重。所以统计语言模型中一个很重要的方向便是设计各种平滑方法来处理这种情况。</p>
+<p>第二， 另一个更为严重的问题是，基于统计的语言模型无法把n取得很大，一般来说在3-gram比较常见，再大的话，计算复杂度会指数上升。这个问题的存在导致统计语言模型无法建模语言中上下文较长的依赖关系。</p>
+<p>第三，统计语言模型无法表征词语之间的相似性。</p>
+</blockquote>
+<h3 id="NNLM"><a href="#NNLM" class="headerlink" title="NNLM"></a>NNLM</h3><p>(Neural Net Language Model, 神经网络语言模型)</p>
+<p>并发现将训练得到的NNLM(Neural Net Language Model, 神经网络语言模型)模型的第一层参数当做词的分布式表征时, 能够很好的获取词语之间的相似度。</p>
+<p>什么是第一层参数? 什么是词的分布式表征?</p>
+<p>极大目标函数 对数似然函数, 本质上是个N-Gram 语言模型.</p>
+<p>最主要贡献是非常有创见性的将模型的第一层特征映射矩阵当做词的分布式表示，从而可以将一个词表征为一个向量形式，这直接启发了后来的word2vec的工作。</p>
+<h3 id="CBOW和Skip-gram"><a href="#CBOW和Skip-gram" class="headerlink" title="CBOW和Skip-gram"></a>CBOW和Skip-gram</h3><h1 id="CSDN转"><a href="#CSDN转" class="headerlink" title="CSDN转"></a>CSDN转</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jiaowoshouzi/article/details/89073944">https://blog.csdn.net/jiaowoshouzi/article/details/89073944</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jiaowoshouzi/article/details/89388794">https://blog.csdn.net/jiaowoshouzi/article/details/89388794</a></p>
+<p>NLP中监督任务的基本套路都可以用三个积木来进行归纳</p>
+<ul>
+<li>文本数据搜集和预处理</li>
+<li>将文本进行编码和表征</li>
+<li>设计模型解决具体任务</li>
+</ul>
+<p>关于NLP发展史，特别推荐weizier大佬的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50443871">NLP的巨人肩膀</a>。学术性和文学性都很棒，纵览NLP近几年的重要发展，对各算法如数家珍，深入浅出，思路清晰，文不加点，一气呵成。</p>
+<p>2001 - Neural language models（神经语言模型）<br>2008 - Multi-task learning（多任务学习）<br>2013 - Word embeddings（词嵌入）<br>2013 - Neural networks for NLP（NLP神经网络）<br>2014 - Sequence-to-sequence models<br>2015 - Attention（注意力机制）<br>2015 - Memory-based networks（基于记忆的网络）<br>2018 - Pretrained language models（预训练语言模型）</p>
+<h2 id="Bert-安装"><a href="#Bert-安装" class="headerlink" title="Bert 安装"></a>Bert 安装</h2><h2 id="预训练模型"><a href="#预训练模型" class="headerlink" title="预训练模型"></a>预训练模型</h2><p>由于从头开始(from scratch)训练需要巨大的计算资源，因此Google提供了预训练的模型(的checkpoint)，目前包括英语、汉语和多语言3类模型：</p>
+<p>Uncased的意思是在预处理的时候都变成了小写，而cased是保留大小写。</p>
+<p><strong>这么多版本应该如何选择呢？</strong></p>
+<ul>
+<li>如果我们处理的问题只包含英文，那么我们应该选择英语的版本 。如果我们只处理中文，那么应该使用中文的版本。如果是其他语言就使用多语言的版本</li>
+<li>模型大, 效果好, 但是参数多, 训练慢, 而且需要更多内存/显存</li>
+</ul>
+<h2 id="运行-fine-tuning"><a href="#运行-fine-tuning" class="headerlink" title="运行 fine-tuning"></a>运行 fine-tuning</h2><p>对于大部分情况，不需要重新Pretraining。我们要做的只是根据具体的任务进行Fine-Tuning，因此我们首先介绍Fine-Tuning。</p>
+<p>这里我们已GLUE的MRPC为例子，我们首先需要<strong>下载预训练的模型然后解压</strong>，比如作者解压后的位置是：</p>
+<p>chinese_L-12_H-768_A-12</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;home&#x2F;chai&#x2F;data&#x2F;chinese_L-12_H-768_A-12</span><br><span class="line"># 为了方便我们需要定义环境变量</span><br><span class="line">export BERT_BASE_DIR&#x3D;&#x2F;home&#x2F;chai&#x2F;data&#x2F;chinese_L-12_H-768_A-12</span><br></pre></td></tr></table></figure>
+<p>在NLU方面，我们拿时下最流行的<a target="_blank" rel="noopener" href="https://gluebenchmark.com/tasks">GLUE</a>(General Language Understanding Evaluation)排行榜举例，其上集合了九项NLU的任务，分别是:…..</p>
+<p><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=52398">MRPC</a>(Microsoft Research Paraphrase Corpus)，由微软发布，判断两个给定句子，是否具有相同的语义，属于句子对的文本二分类任务；</p>
+<p>环境变量BERT_BASE_DIR是BERT Pretraining的目录，它包含如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;data&#x2F;chinese_L-12_H-768_A-12$ ls -1</span><br><span class="line">bert_config.json</span><br><span class="line">bert_model.ckpt.data-00000-of-00001</span><br><span class="line">bert_model.ckpt.index</span><br><span class="line">bert_model.ckpt.meta</span><br><span class="line">vocab.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>vocab.txt是模型的词典，这个文件会经常要用到，后面会讲到。</li>
+<li>bert_config.json 是BERT的配置(超参数)，比如网络的层数，通常我们不需要修改，但是也会经常用到。</li>
+<li>bert_model.ckpt*，这是预训练好的模型的checkpoint</li>
+</ul>
+<p>Fine-Tuning模型的初始值就是来自于这些文件，然后根据不同的任务进行Fine-Tuning。</p>
+<h2 id="下载GLUE数据"><a href="#下载GLUE数据" class="headerlink" title="下载GLUE数据"></a>下载GLUE数据</h2><p>下载GLUE数据. GLUE有很多任务，我们来看其中的MRPC任务。</p>
+<p>每行有4个用Tab分割的字段，分别表示index，第一个句子的id，第二个句子的id，第一个句子，第二个句子。</p>
+<p>输入两个句子，模型判断它们是否同一个意思(Paraphrase)</p>
+<p>如果是测试数据，那么第一列就是index(无意义); 如果是训练数据，那么第一列就是0或者1，其中0代表不同的意思而1代表相同意思.</p>
+<p>接下来就可以运行如下命令来进行Fine-Tuning了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">python run_classifier.py \</span><br><span class="line">	--task_name&#x3D;MRPC \</span><br><span class="line">	--do_train&#x3D;true \</span><br><span class="line">	--do_eval&#x3D;true \</span><br><span class="line">	--data_dir&#x3D;$GLUE_DIR&#x2F;MRPC \</span><br><span class="line">	--vocab_file&#x3D;$BERT_BASE_DIR&#x2F;vocab.txt \</span><br><span class="line">	--bert_config_file&#x3D;$BERT_BASE_DIR&#x2F;bert_config.json \</span><br><span class="line">	--init_checkpoint&#x3D;$BERT_BASE_DIR&#x2F;bert_model.ckpt \</span><br><span class="line">	--max_seq_length&#x3D;128 \</span><br><span class="line">	--train_batch_size&#x3D;8 \</span><br><span class="line">	--learning_rate&#x3D;2e-5 \</span><br><span class="line">	--num_train_epochs&#x3D;3.0 \</span><br><span class="line">	--output_dir&#x3D;&#x2F;tmp&#x2F;mrpc_output&#x2F;</span><br></pre></td></tr></table></figure>
+<p>这里简单的解释一下参数的含义，在后面的代码阅读里读者可以更加详细的了解其意义。</p>
+<ul>
+<li>task_name 任务的名字，这里我们Fine-Tuning MRPC任务</li>
+<li>do_train 是否训练，这里为True</li>
+<li>do_eval 是否在训练结束后验证，这里为True</li>
+<li>data_dir 训练数据目录，配置了环境变量后不需要修改，否则填入绝对路径</li>
+<li>vocab_file BERT模型的词典</li>
+<li>bert_config_file BERT模型的配置文件</li>
+<li>init_checkpoint Fine-Tuning的初始化参数</li>
+<li>max_seq_length Token序列的最大长度，这里是128</li>
+<li>train_batch_size batch大小，对于普通8GB的GPU，最大batch大小只能是8，再大就会OOM</li>
+<li>learning_rate</li>
+<li>num_train_epochs 训练的epoch次数，根据任务进行调整</li>
+<li>output_dir 训练得到的模型的存放目录</li>
+</ul>
+<p>这里最常见的问题就是内存不够，通常我们的GPU只有8G作用的显存，因此对于小的模型(bert-base)，我们最多使用batchsize=8，而如果要使用bert-large，那么batchsize只能设置成1。运行结束后可能得到类似如下的结果：</p>
+<h2 id="数据读取源码阅读"><a href="#数据读取源码阅读" class="headerlink" title="数据读取源码阅读"></a>数据读取源码阅读</h2><p>面我们通过一个实现类MrpcProcessor来了解怎么实现这个抽象基类</p>
+<h2 id="分词源码阅读"><a href="#分词源码阅读" class="headerlink" title="分词源码阅读"></a>分词源码阅读</h2><p>BERT里分词主要是由FullTokenizer类来实现的。</p>
+<p>FullTokenizer的构造函数需要传入参数词典vocab_file和do_lower_case。<br>如果我们自己从头开始训练模型(后面会介绍)，那么do_lower_case决定了我们的某些是否区分大小写。<br>如果我们只是Fine-Tuning，那么这个参数需要与模型一致，比如模型是chinese_L-12_H-768_A-12，那么do_lower_case就必须为True。</p>
+<p>函数首先调用load_vocab加载词典，建立词到id的映射关系。</p>
+<p>接下来是构造BasicTokenizer和WordpieceTokenizer。<br>前者是根据空格等进行普通的分词,<br>而后者会把前者的结果再细粒度的切分为WordPiece。(对于中文来说，WordpieceTokenizer什么也不干，因为之前的分词已经是基于字符的了。)</p>
+<ul>
+<li>为什么需要变成 unicode</li>
+</ul>
+<p>这里把category为Zs的字符以及空格、tab、换行和回车当成whitespace。<br>然后是_tokenize_chinese_chars，用于切分中文，这里的中文分词很简单，就是切分成一个一个的汉字。<br>也就是在中文字符的前后加上空格，这样后续的分词流程会把没一个字符当成一个词。</p>
+<p>一般情况我们不需要自己重新生成WordPiece，使用BERT模型里自带的就行。</p>
+<p>这里的关键是调用_is_chinese_char函数，这个函数用于判断一个unicode字符是否中文字符。</p>
+<h1 id="medium"><a href="#medium" class="headerlink" title="medium"></a>medium</h1><p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/bert-for-dummies-step-by-step-tutorial-fb90890ffe03">https://towardsdatascience.com/bert-for-dummies-step-by-step-tutorial-fb90890ffe03</a></p>
+<p>意图分类</p>
+<p>Attention-based learning methods were proposed for intent classification (Liu and Lane, <a target="_blank" rel="noopener" href="https://www.groundai.com/project/bert-for-joint-intent-classification-and-slot-filling/#bib.bib10">2016</a>; Goo et al., <a target="_blank" rel="noopener" href="https://www.groundai.com/project/bert-for-joint-intent-classification-and-slot-filling/#bib.bib4">2018</a>). </p>
+<p> One type of network built with attention is called a <strong>Transformer</strong></p>
+<p>It applies attention mechanisms to gather information about the relevant context of a given word, and then encode that context in a rich vector that <strong>smartly represents the word</strong>.</p>
+<ul>
+<li><p>demonstrate Transformer</p>
+<p>how attention mechanism helps in solveing intent classification task by learning contexutal  relationship</p>
+</li>
+<li><p>demonstrate the limitaiton of a LSTM-vased classifier</p>
+</li>
+<li>introduce BERT</li>
+<li>Python code necessary  for fine-tuning bert for intent </li>
+<li>ATIS dataset</li>
+</ul>
+<p>ATIS:<br>26 distinct intents, whose distribution is shown below<br>highly unbalanced, with most queries labeled as “flight”</p>
+<h3 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h3><p>Before looking at Transformer, we implement a simple LSTM recurrent network for solving the classification task. </p>
+<ul>
+<li>After the usual preprocessing, tokenization and vectorization,</li>
+<li>the 4978 samples are fed into a Keras Embedding layer, projects each word as a Word2vec embedding of dimension 256</li>
+<li>The results are passed through a LSTM layer with 1024 cells. </li>
+<li>This produces 1024 outputs which are given to a <strong>Dense layer</strong> with 26 nodes and softmax activation.</li>
+<li>The probabilities created at the end of this pipeline are compared to the original labels using categorical crossentropy.</li>
+</ul>
+<h3 id="Data-augmentation"><a href="#Data-augmentation" class="headerlink" title="Data augmentation"></a>Data augmentation</h3><p>Dealing with an imbalanced dataset is a common challenge when solving a classification task. Data augmentation is one thing that comes to mind as a good workaround.</p>
+<p>?Here, it is not rare to encounter the <a target="_blank" rel="noopener" href="https://imbalanced-learn.readthedocs.io/en/stable/generated/imblearn.over_sampling.SMOTE.html">SMOTE</a> algorithm, as a popular choice for augmenting the dataset without biasing predictions. SMOTE uses a k-Nearest Neighbors classifier to create synthetic datapoints as a multi-dimensional interpolation of closely related groups of true data points.</p>
+<p>用 SNOPS dataset 去augment ATIS dataset</p>
+<h4 id="转变成二分类"><a href="#转变成二分类" class="headerlink" title="转变成二分类"></a>转变成二分类</h4><p>The only change is to reduce the number of nodes in the Dense layer to 1, activation function to sigmoid and the loss function to binary crossentropy.</p>
+<h3 id="尝试BERT"><a href="#尝试BERT" class="headerlink" title="尝试BERT"></a>尝试BERT</h3><p>The motivation why we are now looking at Transformer is the poor classification result we witnessed with sequence-to-sequence models on the Intent Classification task when the dataset is imbalanced. </p>
+<ul>
+<li>The pre-trained model on massive datasets enables anyone building natural language processing to use this free powerhouse. </li>
+<li>allows us to smash multiple benchmarks with minimal task-specific fine-tunin</li>
+</ul>
+<p><strong>Context-free models</strong> </p>
+<p>such as <a target="_blank" rel="noopener" href="https://towardsdatascience.com/representing-text-in-natural-language-processing-1eead30e57d8">word2vec or GloVe</a> generate a single word embedding representation for each word in the vocabulary. </p>
+<p>For example, the word “bank” would have the same representation in “bank deposit” and in “riverbank”</p>
+<p><strong>Contextual models</strong> </p>
+<p>instead generate a representation of each word that is based on the other words in the sentence. </p>
+<p>BERT, as a contextual model, captures these relationships in a bidirectional way.</p>
+<h3 id="敲代码了"><a href="#敲代码了" class="headerlink" title="敲代码了"></a>敲代码了</h3><p>As you can see below, in order for torch to use the GPU, you have to identify and specify the GPU as the device, because later in the training loop, we load data onto that device.</p>
+<p>BERT expects input data in a specific format, with <strong>special tokens</strong> to mark the beginning ([CLS]) and separation/end of sentences ([SEP]).<br>Furthermore, we need to <strong>tokenize</strong> our text into tokens that correspond to BERT’s vocabulary.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/Reading-list-202102/" rel="prev" title="Reading list 202102 (更)*">
+      <i class="fa fa-chevron-left"></i> Reading list 202102 (更)*
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/03/%E5%90%84%E7%B1%BB%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E6%95%B4%E7%90%86/" rel="next" title="各类字符编码整理">
+      各类字符编码整理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NLP%E7%9A%84%E5%B7%A8%E4%BA%BA%E8%82%A9%E8%86%80"><span class="nav-number">1.</span> <span class="nav-text">NLP的巨人肩膀</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">语言模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%BB%9F%E8%AE%A1%E7%9A%84%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">基于统计的语言模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NNLM"><span class="nav-number">1.1.2.</span> <span class="nav-text">NNLM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CBOW%E5%92%8CSkip-gram"><span class="nav-number">1.1.3.</span> <span class="nav-text">CBOW和Skip-gram</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSDN%E8%BD%AC"><span class="nav-number">2.</span> <span class="nav-text">CSDN转</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bert-%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">Bert 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">预训练模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C-fine-tuning"><span class="nav-number">2.3.</span> <span class="nav-text">运行 fine-tuning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDGLUE%E6%95%B0%E6%8D%AE"><span class="nav-number">2.4.</span> <span class="nav-text">下载GLUE数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB"><span class="nav-number">2.5.</span> <span class="nav-text">数据读取源码阅读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E8%AF%8D%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB"><span class="nav-number">2.6.</span> <span class="nav-text">分词源码阅读</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#medium"><span class="nav-number">3.</span> <span class="nav-text">medium</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LSTM"><span class="nav-number">3.0.1.</span> <span class="nav-text">LSTM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-augmentation"><span class="nav-number">3.0.2.</span> <span class="nav-text">Data augmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E5%8F%98%E6%88%90%E4%BA%8C%E5%88%86%E7%B1%BB"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">转变成二分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95BERT"><span class="nav-number">3.0.3.</span> <span class="nav-text">尝试BERT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B2%E4%BB%A3%E7%A0%81%E4%BA%86"><span class="nav-number">3.0.4.</span> <span class="nav-text">敲代码了</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="匠心圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">匠心圆头</p>
+  <div class="site-description" itemprop="description">致虚极，守静笃。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021-05-05</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">匠心圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
