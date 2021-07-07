@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="近似算法领域的一类经典问题。 decision making under uncertainty. reasoning under uncertainty.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The hiring&#x2F;secretary problem">
+<meta property="og:url" content="https://shira0905.github.io/2021/07/The-hiring-secretary-problem/">
+<meta property="og:site_name" content="圆头修行记">
+<meta property="og:description" content="近似算法领域的一类经典问题。 decision making under uncertainty. reasoning under uncertainty.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-07-05T13:11:03.000Z">
+<meta property="article:modified_time" content="2021-07-07T15:01:51.661Z">
+<meta property="article:author" content="匠心圆头">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://shira0905.github.io/2021/07/The-hiring-secretary-problem/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>The hiring/secretary problem | 圆头修行记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头修行记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">不自见，故明；不自是，故彰；<br>不自伐，故有功；不自矜，故长。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2021/07/The-hiring-secretary-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="匠心圆头">
+      <meta itemprop="description" content="致虚极，守静笃。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头修行记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          The hiring/secretary problem
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-05 21:11:03" itemprop="dateCreated datePublished" datetime="2021-07-05T21:11:03+08:00">2021-07-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-07-07 23:01:51" itemprop="dateModified" datetime="2021-07-07T23:01:51+08:00">2021-07-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/uncategorized/" itemprop="url" rel="index"><span itemprop="name">uncategorized</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>近似算法领域的一类经典问题。</p>
+<p>decision making under uncertainty.</p>
+<p>reasoning under uncertainty.</p>
+<a id="more"></a>
+<p>Online Computation and Competitive Analysis<br>Allan Borodin and Ran El-Yaniv</p>
+<p>Table of Contents<br>Chapter 0 Preface<br>Chapter 1 Introduction to Competitive Analysis:<br>                The List Accessing Problem<br>1.1 Basic ideas and terminology<br>       1.1.1 Offline and online optimization problems<br>       1.1.2 The competitive ratio and competitiveness<br>       1.1.3 Games and adversaries<br>1.2 The list accessing problem<br>       1.2.1 Models<br>       1.2.2 Three Classical list accessing algorithms<br>       1.2.3 On free and paid transpositions<br>1.3 The Sleator-Tarjan result<br>1.4 The potential function method<br>                  First style: Amortized costs<br>                  Second style: Interleaving moves<br>1.5 Some lower bounds<br>                   Lower bound for TRANS<br>                   Lower bound for FC<br>1.6 The list factoring technique<br>       1.6.1 A Phase partitioning technique<br>1.7 Historical notes and open questions<br>       1.7.1 Open questions</p>
+<p>Chapter 2 Introduction to Randomized Algorithms:<br>                The List Accessing Problem<br>2.1 The competitive ratio of randomized algorithms<br>2.2 Algorithm BIT<br>2.3 Algorithm RMTF: barely random vs. random<br>2.4 List factoring - phase partitioning revisited<br>2.5 COMB: an $8/5$-competitive algorithm<br>2.6 Historical notes and open questions<br>       2.6.1 Open questions</p>
+<p>Chapter 3 Paging: Deterministic Algorithms</p>
+<p>3.1 The $(h,k)$-paging problem<br>3.2 Some paging algorithms<br>3.3 LFD - and optimal offline paging algorithm<br>3.4 Marking and Conservative algorithms and the competitiveness<br>       of  LRU, FIFO, CLOCK and FWF<br>       3.4.1 Marking algorithms<br>       3.4.2 Conservative algorithms<br>       3.4.3 A lower bound<br>3.5 LIFO and LFU are not competitive<br>3.6 The full access cost model<br>3.7 Theory vs. practice<br>3.8 Historical notes and open questions<br>       3.8.1 Open questions<br>Chapter 4 Paging: Randomized algorithms</p>
+<p>4.1 Randomized competitive analysis<br>       4.1.1 Adversary models<br>4.2 The competitiveness of Random<br>4.3 The Marking algorithm<br>4.4 A lower bound for randomized paging algorithms<br>4.5 Historical notes and open questions<br>       4.5.1 Open questions</p>
+<p>Chapter 5 Alternative Models for Paging:<br>                 Beyond Pure Competitive Analysis<br>5.1 The restricted Bayesian compromise<br>5.2 The Access Graph Model<br>       5.2.1 FIFO in the access graph model<br>       5.2.2 LRU in the access graph model<br>       5.2.3 FAR: A uniformly competitive paging algorithm<br>5.3 Experimental studies relating to access graph mode<br>       l 5.4 Distributional paging models<br>       5.4.1 The Markov chain model<br>       5.4.2 A more general distributional model<br>       5.4.3 A diffuse adversary<br>5.5 Prefectching models<br>5.6 Historical notes and open questions<br>       5.6.1 Open questions</p>
+<p>Chapter 6 Game-Theoretic Foundations<br>6.1 Games in extensive and strategic forms<br>       6.1.1 Games in extensive form<br>       6.1.2 Games in strategic form<br>       6.1.3 Transformations between strategic and extensive forms<br>6.2 Randomized strategies: mixed, behavioral and general<br>       6.2.1 Mixed strategies<br>       6.2.2 Behavioral strategies<br>       6.2.3 General strategies<br>6.3 Equivalence theorems for linear games and games of perfect recall<br>6.4 Implications for competitive analysis<br>6.5 Historical notes and open questions<br>       6.5.1 Open questions</p>
+<p>Chapter 7 Request-Answer Games<br>7.1 Request-answer games<br>              Online algorithms<br>              Adversaries and their interaction with algorithms<br>              The competitive ratio<br>              Request answer games and profit maximization problems<br>7.2 Randomized adversaries<br>7.3 Relating the adversaries<br>7.4 The request answer games framework - A critical examination<br>7.5 Historical notes and open questions<br>       7.5.1 Open qustions</p>
+<p>Chapter 8 Competitive Analysis and Zero-Sum Games<br>8.1 Two-person zero-sum games<br>8.2 On Generalizations of the minimax theorem for infinite games<br>8.3 Yao’s principle: a technique for obtaining lower bounds<br>       8.3.1 Yao’s principle for profit maximization problems<br>       8.3.2 Yao’s principle for cost minimization problems<br>8.4 Paging revisited<br>8.5 Historical notes and open questions<br>       8.5.1 Open questions</p>
+<p>Chapter 9 Metrical Task systems<br>9.1 Formulation of (Metrical) Task Systems<br>       9.1.1 Continuous time algorithms<br>       9.1.2 Nearly oblivious and traversal algorithms<br>9.2 An $8(K-1)$-competitive traversal algorithm<br>9.3 Cruel adversaries and a $2K-1$ lower bound<br>       9.3.1 Cruel adversaries<br>       9.3.2 A lower bound<br>9.4 An optimal work function MTS algorithm<br>9.5 Randomized algorithm for a uniform MTS<br>9.6 Historical notes and open questions<br>       9.6.1 Open questions</p>
+<p>Chapter 10 The $k$-Server Problem<br>10.1 The formulation of the model<br>10.2 Some basic aspects of the $k$-server problem<br>         10.2.1 The optimal offline algorithm<br>         10.2.2 The greedy policy is not competitive<br>         10.2.3 Lazy algorithms<br>         10.2.4 Some generalizations and variants of the server problem<br>         10.2.5 The $k$-server conjecture<br>10.3 A deterministic lower bound<br>10.4 $k$-servers on a line and a tree<br>         10.4.1 The line algorithm<br>         10.4.2 The tree algorithm<br>         10.4.3 Some applications of the tree algorithm<br>10.5 A 3-competitive 2-server algorithm for Euclidean spaces<br>10.6 Balancing algorithms<br>10.7 The $k$-server work function algorithm<br>         10.7.1 Work functions for the $k$-server problem<br>         10.7.2 The online $k$-server work function algorithm<br>         10.7.3 Analysis of algorithm WFA<br>10.8 On generalizations of the $k$-server conjecture that fail<br>         10.8.1 The $(h,k)$-server problem<br>         10.8.2 Asymmetric spaces<br>10.9 Historical notes and open questions<br>         10.9.1 Open questions</p>
+<p>Chapter 11 Randomized $k$-server Algorithms<br>11.1 Two randomized $k$-server algorithms for the circle<br>         11.1.1 A $2k$-competitive algorithm<br>         11.1.2 A circle algorithm with sub-linear ratio<br>11.2 A lower bound against an adaptive online adversary<br>11.3 The cat and rat game and applications to randomized $k$-server algorithms<br>11.4 The Harmonic algorithm<br>11.5 Randomized algorithms for Resistive spaces<br>11.6 Historical notes and open questions<br>         11.6.1 Open questions</p>
+<p>Chapter 12 Load-Balancing<br>12.1 Introduction<br>         12.1.1 Load balancing vs. call admission<br>         12.1.2 Load balancing variations<br>         12.1.3 Different machine models<br>         12.1.4 Scalable problems<br>12.2 Online algorithms for load balancing of permanent jobs<br>         12.2.1 Identical machines<br>         12.2.2 The restricted machines model<br>         12.2.3 The related machines case<br>12.3 Formulating the Machine Assignment Problem as a Generalized<br>         Virtual Circuit Routing Problem<br>12.4 Load Balancing of Temporary Jobs<br>         12.4.1 Known durations<br>         12.4.2 Unknown durations<br>12.5 Historical notes and open problems<br>         12.5.1 Open questions</p>
+<p>Chapter 13 Call Admission and Circuit-Routing<br>13.1 Specifying the problem<br>13.2 Throughput maximization for permanent calls in<br>         networks with large edge capacities<br>13.3 Throughput maximization for limited duration calls<br>13.4 Experimental results<br>13.5 Call admission for particular networks : The disjoint paths problem<br>         13.5.1 Routing on the line<br>         13.5.2 Routing on trees<br>         13.5.3 Routing on arrays<br>13.6 The disjoint paths problem: a lower bound for a difficult network<br>13.7 Routing on optical networks<br>13.8 Path colouring for particular networks<br>         13.8.1 Path coloring on the line<br>         13.8.2 Path colouring on trees<br>         13.8.3 Path colouring on arrays<br>13.9 A lower bound for path colouring on the brick wall graph<br>13.10 Historical notes and open problems<br>           13.10.1 Open questions</p>
+<p>Chapter 14 Search, Trading and Portfolio Selection<br>14.1 Online search and one-way trading<br>         14.1.1 The relationship between randomized search and<br>                      one-way trading algorithms<br>         14.1.2 Competitive search algorithms<br>         14.1.3 The <code>threat-based&#39;&#39; policy
+14.2 Online portfolio selection and two-way trading
+         14.2.1 Buy-and-hold vs. Market timing
+         14.2.2 Constant rebalanced algorithms
+14.3 Statistical adversaries and</code>money-making’’ algorithms<br>         14.3.1 The $(n,\phi )$-adversary<br>         14.3.2 Weaker statistical adversaries and the general ``money-making’’ scheme<br>14.4 The fixed fluctuation model<br>         14.4.1 On the fixed fluctuation model and time scaling<br>         14.4.2 The optimal online algorithm against the $(\alpha ,n,k)$-adversary<br>         14.4.3 On the empirical performance of MM<br>         14.4.4 Binomial risk-neutral pricing and adversarial analysis<br>14.5 Online portfolio selection<br>         14.5.1 The family of $\mu $-weighted portfolio selection algorithms<br>         14.5.2 The uniform-weighted algorithm<br>         14.5.3 Dirichlet-weighted algorithms<br>         14.5.4 Extremal mixture algorithms<br>         14.5.5 Portfolio selection with side information<br>14.6 Historical notes and open questions<br>         14.6.1 Open questions</p>
+<p>Chapter 15 Competitive Analysis and Decision Making<br>                  Under Uncertainty<br>15.1 Certainty, uncertainty, risk and strict uncertainty<br>         15.1.1 A simple decision theoretic model<br>         15.1.2 Descriptive theories vs. prescriptive theories<br>         15.1.3 Certainty and uncertainty<br>15.2 Decision making under risk<br>         15.2.1 Utility functions and attitudes toward risk<br>         15.2.2 von Neumann-Morgenstern expected utility theory<br>         15.2.3 The Allais paradox and other violations of the expected utility theory<br>         15.2.4 Other approaches to decision making under risk<br>15.3 Decision making under strict uncertainty<br>         15.3.1 Some criteria for strict uncertainty<br>         15.3.2 Some problematic examples<br>         15.3.3 Algorithmic decision problems<br>         15.3.4 Some classifications of problems<br>         15.3.5 Decision criteria for algorithmic decision problems<br>                     under strict uncertainty<br>15.4 The competitive ratio axioms<br>15.5 Characterization of the competitive ratio<br>15.6 Characterizations of the classical criteria for strict uncertainty<br>         15.6.1 Characterization of the minimax cost<br>         15.6.2 Characterization of the minimax regret<br>         15.6.3 Characterizations of the principle of insufficient reason<br>         15.6.4 Characterizations of the pessimism-optimism index<br>15.7 An example - the leasing problem<br>         15.7.1 The principle of Insufficient Reason<br>         15.7.2 The minimax regret<br>         15.7.3 The competitive ratio<br>         15.7.4 The pessimism-optimism index<br>         15.7.5 The minimax cost<br>15.8 Bayesian approaches for decision making under uncertainty<br>15.9 Historical notes and open questions<br>         15.9.1 Open questions</p>
+<p>Appendix A Glossary<br>Appendix B Stochastic analyses for list accessing algorithms<br>Appendix C Some Tools from Renewal Theory<br>C.1 Renewal processes<br>C.2 Wald’s equation<br>C.3 The Elementary Renewal Theorem<br>Appendix D Proof of Theorem 13.12<br>D.1 Short distance calls<br>D.2 Long distance calls</p>
+<p>Appendix E Some Tools From The Theory of Types<br>Appendix F Two Technical Lemmas<br>Copyright ©1996 A. Borodin and R. El-Yaniv</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/res-20210705M/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/%E5%A4%9A%E8%BF%9B%E7%A8%8B/" rel="next" title="多进程">
+      多进程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="匠心圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">匠心圆头</p>
+  <div class="site-description" itemprop="description">致虚极，守静笃。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">124</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021-07-08</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">匠心圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
