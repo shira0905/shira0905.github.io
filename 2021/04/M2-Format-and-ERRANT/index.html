@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=EB Garamond:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shira0905.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="ERRANT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="M2 Format and ERRANT">
+<meta property="og:url" content="https://shira0905.github.io/2021/04/M2-Format-and-ERRANT/">
+<meta property="og:site_name" content="圆头修行记">
+<meta property="og:description" content="ERRANT">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-04-14T06:21:54.000Z">
+<meta property="article:modified_time" content="2021-07-09T08:59:23.000Z">
+<meta property="article:author" content="匠心圆头">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://shira0905.github.io/2021/04/M2-Format-and-ERRANT/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>M2 Format and ERRANT | 圆头修行记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">圆头修行记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">不自见，故明；不自是，故彰；<br>不自伐，故有功；不自矜，故长。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://shira0905.github.io/2021/04/M2-Format-and-ERRANT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zsy.jpg">
+      <meta itemprop="name" content="匠心圆头">
+      <meta itemprop="description" content="致虚极，守静笃。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="圆头修行记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          M2 Format and ERRANT
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-04-14 14:21:54" itemprop="dateCreated datePublished" datetime="2021-04-14T14:21:54+08:00">2021-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-07-09 16:59:23" itemprop="dateModified" datetime="2021-07-09T16:59:23+08:00">2021-07-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>ERRANT</p>
+<a id="more"></a>
+<h2 id="ERRANT-amp-M2-format"><a href="#ERRANT-amp-M2-format" class="headerlink" title="ERRANT &amp; M2 format"></a>ERRANT &amp; M2 format</h2><p><a target="_blank" rel="noopener" href="https://github.com/chrisjbryant/errant">https://github.com/chrisjbryant/errant</a></p>
+<p>ERRANT 用的输入格式和M2SCORE一样, 都是M2 format, 但是评分方式不一样, 更高一些</p>
+<p>所有这些语料库都已使用ERRANT进行了标准化。 这意味着它们已全部转换为M2格式并自动以ERRANT错误类型进行注释。 这很重要，因为先前已根据不同的不兼容错误类型框架对NUCLE和FCE进行了注释，而Lang-8和W＆I + LOCNESS根本未使用错误类型进行注释。 实际上，Lang-8还是唯一不包含任何明确的人类注释的语料库，因此它们是由ERRANT自动提取的。</p>
+<p>Lang-8的另一个复杂之处在于，它是唯一包含针对某些句子的多组注释的训练/开发语料库。 这意味着您不应将M2句子块中的所有编辑应用于生成正确的句子，因为来自多个注释器的编辑可以交互。 因此，我们提供了一个脚本，用于从M2文件中安全地为特定注释器生成更正的文本: <a target="_blank" rel="noopener" href="https://www.cl.cam.ac.uk/research/nl/bea2019st/data/corr_from_m2.py">corr_from_m2.py</a></p>
+<blockquote>
+<p>S This are a sentence .<br>A 1 2|||R:VERB:SVA|||is|||-REQUIRED-|||NONE|||0<br>A 3 3|||M:ADJ|||good|||-REQUIRED-|||NONE|||0<br>A 1 2|||R:VERB:SVA|||is|||-REQUIRED-|||NONE|||1<br>A -1 -1|||noop|||-NONE-|||REQUIRED|||-NONE-|||2</p>
+</blockquote>
+<p>Each edit line consists of the start and end token offset of the edit, the error type, and the tokenized correction string. The next two fields are included for historical reasons (see the CoNLL-2014 shared task) while the last field is the annotator id.</p>
+<p>在M2格式中，</p>
+<p>以S开头的行表示原始句子，而以A开头的行表示编辑注释。</p>
+<p>每条编辑行均包含编辑的开始和结束标记偏移量，错误类型以及标记化的更正字符串。</p>
+<p>出于历史原因，包含了下两个字段，可以将其忽略（请参阅CoNLL-2013共享任务），<code>R:VERB:SVA</code></p>
+<p>而最后一个字段是注释者ID。</p>
+<p>“无用”编辑是一种特殊的编辑，它明确指示注释者/系统未对原始句子进行任何更改。如果只有一个注释者，则noop编辑是可选的，否则，只要n个注释者中至少有1个注释者认为原始句子正确，就应包括noop编辑。合并单个M2文件时，需要注意这一点，因为丢失noop会影响结果。</p>
+<p>因此，上面的示例可以解释如下：<br>注释器0将“ are”更改为“ is”，并在“ sentence”之前插入“ good”以产生更正：这是一个好句子。<br>注释器1将“ are”更改为“ is”以产生更正：这是一个句子。<br>注释者2认为原文是正确的，因此未对句子进行任何更改：这是一个句子</p>
+<h2 id="采样"><a href="#采样" class="headerlink" title="采样"></a>采样</h2><p>采样句子，使得edit error type 分布符合 valid的edit error type 分布， 并且句子多样性越多越好？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">target distribution</span><br><span class="line">&#123;&#39;PUNCT&#39;: 265296, &#39;OTHER&#39;: 175907, &#39;DET&#39;: 142880, &#39;PREP&#39;: 132828, &#39;VERB:TENSE&#39;: 84902, &#39;VERB&#39;: 72158, &#39;SPELL&#39;: 69466, &#39;ORTH&#39;: 63183, &#39;NOUN&#39;: 58875, &#39;NOUN:NUM&#39;: 45054, &#39;VERB:FORM&#39;: 42362, &#39;PRON&#39;: 31951, &#39;MORPH&#39;: 28361, &#39;VERB:SVA&#39;: 26566, &#39;ADV&#39;: 20643, &#39;ADJ&#39;: 20284, &#39;WO&#39;: 17053, &#39;NOUN:POSS&#39;: 11847, &#39;PART&#39;: 10770, &#39;CONJ&#39;: 7898, &#39;CONTR&#39;: 5385, &#39;ADJ:FORM&#39;: 2872, &#39;NOUN:INFL&#39;: 1795, &#39;VERB:INFL&#39;: 898&#125;</span><br><span class="line"></span><br><span class="line">current distribution</span><br><span class="line">&#123;&#39;OTHER&#39;: 337239, &#39;DET&#39;: 162026, &#39;PREP&#39;: 109678, &#39;PUNCT&#39;: 90010, &#39;VERB&#39;: 86658, &#39;VERB:TENSE&#39;: 81694, &#39;NOUN&#39;: 61143, &#39;SPELL&#39;: 60383, &#39;NOUN:NUM&#39;: 59222, &#39;ORTH&#39;: 53255, &#39;ADV&#39;: 42699, &#39;PRON&#39;: 36235, &#39;VERB:FORM&#39;: 35826, &#39;MORPH&#39;: 23298, &#39;VERB:SVA&#39;: 22569, &#39;ADJ&#39;: 17210, &#39;WO&#39;: 16064, &#39;CONJ&#39;: 12601, &#39;CONTR&#39;: 12193, &#39;PART&#39;: 7054, &#39;NOUN:POSS&#39;: 5037, &#39;ADJ:FORM&#39;: 2647, &#39;NOUN:INFL&#39;: 2512, &#39;VERB:INFL&#39;: 1971&#125;</span><br></pre></td></tr></table></figure>
+<p>total edits in train data</p>
+<p>tatao</p>
+<p>noop  UNK  在 train.m2 里面是没有的</p>
+<p>560286  sentences</p>
+<p>1339224  edits</p>
+<p>4384  sentences</p>
+<p>9160  edits</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">noop 1528 0.16681222707423582</span><br><span class="line">PUNCT 1478 0.161353711790393</span><br><span class="line">OTHER 980 0.10698689956331878</span><br><span class="line">DET 796 0.0868995633187773</span><br><span class="line">PREP 740 0.08078602620087336</span><br><span class="line">VERB:TENSE 473 0.05163755458515284</span><br><span class="line">VERB 402 0.04388646288209607</span><br><span class="line">SPELL 387 0.04224890829694323</span><br><span class="line">ORTH 352 0.03842794759825328</span><br><span class="line">NOUN 328 0.03580786026200873</span><br><span class="line">NOUN:NUM 251 0.02740174672489083</span><br><span class="line">VERB:FORM 236 0.02576419213973799</span><br><span class="line">PRON 178 0.01943231441048035</span><br><span class="line">UNK 171 0.018668122270742358</span><br><span class="line">MORPH 158 0.01724890829694323</span><br><span class="line">VERB:SVA 148 0.016157205240174673</span><br><span class="line">ADV 115 0.012554585152838428</span><br><span class="line">ADJ 113 0.012336244541484716</span><br><span class="line">WO 95 0.01037117903930131</span><br><span class="line">NOUN:POSS 66 0.007205240174672489</span><br><span class="line">PART 60 0.006550218340611353</span><br><span class="line">CONJ 44 0.00480349344978166</span><br><span class="line">CONTR 30 0.0032751091703056767</span><br><span class="line">ADJ:FORM 16 0.0017467248908296944</span><br><span class="line">NOUN:INFL 10 0.001091703056768559</span><br><span class="line">VERB:INFL 5 0.0005458515283842794</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">OTHER 337239 0.25181672371462877</span><br><span class="line">DET 162026 0.1209849883215952</span><br><span class="line">PREP 109678 0.08189668046570253</span><br><span class="line">PUNCT 90010 0.06721056372944333</span><br><span class="line">VERB 86658 0.06470762172720919</span><br><span class="line">VERB:TENSE 81694 0.06100099759263573</span><br><span class="line">NOUN 61143 0.04565554380745865</span><br><span class="line">SPELL 60383 0.04508805099072299</span><br><span class="line">NOUN:NUM 59222 0.044221131043051795</span><br><span class="line">ORTH 53255 0.0397655657306022</span><br><span class="line">ADV 42699 0.03188338918657372</span><br><span class="line">PRON 36235 0.027056713440021984</span><br><span class="line">VERB:FORM 35826 0.02675131270048924</span><br><span class="line">MORPH 23298 0.017396641637246645</span><br><span class="line">VERB:SVA 22569 0.0168522965538252</span><br><span class="line">ADJ 17210 0.012850725494764133</span><br><span class="line">WO 16064 0.011995006063212726</span><br><span class="line">CONJ 12601 0.009409180241692204</span><br><span class="line">CONTR 12193 0.009104526203234112</span><br><span class="line">PART 7054 0.005267229380596525</span><br><span class="line">NOUN:POSS 5037 0.003761133313023064</span><br><span class="line">ADJ:FORM 2647 0.001976517744604338</span><br><span class="line">NOUN:INFL 2512 0.0018757130995262928</span><br><span class="line">VERB:INFL 1971 0.0014717478181394599</span><br></pre></td></tr></table></figure>
+<h2 id="ERRANT"><a href="#ERRANT" class="headerlink" title="ERRANT"></a>ERRANT</h2><p> ERRor ANnotation Toolkit (ERRANT) </p>
+<p>Christopher Bryant, Mariano Felice, and Ted Briscoe. 2017. <a target="_blank" rel="noopener" href="https://www.aclweb.org/anthology/P17-1074/"><strong>Automatic annotation and evaluation of error types for grammatical error correction</strong></a>. I</p>
+<p>所以我的理解是:</p>
+<ul>
+<li><p>annotation 可以帮没有标注错误类型的平行语料标注出这是那类错误</p>
+<blockquote>
+<p>given an original and corrected sentence pair, ERRANT will extract the edits that transform the former to the latter and classify them according to a rule-based error type framework. </p>
+</blockquote>
+</li>
+<li><p>evaluation ????????</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/chrisjbryant/errant">ERRANT</a> scorer, an improved version of the MaxMatch scorer (Dahlmeier and Ng, 2012)</p>
+<p><em>pan-based correction</em> using the F0.5 metric, </p>
+<h3 id="版本问题"><a href="#版本问题" class="headerlink" title="版本问题"></a>版本问题</h3><h4 id="与spaCy的兼容问题"><a href="#与spaCy的兼容问题" class="headerlink" title="与spaCy的兼容问题"></a>与spaCy的兼容问题</h4><p>ERRANT was originally designed to work with spaCy v1.9.0 and works best with this version. SpaCy v1.9.0 does not work with Python &gt;= 3.7 however, and so we were forced to update ERRANT to be compatible with spaCy 2. Since spaCy 2 uses a neural system to trade speed for accuracy, this means ERRANT v2.2.0 is <strong>~4x slower</strong> than ERRANT v2.1.0.</p>
+<p>There is no way around this if you use Python &gt;= 3.7, but <em>we recommend installing ERRANT v2.1.0 if you use Python &lt; 3.7</em>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install errant&#x3D;&#x3D;2.1.0</span><br></pre></td></tr></table></figure>
+<h4 id="BEA-2019-Shared-Task"><a href="#BEA-2019-Shared-Task" class="headerlink" title="BEA-2019 Shared Task"></a>BEA-2019 Shared Task</h4><p>ERRANT v2.0.0 was designed to be fully compatible with the <a target="_blank" rel="noopener" href="https://www.cl.cam.ac.uk/research/nl/bea2019st/">BEA-2019 Shared Task</a>. If you want to directly compare against the results in the shared task, you should make sure to install ERRANT v2.0.0 as newer versions may produce slightly different scores. </p>
+<p>You can also use <a target="_blank" rel="noopener" href="https://competitions.codalab.org/competitions/20228">Codalab</a> to evaluate anonymously on the shared task datasets. ERRANT v2.0.0 is not compatible with Python &gt;= 3.7.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install errant&#x3D;&#x3D;2.0.0</span><br></pre></td></tr></table></figure>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><ul>
+<li><p><code>errant_parallel</code></p>
+<p>word tokenised with one sentence per line.</p>
+</li>
+<li><p><code>errant_m2</code></p>
+<p>更智能</p>
+<ul>
+<li><code>gold</code> will only classify the existing edits, while</li>
+<li><code>-auto</code> will extract and classify automatic edits. In both settings, uncorrected edits and noops are preserved.</li>
+</ul>
+</li>
+<li><p><code>errant_compare</code></p>
+<p>为了evaluation</p>
+<ul>
+<li><p>compares a <strong>hypothesis M2 file</strong> against a reference M2 file.  </p>
+<p>hypothesis M2 file: 就是用GEC model 搞出来的corrected text</p>
+</li>
+<li><p><code>-cat &#123;1,2,3&#125;</code> flag can be used to evaluate error types at increasing levels of granularity,</p>
+</li>
+<li><p><code>-ds</code> or <code>-dt</code> flag can be used to evaluate in terms of span-based or token-based detection</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="spaCy"><a href="#spaCy" class="headerlink" title="spaCy"></a>spaCy</h2><p>Lemmatise, POS tag, and parse a text string with spacy.</p>
+<p>Set <code>tokenise</code> to True to also word tokenise with spacy. Returns a spacy Doc object.</p>
+<h2 id="M2-score"><a href="#M2-score" class="headerlink" title="M2 score"></a>M2 score</h2><p><a target="_blank" rel="noopener" href="https://github.com/nusnlp/m2scorer#scorers-gold-standard-format">https://github.com/nusnlp/m2scorer#scorers-gold-standard-format</a></p>
+<p>OFFICIAL VERSION (VERSION 3.2), visit <a target="_blank" rel="noopener" href="http://www.comp.nus.edu.sg/~nlp/conll14st.html">http://www.comp.nus.edu.sg/~nlp/conll14st.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">To convert source files and gold edits from the CoNLL-2014 format into the M^2 format, run the preprocessing script bundled with the CoNLL-2014 training data.???</span><br></pre></td></tr></table></figure>
+<p>Daniel Dahlmeier and Hwee Tou Ng. 2012. Better Evaluation for Grammatical Error Correction.</p>
+<p>M2 format 是在M2score里面提出来的, 估计就是说可以用于计算M2SCORE 的format</p>
+<h3 id="quick-start"><a href="#quick-start" class="headerlink" title="quick start"></a>quick start</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Usage: m2scorer [OPTIONS] SYSTEM SOURCE_GOLD</span><br></pre></td></tr></table></figure>
+<p>where<br>SYSTEM - system output, one sentence per line<br>SOURCE_GOLD - source sentences with gold token edits</p>
+<ul>
+<li><p>The sentences should be in tokenized plain text, sentence-per-line format.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;tokenized system output for sentence 1&gt;</span><br><span class="line">&lt;tokenized system output for sentence 2&gt;</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+<p><strong>Examples of tokenization:</strong><br>Original : He said, “We shouldn’t go to the place. It’ll kill one of us.”<br>Tokenized : He said , “ We should n’t go to the place . It ‘ll kill one of us . “</p>
+<p><strong>Note:</strong> Tokenization in the CoNLL-2014 shared task uses NLTK word tokenizer.</p>
+</li>
+<li><p>SOURCE_GOLD</p>
+<ul>
+<li>source sentences (i.e. input to the error correction system) </li>
+</ul>
+</li>
+<li><p>Scorer’s gold standard format</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">S &lt;tokenized system output for sentence 1&gt;</span><br><span class="line">A &lt;token start offset&gt; &lt;token end offset&gt;|||&lt;error type&gt;|||&lt;correction1&gt;||&lt;correction2||..||correctionN|||&lt;required&gt;|||&lt;comment&gt;|||&lt;annotator id&gt;</span><br><span class="line">A &lt;token start offset&gt; &lt;token end offset&gt;|||&lt;error type&gt;|||&lt;correction1&gt;||&lt;correction2||..||correctionN|||&lt;required&gt;|||&lt;comment&gt;|||&lt;annotator id&gt;</span><br><span class="line"></span><br><span class="line">S &lt;tokenized system output for sentence 2&gt;</span><br><span class="line">A &lt;token start offset&gt; &lt;token end offset&gt;|||&lt;error type&gt;|||&lt;correction1&gt;||&lt;correction2||..||correctionN|||&lt;required&gt;|||&lt;comment&gt;|||&lt;annotator id&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&gt;<br>&gt;</p>
+<blockquote>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>Each source sentence should appear on a single line starting with “S “</li>
+<li>Each source sentence is followed by zero or more annotations.</li>
+<li>Each annotation is on a separate line starting with “A “.</li>
+<li>Sentences are separated by one or more empty lines.</li>
+<li><strong>The source sentences need to be tokenized in the same way as the system output.</strong></li>
+<li>Start and end offset for annotations are in token offsets (starting from zero).</li>
+<li>The gold edits can include one or more possible correction strings. Multiple corrections should be separate by ‘||’.</li>
+<li>The error type, required field, and comment are not used for scoring at the moment. You can put dummy values there.</li>
+<li>The annotator ID is used to identify a distinct annotation set by which system edits will be evaluated.</li>
+<li>Each distinct annotation set, identified by an annotator ID, is an alternative</li>
+<li>If one sentence has multiple annotator IDs, score will be computed for each annotator.</li>
+<li>If one of the multiple annotation alternatives is no edit at all, an edit with type ‘noop’ or with offsets ‘-1 -1’ must be specified.</li>
+<li>The final score for the sentence will use the set of edits by an annotation set maximizing the score.</li>
+</ul>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/%E5%9B%9B%E5%9B%A0%E8%AF%B4/" rel="prev" title="四因说">
+      <i class="fa fa-chevron-left"></i> 四因说
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/%E9%A9%AF%E5%85%BD%E5%B8%88%E4%B8%8A%E5%B2%97%E4%B9%8B%E9%87%8D%E6%8C%AF%E6%97%97%E9%BC%93/" rel="next" title="驯兽师上岗之重振旗鼓">
+      驯兽师上岗之重振旗鼓 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ERRANT-amp-M2-format"><span class="nav-number">1.</span> <span class="nav-text">ERRANT &amp; M2 format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%87%E6%A0%B7"><span class="nav-number">2.</span> <span class="nav-text">采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ERRANT"><span class="nav-number">3.</span> <span class="nav-text">ERRANT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="nav-number">3.1.</span> <span class="nav-text">版本问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8EspaCy%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98"><span class="nav-number">3.1.1.</span> <span class="nav-text">与spaCy的兼容问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BEA-2019-Shared-Task"><span class="nav-number">3.1.2.</span> <span class="nav-text">BEA-2019 Shared Task</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">3.1.3.</span> <span class="nav-text">用法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spaCy"><span class="nav-number">4.</span> <span class="nav-text">spaCy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#M2-score"><span class="nav-number">5.</span> <span class="nav-text">M2 score</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#quick-start"><span class="nav-number">5.1.</span> <span class="nav-text">quick start</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="匠心圆头"
+      src="/images/zsy.jpg">
+  <p class="site-author-name" itemprop="name">匠心圆头</p>
+  <div class="site-description" itemprop="description">致虚极，守静笃。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shira0905" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shira0905" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shira0905@gmail.com" title="E-Mail → mailto:shira0905@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021-07-10</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">匠心圆头</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
